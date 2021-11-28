@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ChessGame from "./ChessGame";
 import Waiting from "./Waiting";
+import Wallet from "./Wallet/Wallet";
+import Chains from "./Chains/Chains";
+import { useMoralis } from "react-moralis";
 
 const socket = require("../connections/socket").socket;
 
@@ -14,8 +17,9 @@ function HomePage() {
   const [gameCreated, setGameCreated] = useState(false);
   const [joined, setJoined] = useState(false);
   const [opponentAddress, setOpponentAddress] = useState(null);
-
+  const { isAuthenticated } = useMoralis();
   const [gameAmount, setGameAmount] = useState(null);
+
   useEffect(() => {
     socket.on("status", (status) => {
       alert(status);
@@ -31,7 +35,7 @@ function HomePage() {
       /* socket.emit("getAddress", data.gameId); */
       setJoined(true);
     });
-  }, []);   
+  }, []);
 
   const handleAddress1 = (event) => {
     setAddress1(event.target.value);
@@ -61,6 +65,7 @@ function HomePage() {
       address: address2,
     });
   };
+  
   const mainPage = () => {
     return (
       <div
@@ -101,6 +106,8 @@ function HomePage() {
             />
           </div>
         </form>
+        <Wallet />
+        {isAuthenticated && <Chains />}
         <form onSubmit={joinGame}>
           <div
             style={{
@@ -132,7 +139,7 @@ function HomePage() {
 
   return gameCreated ? (
     <Waiting gameId={gameId} amount={amount} address={address1} />
-  ) : joined  ? (
+  ) : joined ? (
     <ChessGame
       amount={gameAmount}
       yourAddress={address2}
