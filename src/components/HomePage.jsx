@@ -9,15 +9,13 @@ import { useMoralis } from "react-moralis";
 const socket = require("../connections/socket").socket;
 
 function HomePage() {
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
   const [amount, setAmount] = useState("");
   const [gameIdInput, setGameIdInput] = useState("");
   const [gameId, setGameId] = useState("");
   const [gameCreated, setGameCreated] = useState(false);
   const [joined, setJoined] = useState(false);
   const [opponentAddress, setOpponentAddress] = useState(null);
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated, account } = useMoralis();
   const [gameAmount, setGameAmount] = useState(null);
 
   useEffect(() => {
@@ -37,13 +35,8 @@ function HomePage() {
     });
   }, []);
 
-  const handleAddress1 = (event) => {
-    setAddress1(event.target.value);
-  };
-  const handleAddress2 = (event) => {
-    setAddress2(event.target.value);
-  };
   const handleAmount = (event) => {
+    console.log(account);
     setAmount(event.target.value);
   };
   const handleGameIdInput = (event) => {
@@ -52,6 +45,10 @@ function HomePage() {
 
   const createGame = (event) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      alert("Please connect your wallet first");
+      return;
+    }
     const newGameRoomId = uuidv4();
     setGameId(newGameRoomId);
     socket.emit("createNewGame", newGameRoomId);
@@ -60,12 +57,16 @@ function HomePage() {
 
   const joinGame = (event) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      alert("Please connect your wallet first");
+      return;
+    }
     socket.emit("playerJoinGame", {
       gameId: gameIdInput,
-      address: address2,
+      address: account,
     });
   };
-  
+
   const mainPage = () => {
     return (
       <div
@@ -85,13 +86,6 @@ function HomePage() {
               justifyContent: "center",
             }}
           >
-            <input
-              type="text"
-              style={{ margin: "10px" }}
-              placeholder="address"
-              value={address1}
-              onChange={handleAddress1}
-            />
             <input
               type="number"
               style={{ margin: "10px" }}
@@ -119,13 +113,6 @@ function HomePage() {
             <input
               type="text"
               style={{ margin: "10px" }}
-              placeholder="address"
-              value={address2}
-              onChange={handleAddress2}
-            />
-            <input
-              type="text"
-              style={{ margin: "10px" }}
               placeholder="Game Id"
               value={gameIdInput}
               onChange={handleGameIdInput}
@@ -138,11 +125,11 @@ function HomePage() {
   };
 
   return gameCreated ? (
-    <Waiting gameId={gameId} amount={amount} address={address1} />
+    <Waiting gameId={gameId} amount={amount} address={account} />
   ) : joined ? (
     <ChessGame
       amount={gameAmount}
-      yourAddress={address2}
+      yourAddress={account}
       opponentAddress={opponentAddress}
       gameId={gameIdInput}
       isCreator={false}

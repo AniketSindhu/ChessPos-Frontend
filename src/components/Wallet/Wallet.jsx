@@ -21,6 +21,7 @@ const styles = {
   },
   text: {
     color: "#21BF96",
+    pointerEvents: "none",
   },
 };
 
@@ -33,7 +34,12 @@ function Wallet() {
     return (
       <div
         style={styles.account}
-        onClick={() => authenticate({ signingMessage: "Welcome to Chess Pos", chainId: 80001 })}
+        onClick={() =>
+          authenticate({
+            signingMessage: "Welcome to Chess Pos",
+            chainId: 80001,
+          })
+        }
       >
         <p style={styles.text}>Authenticate</p>
       </div>
@@ -49,7 +55,9 @@ function Wallet() {
           setIsModalVisible(true);
         }}
       >
-        <p style={{ marginRight: "5px", ...styles.text }}>
+        <p
+          style={{ marginRight: "5px", ...styles.text, pointerEvents: "none" }}
+        >
           {getEllipsisTxt(account, 6)}
         </p>
         <Blockie currentWallet scale={3} />
