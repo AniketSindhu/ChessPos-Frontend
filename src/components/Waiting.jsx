@@ -11,11 +11,11 @@ function Waiting({ gameId, amount, address }) {
     socket.on("start game", (opponentUserName) => {
       console.log("START!");
       setOpponentAddress(opponentUserName);
-      socket.emit("send data", {
+      /*       socket.emit("send data", {
         address: address,
         gameId: gameId,
         amount: amount,
-      });
+      }); */
       setJoined(true);
       //socket.emit("request username", gameId);
     });

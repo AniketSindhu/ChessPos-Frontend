@@ -1,0 +1,309 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      }
+    ],
+    "name": "createGame",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "challenger",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gamePGN",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum ChessPos.Player",
+        "name": "winner",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "finished",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakedToken",
+        "type": "uint256"
+      }
+    ],
+    "name": "GameCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "challenger",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gamePGN",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum ChessPos.Player",
+        "name": "winner",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "finished",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakedToken",
+        "type": "uint256"
+      }
+    ],
+    "name": "GameJoined",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address payable",
+        "name": "challenger",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "gamePGN",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum ChessPos.Player",
+        "name": "winner",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "finished",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakedToken",
+        "type": "uint256"
+      }
+    ],
+    "name": "GameOver",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      }
+    ],
+    "name": "joinGame",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "pgn",
+        "type": "string"
+      }
+    ],
+    "name": "reportWinner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      }
+    ],
+    "name": "unstake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "idToChessGame",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "internalType": "address payable",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "challenger",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "gamePGN",
+        "type": "string"
+      },
+      {
+        "internalType": "enum ChessPos.Player",
+        "name": "winner",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "finished",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "stakedToken",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "playerToChessGames",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "gameId",
+        "type": "string"
+      },
+      {
+        "internalType": "address payable",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "opponent",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "gamePGN",
+        "type": "string"
+      },
+      {
+        "internalType": "enum ChessPos.Results",
+        "name": "result",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "stakedToken",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum ChessPos.Player",
+        "name": "player",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

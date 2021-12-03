@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import ChessGame from "./ChessGame";
+
 import Waiting from "./Waiting";
 import Wallet from "./Wallet/Wallet";
 import Chains from "./Chains/Chains";
 import { useMoralis } from "react-moralis";
+import config from "../config/config";
+import contractABI from "../contract/contractABI.json";
+import Loader from "./Loader/Loader";
+import StakeTokens from "./StakeTokens";
 
 const socket = require("../connections/socket").socket;
 
@@ -15,23 +19,19 @@ function HomePage() {
   const [gameCreated, setGameCreated] = useState(false);
   const [joined, setJoined] = useState(false);
   const [opponentAddress, setOpponentAddress] = useState(null);
-  const { isAuthenticated, account } = useMoralis();
+  const { isAuthenticated, account, web3 } = useMoralis();
   const [gameAmount, setGameAmount] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [gameFound, setGameFound] = useState(false);
 
   useEffect(() => {
     socket.on("status", (status) => {
       alert(status);
     });
 
-    socket.on("send data", (data) => {
-      setOpponentAddress(data.address);
-      setGameAmount(data.amount);
-    });
-
-    socket.on("playerJoinedRoom", (data) => {
+    socket.on("match found", () => {
       console.log("Game found joining now");
-      /* socket.emit("getAddress", data.gameId); */
-      setJoined(true);
+      setGameFound(true);
     });
   }, []);
 
@@ -48,11 +48,46 @@ function HomePage() {
     if (!isAuthenticated) {
       alert("Please connect your wallet first");
       return;
+    } else if (amount <= 0) {
+      alert("Please enter a valid amount");
+      return;
+    } else {
+      setLoading(true);
+      //genrates a random gameId
+      const newGameRoomId = uuidv4();
+      setGameId(newGameRoomId);
+
+      //calls the contract to take my freaking money and put it on stake
+      const contract = new web3.eth.Contract(
+        contractABI,
+        config.contractAddress
+      );
+
+      try {
+        const createCall = contract.methods
+          .createGame(newGameRoomId)
+          .send({ from: account, value: web3.utils.toWei(amount, "ether") });
+
+        createCall.on("error", (error, recipt) => {
+          console.log(error);
+          alert(error);
+          setLoading(false);
+        });
+
+        createCall.on("receipt", (receipt) => {
+          console.log(receipt);
+
+          setLoading(false);
+
+          //calls the socket to create a new game
+          socket.emit("createNewGame", newGameRoomId);
+          setGameCreated(true);
+        });
+      } catch (error) {
+        alert(error.message);
+        setLoading(false);
+      }
     }
-    const newGameRoomId = uuidv4();
-    setGameId(newGameRoomId);
-    socket.emit("createNewGame", newGameRoomId);
-    setGameCreated(true);
   };
 
   const joinGame = (event) => {
@@ -61,10 +96,7 @@ function HomePage() {
       alert("Please connect your wallet first");
       return;
     }
-    socket.emit("playerJoinGame", {
-      gameId: gameIdInput,
-      address: account,
-    });
+    socket.emit("wantsToJoin", gameIdInput);
   };
 
   const mainPage = () => {
@@ -126,16 +158,13 @@ function HomePage() {
 
   return gameCreated ? (
     <Waiting gameId={gameId} amount={amount} address={account} />
-  ) : joined ? (
-    <ChessGame
-      amount={gameAmount}
-      yourAddress={account}
-      opponentAddress={opponentAddress}
-      gameId={gameIdInput}
-      isCreator={false}
-    />
+  ) : gameFound ? (
+    <StakeTokens gameId={gameIdInput} />
   ) : (
-    mainPage()
+    <div>
+      {loading && <Loader />}
+      {mainPage()}
+    </div>
   );
 }
 
