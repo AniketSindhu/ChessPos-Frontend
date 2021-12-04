@@ -121,7 +121,7 @@ function HomePage() {
             <input
               type="number"
               style={{ margin: "10px" }}
-              placeholder="Amount"
+              placeholder="venkatesh"
               value={amount}
               onChange={handleAmount}
             />
