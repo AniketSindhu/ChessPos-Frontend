@@ -1,0 +1,414 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.detBg {
+  background: rgb(25, 28, 32);
+  height: 2200px;
+  position: relative;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.emoji {
+  position: absolute;
+  width: 6rem;
+  height: 6rem;
+  top: 5.3rem;
+  z-index: 2;
+}
+.detHead {
+  position: relative;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 6rem;
+  text-align: center;
+  left: -3rem;
+  padding-top: 4rem;
+  z-index: 2;
+}
+.detBelHead {
+  color: white;
+  font-family: "Archivo", sans-serif;
+  margin: 6rem 5rem;
+  font-weight: 400;
+  font-size: 2.3rem;
+  text-align: center;
+  z-index: 2;
+}
+
+.detFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detArticle {
+  height: 20rem;
+  width: 65rem;
+  background-image: linear-gradient(rgba(147, 44, 80, 1), rgba(189, 63, 50, 1));
+  box-shadow: inset -8px -8px 40px 5px rgba(0, 0, 0, 0.4);
+  border-radius: 3rem;
+  margin-bottom: 3.2rem;
+  z-index: 2;
+}
+.detJoin {
+  transform: rotate(90deg);
+  height: 3rem;
+  width: 10rem;
+  margin-bottom: 3.2rem;
+}
+/* .detBgDiv {
+  position: relative;
+} */
+.detBgImg {
+  position: absolute;
+  width: 50rem;
+  height: 50rem;
+  top: 12rem;
+  right: -4rem;
+  z-index: -1;
+}
+
+/* ------------------------------Match------------------------------ */
+
+.matchBg {
+  background: rgb(26, 28, 32);
+  height: 721px;
+}
+
+.matchKnight {
+  width: 18rem;
+  height: 30rem;
+  position: relative;
+  top: 2rem;
+  left: 10rem;
+}
+
+/* ----------------------------------wallet----------------------- */
+.walletBg {
+  background: rgb(26, 28, 32);
+  height: 721px;
+}
+
+.wallSection {
+  font-size: 4.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: white;
+  margin: 0 auto;
+  width: 50rem;
+  margin-top: 10rem;
+  text-align: center;
+}
+
+#clip:focus {
+  outline: none;
+}
+
+.inputBox {
+  margin: 10px;
+
+  padding: 0.8rem 1rem;
+  height: 4rem;
+  position: relative;
+
+  width: 32rem;
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  border-radius: 1.5rem;
+  
+  transition: all 0.5s ease-in-out;
+}
+.inputBox::-webkit-outer-spin-button,
+.inputBox::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputBox:hover {
+  outline: 3px solid white;
+}
+/* -----------------------------------nft---------------------- */
+
+.wallContent {
+  background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
+  box-shadow: inset -7.84314px -7.84314px 39.2157px 4.90196px rgba(0, 0, 0, 0.4);
+  border-image: linear-gradient(rgba(255, 255, 255, 1), rgba(194, 7, 7, 1));
+  /* border-style: solid; */
+  border-width: 2px;
+  border-radius: 30.3922px;
+  /* transform: rotate(-90deg); */
+  width: 34rem;
+  height: 20rem;
+  font-size: 1.25rem;
+  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin: auto;
+  margin-top: 6rem;
+  padding: 0.6rem 1.5rem;
+}
+
+/* -----------------------------navbar---------------- */
+.matchLogo {
+  position: relative;
+  top: 0.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-top: 4rem;
+  margin-left: 2rem;
+}
+
+.matchHead {
+  display: inline-block;
+  color: white;
+  font-size: 4.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  padding-left: 3rem;
+}
+
+.staking {
+  background: rgb(26, 28, 32);
+  height: 721px;
+  /* overflow: hidden; */
+}
+.inputBox {
+  border: none;
+  appearance: none;
+  background: transparent;
+  padding: 12px;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  color: white;
+  width: 26rem;
+  height: 4rem;
+  font-size: 1rem;
+  position: relative;
+  right: 2rem;
+  bottom: 0.8rem;
+}
+.flexNft {
+  display: flex;
+  flex-direction: row;
+  width: 30rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.walletImg {
+  position: relative;
+  top: 0.5rem;
+
+  width: 4.8rem;
+  height: 3.2rem;
+}
+.walletImgNft {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  top: 1rem;
+}
+
+.wallHead {
+  display: inline-block;
+  color: white;
+  font-size: 3.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  padding-left: 2rem;
+  position: relative;
+  bottom: 1rem;
+}
+
+.wallLogo {
+  position: relative;
+  top: 0.4rem;
+  width: 5rem;
+  height: 5rem;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+}
+
+.wallImgTextNft {
+  color: white;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding-top: 1rem;
+  position: relative;
+  top: 0.5rem;
+}
+
+.wallImgText {
+  color: white;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  position: relative;
+  top: 1.2rem;
+}
+.imgFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0.75rem;
+  transition: all 0.3s linear;
+}
+.imgFlex:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.imgFlexNft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s linear;
+}
+.imgFlexNft:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.wallFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* ----------------------------won---------------------- */
+.name {
+  width: 14rem;
+  height: 4rem;
+  color: white;
+  background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
+  box-shadow: inset -8.26342px -8.26342px 41.3171px 5.16464px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding-top: 1.1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  position: relative;
+  left: 8rem;
+  top: -1rem;
+}
+.redButton {
+  width: 14rem;
+  height: 4rem;
+  color: white;
+  background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
+  box-shadow: inset -8.26342px -8.26342px 41.3171px 5.16464px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding-top: 1.1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  position: relative;
+  left: 8rem;
+  top: -1rem;
+  transition: all 0.25s ease-in-out;
+}
+.redButton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  border: 3px solid white;
+}
+
+.wonKnight {
+  width: 18rem;
+  height: 25rem;
+  position: relative;
+  left: 6rem;
+}
+.whiteKnight {
+  display: flex;
+  flex-direction: column;
+}
+.articleTxt {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  position: relative;
+  left: 4rem;
+}
+
+.status {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  background: -webkit-linear-gradient(#932c50, #bd3f32);
+  -webkit-background-clip: text;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  -webkit-text-fill-color: transparent;
+  font-size: 5rem;
+}
+
+.wonFlex {
+  display: flex;
+  flex-direction: row;
+}
+
+.WonCircles {
+  width: 55rem;
+  height: 55rem;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+.wonDiv {
+  background: rgb(26, 28, 32);
+  position: relative;
+  height: 721px;
+  overflow: hidden;
+}
+.nftColor {
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  position: relative;
+  top: 9rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  left: 3rem;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.nftColor:hover {
+  outline: 5px solid white;
+}
+
+.nftChooseColor {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: 0.5rem;
+  left: 8.5rem;
+}
+
+.joinLobbyMainDiv {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-left: 8rem;
+}
+
+.matchDetails {
+  position: relative;
+  left: 15rem;
+  top: 3rem;
+}

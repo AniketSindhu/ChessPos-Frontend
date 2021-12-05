@@ -6,6 +6,10 @@ import { useState } from "react";
 import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../../helpers/networks";
+import Logo from "../../img/Logo.png";
+import Walle from "../../img/Wallet.png";
+import Nft from "../../img/NFT SYMBOL.png";
+import { display } from "@mui/system";
 
 const styles = {
   account: {
@@ -33,7 +37,7 @@ function Wallet() {
   if (!isAuthenticated) {
     return (
       <div
-        style={styles.account}
+        
         onClick={() =>
           authenticate({
             signingMessage: "Welcome to Chess Pos",
@@ -41,7 +45,10 @@ function Wallet() {
           })
         }
       >
-        <p style={styles.text}>Authenticate</p>
+        <div className="imgFlexNft">
+        <img src={Walle} className="walletImg" />
+          <div className="wallImgText">Connect Wallet</div>
+          </div>
       </div>
     );
   }
@@ -49,7 +56,12 @@ function Wallet() {
   return (
     <>
       <div
-        style={styles.account}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}
+        
         onClick={() => {
           console.log("Open model");
           setIsModalVisible(true);

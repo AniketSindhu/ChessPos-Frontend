@@ -9,6 +9,13 @@ import config from "../config/config";
 import contractABI from "../contract/contractABI.json";
 import Loader from "./Loader/Loader";
 import StakeTokens from "./StakeTokens";
+import Navbar from "../navbar";
+import Circles from "../../src/img/Circles2.png";
+import Vs from "../../src/img/vs.png";
+import { autocompleteClasses } from "@mui/material";
+import { padding } from "@mui/system";
+import { ScanOutlined } from "@ant-design/icons";
+
 
 const socket = require("../connections/socket").socket;
 
@@ -17,10 +24,10 @@ function HomePage() {
   const [gameIdInput, setGameIdInput] = useState("");
   const [gameId, setGameId] = useState("");
   const [gameCreated, setGameCreated] = useState(false);
-  const [joined, setJoined] = useState(false);
-  const [opponentAddress, setOpponentAddress] = useState(null);
+  
+  
   const { isAuthenticated, account, web3 } = useMoralis();
-  const [gameAmount, setGameAmount] = useState(null);
+  
   const [loading, setLoading] = useState(false);
   const [gameFound, setGameFound] = useState(false);
 
@@ -35,60 +42,12 @@ function HomePage() {
     });
   }, []);
 
-  const handleAmount = (event) => {
-    console.log(account);
-    setAmount(event.target.value);
-  };
+  
   const handleGameIdInput = (event) => {
     setGameIdInput(event.target.value);
   };
 
-  const createGame = (event) => {
-    event.preventDefault();
-    if (!isAuthenticated) {
-      alert("Please connect your wallet first");
-      return;
-    } else if (amount <= 0) {
-      alert("Please enter a valid amount");
-      return;
-    } else {
-      setLoading(true);
-      //genrates a random gameId
-      const newGameRoomId = uuidv4();
-      setGameId(newGameRoomId);
-
-      //calls the contract to take my freaking money and put it on stake
-      const contract = new web3.eth.Contract(
-        contractABI,
-        config.contractAddress
-      );
-
-      try {
-        const createCall = contract.methods
-          .createGame(newGameRoomId)
-          .send({ from: account, value: web3.utils.toWei(amount, "ether") });
-
-        createCall.on("error", (error, recipt) => {
-          console.log(error);
-          alert(error);
-          setLoading(false);
-        });
-
-        createCall.on("receipt", (receipt) => {
-          console.log(receipt);
-
-          setLoading(false);
-
-          //calls the socket to create a new game
-          socket.emit("createNewGame", newGameRoomId);
-          setGameCreated(true);
-        });
-      } catch (error) {
-        alert(error.message);
-        setLoading(false);
-      }
-    }
-  };
+  
 
   const joinGame = (event) => {
     event.preventDefault();
@@ -101,57 +60,172 @@ function HomePage() {
 
   const mainPage = () => {
     return (
-      <div
+      <div className="wonDiv" style={{height: "753px"}} >
+      <img
+        src={Circles}
+        alt="Circles"
+        className=""
         style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          height: "100vh",
+          position: "absolute",
+          right: "30rem",
+          top: "0",
+          height: "55rem",
+          width: "55rem",
+          
         }}
-      >
-        <form onSubmit={createGame}>
-          <div
+      />
+      <Navbar head="ChessPOS" />
+      
+      <div className="joinLobbyMaindiv">
+      <div className="matchDetails">
+          <span
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
+              color: "white",
+              fontSize: "2rem",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 400,
             }}
           >
-            <input
-              type="number"
-              style={{ margin: "10px" }}
-              placeholder="venkatesh"
-              value={amount}
-              onChange={handleAmount}
-            />
-            <input
-              type="submit"
-              value="Create Game"
-              style={{ margin: "10px" }}
-            />
-          </div>
-        </form>
-        <Wallet />
-        {isAuthenticated && <Chains />}
-        <form onSubmit={joinGame}>
+            Username1
+          </span>
+          <img
+            alt="Versus"
+            src={Vs}
+            style={{
+              height: "2rem",
+              width: "2rem",
+              marginLeft: "2rem",
+              marginRight: "2rem",
+              position: "relative",
+              bottom: "0.5rem"
+            }}
+          ></img>
+          <span
+            style={{
+              color: "white",
+              fontSize: "2rem",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            Username2
+          </span>
+        </div>
+
+        
+        <div
+          style={{
+            width: "30rem",
+            height: "auto",
+            float: "right",
+            position: "relative",
+            right: "4rem",
+            top: "5rem"
+          }}
+        >
+          <section
+            className="wallContent"
+            style={{
+              position: "relative",
+              transform: "scale(1.3)",
+
+              width: "20rem",
+              height: "13rem",
+              bottom: "8rem",
+              right: "4rem"
+            }}
+          >
+            <span
+              style={{
+                color: "white",
+                fontSize: "1.8rem",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 600,
+                position: "relative",
+                bottom: "1.5rem",
+              }}
+            >
+              Join a Lobby
+            </span>
+            <br/>
+            <br/>
+            
+            
+            <form onSubmit={joinGame}>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              position: "relative",
+              bottom: "1rem"
+              
             }}
           >
             <input
               type="text"
-              style={{ margin: "10px" }}
+              style={{ 
+                padding: "0.2rem 0.5rem",
+                fontSize: "1.2rem",
+                margin: "10px", 
+              background: "rgba(26, 28, 32, 0.75)",
+                position: "relative",
+                bottom: "4rem",
+                height: "2.5rem",
+                borderRadius: "0.5rem",}}
               placeholder="Game Id"
               value={gameIdInput}
               onChange={handleGameIdInput}
             />
-            <input type="submit" value="Join Game" style={{ margin: "10px" }} />
+            <input type="submit" value="Join Game" style={{ margin: "10px" ,  
+            background: "rgba(26, 28, 32, 0.75)",
+                position: "relative",
+                bottom: "4.5rem",
+                height: "3rem",
+                width: "10rem",
+                left: "3.3rem",
+                borderRadius: "2rem",
+                fontSize: "1.4rem",
+                paddingTop: "8px"}} />
           </div>
         </form>
+          </section>
+          <div style={{position: "relative", right:"4rem"}}>
+          <span
+            style={{
+              color: "white",
+              fontSize: "2rem",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              position: "relative",
+              bottom: "3rem",
+              left: "13rem",
+            }}
+          >
+            OR
+          </span>
+          <section
+            className="wallContent"
+            style={{
+              position: "relative",
+
+              width: "30rem",
+              height: "6rem",
+              bottom: "8rem",
+            }}
+            
+          >
+          <span style={{fontSize: "2.5rem"}}>Play a Match</span>
+          </section>
+          </div>
+          
+        </div>
+
+
+
+      </div>
+      
+
       </div>
     );
   };

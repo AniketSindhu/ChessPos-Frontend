@@ -1,0 +1,334 @@
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: hsl(205, 86%, 17%);
+  --clr-primary-2: hsl(205, 77%, 27%);
+  --clr-primary-3: hsl(205, 72%, 37%);
+  --clr-primary-4: hsl(205, 63%, 48%);
+  /* primary/main color */
+  --clr-primary-5: hsl(205, 78%, 60%);
+  /* lighter shades of primary color */
+  --clr-primary-6: hsl(205, 89%, 70%);
+  --clr-primary-7: hsl(205, 90%, 76%);
+  --clr-primary-8: hsl(205, 86%, 81%);
+  --clr-primary-9: hsl(205, 90%, 88%);
+  --clr-primary-10: hsl(205, 100%, 96%);
+  /* darkest grey - used for headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* grey used for paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --clr-red-dark: hsl(360, 67%, 44%);
+  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-green-dark: hsl(125, 67%, 44%);
+  --clr-green-light: hsl(125, 71%, 66%);
+  --clr-black: #222;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+/*
+=============== 
+Global Styles
+===============
+*/
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--clr-grey-10);
+  color: var(--clr-grey-1);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: var(--clr-grey-5);
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+/*  global classes */
+
+/* section */
+.section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
+@media screen and (min-width: 992px) {
+  .section {
+    width: 95vw;
+  }
+}
+
+/* -----------------------------home styles--------------------------------- */
+
+.home-bg {
+  background-color: rgb(25, 28, 32);
+  width: 100%;
+  height: 753px;
+  overflow: hidden;
+}
+
+.blur-container {
+  position: relative;
+  width: 66rem;
+  height: 13rem;
+}
+.tagline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 4rem;
+  line-height: 5rem;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 1);
+  z-index: 1;
+}
+.tagline-bold {
+  background: -webkit-linear-gradient(
+    rgba(203, 53, 107, 1),
+    rgba(218, 35, 16, 1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.blur-bg {
+  top: 3rem;
+  position: absolute;
+  width: 50%;
+  height: 20%;
+  background: linear-gradient(
+    91.26deg,
+    rgba(203, 53, 107, 0.8) 12.36%,
+    rgba(218, 35, 16, 0.8) 94.13%
+  );
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+.tag-points {
+  font-family: "Archivo", sans-serif;
+  height: 6rem;
+  width: 32rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.enter-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+
+  color: rgba(255, 255, 255, 1);
+  height: 4rem;
+  width: 13rem;
+
+  font-weight: 500;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.5rem;
+  line-height: 36px;
+
+  background: linear-gradient(90.52deg, #cb356b 5.81%, #da2310 95.25%);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  transition: all 0.5s ease-in-out;
+}
+.enter-btn:hover {
+  cursor: pointer;
+  border: 3px solid white
+}
+
+.enter-btn .triangle {
+  transform: rotate(90deg);
+  margin-left: 1.5rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 13rem;
+  left: 15rem;
+}
+
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 100px solid rgb(60, 33, 46);
+  border-right: 100px solid transparent;
+}
+
+.rocket {
+  position: relative;
+}
+.rimg {
+  position: absolute;
+  left: -2.1rem;
+  top: 18rem;
+  width: 14rem;
+  height: 21rem;
+  object-fit: contain;
+}
+.knight {
+  top: 12rem;
+  left: 15rem;
+  position: absolute;
+  object-fit: contain;
+  height: 24rem;
+  width: 16rem;
+  transition: all 2s ease-in-out;
+}
+
+.knight:hover{
+  cursor: pointer;
+}
+
+.knight-bg {
+  position: relative;
+  height: 43rem;
+  width: 40rem;
+  /* max-width: 100%;
+  height: auto; */
+  top: -24rem;
+  left: 50rem;
+  overflow: hidden;
+}
+.polygon {
+  position: absolute;
+  width: 15rem;
+  height: 3rem;
+  z-index: 10;
+  bottom: 0.5rem;
+  right: 4rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.polygon:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  
+}
+
+.knight-blur {
+  position: absolute;
+  top: 20rem;
+  left: 62rem;
+  width: 20rem;
+  height: 9rem;
+  background: linear-gradient(
+    91.26deg,
+    rgba(169, 170, 172, 0.8) 12.36%,
+    rgba(206, 207, 210, 0.8) 94.13%
+  );
+  filter: blur(100px);
+  transform: matrix(-0.08, -0.99, 1, 0.05, 0, 0);
+  
+}
+
+
+.circles {
+  height: 50rem;
+  width: 50rem;
+  z-index: -1;
+}
+.work-div {
+  border-width: 3px;
+  border-radius: 1.3rem;
+  border-color: rgba(203, 53, 107, 0.8);
+  border-style: solid;
+  z-index: 5;
+  /* border-image: linear-gradient(rgba(255, 255, 255, 1), rgba(194, 7, 7, 1)); */
+}
+.zindex {
+  z-index: -4;
+}
+.zindex-img {
+  z-index: 0;
+}
