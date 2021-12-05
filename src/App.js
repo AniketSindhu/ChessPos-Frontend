@@ -7,7 +7,6 @@ import { Routes, Route } from "react-router-dom";
 import "./index.css";
 import StakeTokens from "./components/StakeTokens";
 import ChessGame from "./components/ChessGame";
-import Navbar from "./navbar";
 import Waiting from "./components/Waiting";
 
 function App({ isServerInfo }) {
@@ -26,7 +25,7 @@ function App({ isServerInfo }) {
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/createGame" element={<StakingTokens />} />
-        <Route path="/joinGame/:id" element={<StakeTokens />} />
+        <Route path="/joinGame" element={<StakeTokens />} />
         <Route path="/waiting" element={<Waiting />} />
         <Route path="/game" element={<ChessGame />} />
 

@@ -15,36 +15,42 @@ import bB from "../pieces/bB.png";
 import bK from "../pieces/bK.png";
 import bQ from "../pieces/bQ.png";
 import bR from "../pieces/bR.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const socket = require("../connections/socket").socket;
 
-function ChessGame({
-  isCreator,
-  gameId,
-  amount,
-  yourAddress,
-  opponentAddress,
-}) {
-  const [turn, setTurn] = useState(isCreator);
+function ChessGame() {
+  const [turn, setTurn] = useState(null);
   const [gameOver, setGameOver] = useState(false);
   const time = new Date();
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  const [isCreator, setIsCreator] = useState(null);
+  const [gameId, setGameId] = useState(null);
+  const [amount, setAmount] = useState(null);
+  const [yourAddress, setYourAddress] = useState(null);
+  const [opponentAddress, setOpponentAddress] = useState(null);
+
+  const [gotData, setGotData] = useState(false);
+
   time.setSeconds(time.getSeconds() + 600);
   const {
-    my_seconds,
-    my_minutes,
-    my_isRunning,
-    my_pause,
-    my_resume,
-    my_restart,
+    seconds: my_seconds,
+    minutes: my_minutes,
+    isRunning: my_isRunning,
+    pause: my_pause,
+    resume: my_resume,
+    restart: my_restart,
   } = useTimer({ time, onExpire: () => console.warn("onExpire called Me") });
 
   const {
-    op_seconds,
-    op_minutes,
-    op_isRunning,
-    op_pause,
-    op_resume,
-    op_restart,
+    seconds: op_seconds,
+    minutes: op_minutes,
+    isRunning: op_isRunning,
+    pause: op_pause,
+    resume: op_resume,
+    restart: op_restart,
   } = useTimer({ time, onExpire: () => console.warn("onExpire called Op") });
 
   const checkIfGameOver = (game) => {
@@ -87,6 +93,16 @@ function ChessGame({
   };
 
   useEffect(() => {
+    if (location.state) {
+      setIsCreator(location.state.isCreator);
+      setGameId(location.state.gameId);
+      setAmount(location.state.amount);
+      setYourAddress(location.state.yourAddress);
+      setOpponentAddress(location.state.opponentAddress);
+      setTurn(location.state.isCreator);
+      setGotData(true);
+    }
+
     if (isCreator) {
       op_pause();
     } else {
@@ -205,7 +221,7 @@ function ChessGame({
     return move;
   }
 
-  return (
+  return gotData ? (
     <div>
       <div
         style={{
@@ -274,6 +290,8 @@ function ChessGame({
         reset
       </button>
     </div>
+  ) : (
+    <h1>Something went wrong</h1>
   );
 }
 

@@ -4,19 +4,17 @@ import Knight from "../img/newKnight.png";
 
 import Navbar from "../navbar";
 import KnightRed from "../img/KnightRed.png";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const socket = require("../connections/socket").socket;
 
 function Waiting() {
   const [opponentAddress, setOpponentAddress] = useState("");
-  const [joined, setJoined] = useState(false);
+  const [amount, setAmount] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [gameId, setGameId] = useState(null);
   const location = useLocation();
-  console.log(
-    location.state.gameId,
-    location.state.amount,
-    location.state.address
-  );
+
   const quotes = [
     {
       quote:
@@ -79,10 +77,15 @@ function Waiting() {
   }
 
   let index = Math.floor(Math.random() * 10);
-
+  let navigate = useNavigate();
   console.log(index);
 
   useEffect(() => {
+    if (location.state) {
+      setGameId(location.state.gameId);
+      setAmount(location.state.amount);
+      setAddress(location.state.address);
+    }
     socket.on("start game", (opponentUserName) => {
       console.log("START!");
       setOpponentAddress(opponentUserName);
@@ -91,17 +94,27 @@ function Waiting() {
         gameId: gameId,
         amount: amount,
       }); */
-      setJoined(true);
+
+      navigate("/game", {
+        state: {
+          isCreator: true,
+          opponentAddress: opponentAddress,
+          yourAddress: address,
+          amount: amount,
+          gameId: gameId,
+        },
+      });
+
       //socket.emit("request username", gameId);
     });
   }, []);
 
-  return !joined ? (
+  return gameId && amount && address ? (
     <div
       className="matchBg"
       style={{
         position: "relative",
-
+        height: "100vh",
         overflow: "hidden",
       }}
     >
@@ -117,7 +130,7 @@ function Waiting() {
         }}
       >
         <div className="whiteKnight">
-          <img src={Knight} className="wonKnight" />
+          <img alt="knight" src={Knight} className="wonKnight" />
           <div className="name">Username1</div>
         </div>
         <div
@@ -153,7 +166,7 @@ function Waiting() {
           >
             <input
               type="text"
-              value={location.state.gameId}
+              value={gameId}
               id="clip"
               style={{
                 background: "transparent",
@@ -209,20 +222,21 @@ function Waiting() {
             right: "10rem",
           }}
         >
-          <img src={KnightRed} className="wonKnight" />
+          <img alt="redKnight" src={KnightRed} className="wonKnight" />
           <div className="name">Waiting for player</div>
         </div>
       </div>
       {/* <h1>Game Created</h1> */}
     </div>
   ) : (
-    <ChessGame
+    <h1> Something Went wrong</h1>
+    /*     <ChessGame
       isCreator={true}
       opponentAddress={opponentAddress}
-      /*       yourAddress={address}
+      yourAddress={address}
       amount={amount}
-      gameId={gameId} */
-    />
+      gameId={gameId}
+    /> */
   );
 }
 

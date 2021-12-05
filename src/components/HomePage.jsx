@@ -1,37 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
-
-import Waiting from "./Waiting";
 
 import { useMoralis } from "react-moralis";
-import Loader from "./Loader/Loader";
-import StakeTokens from "./StakeTokens";
 import Navbar from "../navbar";
 import Circles from "../../src/img/Circles2.png";
 import Vs from "../../src/img/vs.png";
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const socket = require("../connections/socket").socket;
 
 function HomePage() {
-  const [amount, setAmount] = useState("");
   const [gameIdInput, setGameIdInput] = useState("");
-  const [gameId, setGameId] = useState("");
-  const [gameCreated, setGameCreated] = useState(false);
 
-  const { isAuthenticated, account, web3 } = useMoralis();
-
-  const [loading, setLoading] = useState(false);
-  const [gameFound, setGameFound] = useState(false);
+  const { isAuthenticated } = useMoralis();
+  let navigate = useNavigate();
 
   useEffect(() => {
     socket.on("status", (status) => {
       alert(status);
-    });
-
-    socket.on("match found", () => {
-      console.log("Game found joining now");
-      setGameFound(true);
     });
   }, []);
 
@@ -46,6 +31,14 @@ function HomePage() {
       return;
     }
     socket.emit("wantsToJoin", gameIdInput);
+    socket.on("match found", () => {
+      console.log("Game found joining now");
+      navigate("/joinGame", {
+        state: {
+          gameId: gameIdInput,
+        },
+      });
+    });
   };
 
   const mainPage = () => {
@@ -198,18 +191,18 @@ function HomePage() {
                 OR
               </span>
               <Link to="/createGame">
-              <section
-                className="wallContent"
-                style={{
-                  position: "relative",
+                <section
+                  className="wallContent"
+                  style={{
+                    position: "relative",
 
-                  width: "30rem",
-                  height: "6rem",
-                  bottom: "8rem",
-                }}
-              >
-                <span style={{ fontSize: "2.5rem" }}>Play a Match</span>
-              </section>
+                    width: "30rem",
+                    height: "6rem",
+                    bottom: "8rem",
+                  }}
+                >
+                  <span style={{ fontSize: "2.5rem" }}>Play a Match</span>
+                </section>
               </Link>
             </div>
           </div>
@@ -218,16 +211,7 @@ function HomePage() {
     );
   };
 
-  return gameCreated ? (
-    <Waiting gameId={gameId} amount={amount} address={account} />
-  ) : gameFound ? (
-    <StakeTokens gameId={gameIdInput} />
-  ) : (
-    <div>
-      {loading && <Loader />}
-      {mainPage()}
-    </div>
-  );
+  return <div>{mainPage()}</div>;
 }
 
 export default HomePage;

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import Waiting from "./Waiting";
-
 import { useMoralis } from "react-moralis";
 import config from "../config/config";
 import contractABI from "../contract/contractABI.json";
@@ -71,7 +69,7 @@ function StakingTokens() {
           socket.emit("createNewGame", newGameRoomId);
           navigate("/waiting", {
             state: {
-              gameId: gameId,
+              gameId: newGameRoomId,
               amount: amount,
               address: account,
             },

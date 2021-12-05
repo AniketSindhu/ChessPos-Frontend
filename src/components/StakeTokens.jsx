@@ -3,36 +3,45 @@ import config from "../config/config";
 import contractABI from "../contract/contractABI.json";
 import Loader from "./Loader/Loader";
 import { useMoralis } from "react-moralis";
-import ChessGame from "./ChessGame";
 import Navbar from "../navbar";
 import Matic from "../img/maticToken.png";
 
+import { useNavigate, useLocation } from "react-router-dom";
+
 const socket = require("../connections/socket").socket;
 
-function StakeTokens({ gameId }) {
+function StakeTokens() {
   const { account, web3 } = useMoralis();
-  const [startGame, setStartGame] = useState(false);
   const [loading, setLoading] = useState(false);
   const [gameAmount, setGameAmount] = useState(0);
   const [opponentAddress, setOpponentAddress] = useState("");
+  let navigate = useNavigate();
+  const [gameId, setGameId] = useState(null);
+
+  let location = useLocation();
 
   useEffect(() => {
-    const getData = async () => {
-      const contract = new web3.eth.Contract(
-        contractABI,
-        config.contractAddress
-      );
-      const game = await contract.methods.idToChessGame(gameId).call();
-      console.log(game);
-      if (game.creator === "0x0000000000000000000000000000000000000000") {
-        alert("Game not found or already over");
-      } else {
-        setGameAmount(game.stakedToken);
-        setOpponentAddress(game.creator);
-      }
-    };
-
-    getData();
+    console.log("location", location.state);
+    if (location.state) {
+      setGameId(location.state.gameId);
+      const getData = async () => {
+        const contract = new web3.eth.Contract(
+          contractABI,
+          config.contractAddress
+        );
+        const game = await contract.methods
+          .idToChessGame(location.state.gameId)
+          .call();
+        console.log(game);
+        if (game.creator === "0x0000000000000000000000000000000000000000") {
+          alert("Game not found or already over");
+        } else {
+          setGameAmount(game.stakedToken);
+          setOpponentAddress(game.creator);
+        }
+      };
+      getData();
+    }
 
     socket.on("status1", (status) => {
       alert(status);
@@ -40,8 +49,17 @@ function StakeTokens({ gameId }) {
 
     socket.on("start game", () => {
       console.log("Game found joining now");
-      setStartGame(true);
+      navigate("/game", {
+        state: {
+          isCreator: false,
+          opponentAddress: opponentAddress,
+          yourAddress: account,
+          amount: gameAmount,
+          gameId: gameId,
+        },
+      });
     });
+    console.log(gameId);
   }, []);
 
   const joinGame = () => {
@@ -80,15 +98,7 @@ function StakeTokens({ gameId }) {
     }
   };
 
-  return startGame ? (
-    <ChessGame
-      amount={gameAmount}
-      yourAddress={account}
-      opponentAddress={opponentAddress}
-      gameId={gameId}
-      isCreator={false}
-    />
-  ) : (
+  return gameId ? (
     <div>
       {loading && <Loader />}
 
@@ -97,7 +107,7 @@ function StakeTokens({ gameId }) {
         with {opponentAddress}
       </h1>
       <button onClick={joinGame}>Stake Tokens</button> */}
-      <div className="wonDiv" style={{ height: "753px" }}>
+      <div className="wonDiv" style={{ height: "100vh" }}>
         {/* <img
                   src={Circles}
                   alt="Circles"
@@ -125,11 +135,20 @@ function StakeTokens({ gameId }) {
               you have to deposit {gameAmount / 10 ** 18} tokens
             </span>
 
-            <span style={{ fontSize: "1rem", position: "relative", top: "0.5rem"}}>
-              to play with 
+            <span
+              style={{ fontSize: "1rem", position: "relative", top: "0.5rem" }}
+            >
+              to play with
             </span>
-            <span style={{ fontSize: "1rem", color: "black", position:"relative", top: "2rem"}}>
-            {opponentAddress}
+            <span
+              style={{
+                fontSize: "1rem",
+                color: "black",
+                position: "relative",
+                top: "2rem",
+              }}
+            >
+              {opponentAddress}
             </span>
           </div>
           <button
@@ -147,6 +166,7 @@ function StakeTokens({ gameId }) {
               Stake {gameAmount / 10 ** 18}
             </span>
             <img
+              alt="matic"
               src={Matic}
               style={{
                 height: "2.5rem",
@@ -160,6 +180,8 @@ function StakeTokens({ gameId }) {
         </section>
       </div>
     </div>
+  ) : (
+    <h1>Something went wrong!</h1>
   );
 }
 
