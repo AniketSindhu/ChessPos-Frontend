@@ -38,6 +38,19 @@ function StakeTokens() {
         } else {
           setGameAmount(game.stakedToken);
           setOpponentAddress(game.creator);
+          socket.once("start game", () => {
+            console.log("Game found joining now");
+            window.history.replaceState(null, "", location.pathname);
+            navigate("/game", {
+              state: {
+                isCreator: false,
+                opponentAddress: game.creator,
+                yourAddress: account,
+                amount: game.stakedToken / 10 ** 18,
+                gameId: location.state.gameId,
+              },
+            });
+          });
         }
       };
       getData();
@@ -47,19 +60,11 @@ function StakeTokens() {
       alert(status);
     });
 
-    socket.on("start game", () => {
-      console.log("Game found joining now");
-      navigate("/game", {
-        state: {
-          isCreator: false,
-          opponentAddress: opponentAddress,
-          yourAddress: account,
-          amount: gameAmount,
-          gameId: gameId,
-        },
-      });
-    });
     console.log(gameId);
+    return () => {
+      socket.off("status1", () => {});
+      socket.off("start game", () => {});
+    };
   }, []);
 
   const joinGame = () => {

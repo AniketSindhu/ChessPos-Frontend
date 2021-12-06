@@ -65,6 +65,10 @@ function Waiting() {
         "Of chess, it has been said that life is not long enough for it, but that is the fault of life, not chess.",
       author: "William Napier",
     },
+    {
+      quote: "Ghoda is a respectable animal !",
+      author: "Samay Raina",
+    },
   ];
 
   function myFunction() {
@@ -85,28 +89,30 @@ function Waiting() {
       setGameId(location.state.gameId);
       setAmount(location.state.amount);
       setAddress(location.state.address);
-    }
-    socket.on("start game", (opponentUserName) => {
-      console.log("START!");
-      setOpponentAddress(opponentUserName);
-      /*       socket.emit("send data", {
-        address: address,
-        gameId: gameId,
-        amount: amount,
-      }); */
-
-      navigate("/game", {
-        state: {
-          isCreator: true,
-          opponentAddress: opponentAddress,
-          yourAddress: address,
-          amount: amount,
+      socket.once("start game", (opponentUserName) => {
+        console.log("START!");
+        setOpponentAddress(opponentUserName);
+        /*       socket.emit("send data", {
+          address: address,
           gameId: gameId,
-        },
+          amount: amount,
+        }); */
+        window.history.replaceState(null, "", location.pathname);
+        navigate("/game", {
+          state: {
+            isCreator: true,
+            opponentAddress: opponentUserName,
+            yourAddress: location.state.address,
+            amount: location.state.amount,
+            gameId: location.state.gameId,
+          },
+        });
+        return () => {
+          socket.off("start game", () => {});
+        };
+        //socket.emit("request username", gameId);
       });
-
-      //socket.emit("request username", gameId);
-    });
+    }
   }, []);
 
   return gameId && amount && address ? (

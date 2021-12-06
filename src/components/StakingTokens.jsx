@@ -52,7 +52,12 @@ function StakingTokens() {
       try {
         const createCall = contract.methods
           .createGame(newGameRoomId)
-          .send({ from: account, value: web3.utils.toWei(amount, "ether") });
+          .send({
+            from: account,
+            value: web3.utils.toWei(amount, "ether"),
+            maxPriorityFeePerGas: null,
+            maxFeePerGas: null,
+          });
 
         createCall.on("error", (error, recipt) => {
           console.log(error);

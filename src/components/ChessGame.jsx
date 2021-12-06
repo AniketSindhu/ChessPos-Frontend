@@ -23,6 +23,7 @@ function ChessGame() {
   const [turn, setTurn] = useState(null);
   const [gameOver, setGameOver] = useState(false);
   const time = new Date();
+  time.setSeconds(time.getSeconds() + 600);
   let navigate = useNavigate();
   let location = useLocation();
 
@@ -31,10 +32,12 @@ function ChessGame() {
   const [amount, setAmount] = useState(null);
   const [yourAddress, setYourAddress] = useState(null);
   const [opponentAddress, setOpponentAddress] = useState(null);
-
+  const [pauseResume, setPauseResume] = useState(false);
   const [gotData, setGotData] = useState(false);
 
-  time.setSeconds(time.getSeconds() + 600);
+  const chessboardRef = useRef();
+  const [game, setGame] = useState(new Chess());
+
   const {
     seconds: my_seconds,
     minutes: my_minutes,
@@ -42,7 +45,17 @@ function ChessGame() {
     pause: my_pause,
     resume: my_resume,
     restart: my_restart,
-  } = useTimer({ time, onExpire: () => console.warn("onExpire called Me") });
+  } = useTimer({
+    expiryTimestamp: time,
+    onExpire: () => {
+      alert("Game Over You Lose by time!");
+      setGameOver(true);
+      window.history.replaceState(null, "", location.pathname);
+      navigate("/lost", {
+        state: { isWhite: location.state ? location.state.isCreator : true },
+      });
+    },
+  });
 
   const {
     seconds: op_seconds,
@@ -51,7 +64,24 @@ function ChessGame() {
     pause: op_pause,
     resume: op_resume,
     restart: op_restart,
-  } = useTimer({ time, onExpire: () => console.warn("onExpire called Op") });
+  } = useTimer({
+    expiryTimestamp: time,
+    onExpire: () => {
+      alert("Game Over You Won by time!");
+      setGameOver(true);
+      window.history.replaceState(null, "", location.pathname);
+      navigate("/claimTokens", {
+        state: {
+          gameId: location.state.gameId,
+          isWhite: location.state.isCreator,
+          address: location.state.yourAddress,
+          loserAddress: location.state.opponentAddress,
+          amount: location.state.amount,
+          pgn: game.pgn(),
+        },
+      });
+    },
+  });
 
   const checkIfGameOver = (game) => {
     if (game.game_over()) {
@@ -59,23 +89,57 @@ function ChessGame() {
       my_pause();
       console.log("Game Over");
       if (game.in_checkmate()) {
-        console.log("Checkmate");
+        console.log("Checkmate", game.turn(), location.state.isCreator);
         setGameOver(true);
-        if (isCreator) {
+        if (location.state.isCreator) {
           if (game.turn() === "w") {
             console.log("You Lost the match :(");
             alert("You Lost the match :(");
+            window.history.replaceState(null, "", location.pathname);
+            navigate("/lost", {
+              state: {
+                isWhite: location.state ? location.state.isCreator : true,
+              },
+            });
           } else {
             console.log("You Won the match :)");
             alert("You Won the match :)");
+            window.history.replaceState(null, "", location.pathname);
+            navigate("/claimTokens", {
+              state: {
+                gameId: location.state.gameId,
+                isWhite: location.state.isCreator,
+                address: location.state.yourAddress,
+                loserAddress: location.state.opponentAddress,
+                amount: location.state.amount,
+                pgn: game.pgn(),
+              },
+            });
           }
         } else {
           if (game.turn() === "w") {
             console.log("You Won the match :)");
             alert("You Won the match :)");
+            window.history.replaceState(null, "", location.pathname);
+            navigate("/claimTokens", {
+              state: {
+                gameId: location.state.gameId,
+                isWhite: location.state.isCreator,
+                address: location.state.yourAddress,
+                loserAddress: location.state.opponentAddress,
+                amount: location.state.amount,
+                pgn: game.pgn(),
+              },
+            });
           } else {
             console.log("You Lost the match :(");
             alert("You Lost the match :(");
+            window.history.replaceState(null, "", location.pathname);
+            navigate("/lost", {
+              state: {
+                isWhite: location.state ? location.state.isCreator : true,
+              },
+            });
           }
         }
       } else {
@@ -84,13 +148,26 @@ function ChessGame() {
         safeGameMutate((game) => {
           game.reset();
         });
-        op_restart();
-        my_restart();
+        let time1 = new Date();
+        time1.setSeconds(time1.getSeconds() + 600);
+        op_restart(time1);
+        my_restart(time1);
         chessboardRef.current.clearPremoves();
         setTurn(isCreator);
       }
     }
   };
+
+  useEffect(() => {
+    if (pauseResume) {
+      if (turn) {
+        my_resume();
+        op_pause();
+      }
+    } else {
+      setPauseResume(true);
+    }
+  }, [turn]);
 
   useEffect(() => {
     if (location.state) {
@@ -101,24 +178,27 @@ function ChessGame() {
       setOpponentAddress(location.state.opponentAddress);
       setTurn(location.state.isCreator);
       setGotData(true);
-    }
-
-    if (isCreator) {
-      op_pause();
-    } else {
-      my_pause();
-    }
-    socket.on("opponent move", (data) => {
-      if (data.from !== yourAddress) {
-        const gameCopy = { ...game };
-        gameCopy.move(data.move);
-        setGame(gameCopy);
-        setTurn(true);
+      console.log(location.state);
+      if (location.state.isCreator) {
         op_pause();
-        my_resume();
-        checkIfGameOver(gameCopy);
+      } else {
+        my_pause();
       }
-    });
+      socket.on("opponent move", (data) => {
+        console.log(data);
+        if (data.from === location.state.opponentAddress.toLowerCase()) {
+          console.log("Opponent moved", data.from);
+          const gameCopy = { ...game };
+          gameCopy.move(data.move);
+          setGame(gameCopy);
+          setTurn(true);
+          checkIfGameOver(gameCopy);
+        }
+      });
+    }
+    return () => {
+      socket.removeAllListeners();
+    };
   }, []);
 
   const pieces = [
@@ -187,9 +267,6 @@ function ChessGame() {
     return returnPieces;
   };
 
-  const chessboardRef = useRef();
-  const [game, setGame] = useState(new Chess());
-
   function safeGameMutate(modify) {
     setGame((g) => {
       const update = { ...g };
@@ -228,6 +305,7 @@ function ChessGame() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          margin: "10px",
         }}
       >
         {opponentAddress}
@@ -270,6 +348,7 @@ function ChessGame() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          margin: "10px",
         }}
       >
         {yourAddress}
