@@ -16,6 +16,9 @@ import bK from "../pieces/bK.png";
 import bQ from "../pieces/bQ.png";
 import bR from "../pieces/bR.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import useSound from "use-sound";
+import moveSound from ".././move.mp3";
+import gameover from ".././gameover.mp3";
 
 const socket = require("../connections/socket").socket;
 
@@ -26,7 +29,8 @@ function ChessGame() {
   time.setSeconds(time.getSeconds() + 600);
   let navigate = useNavigate();
   let location = useLocation();
-
+  const [playMove] = useSound(moveSound);
+  const [gameOverPlay] = useSound(gameover);
   const [isCreator, setIsCreator] = useState(null);
   const [gameId, setGameId] = useState(null);
   const [amount, setAmount] = useState(null);
@@ -85,6 +89,7 @@ function ChessGame() {
 
   const checkIfGameOver = (game) => {
     if (game.game_over()) {
+      gameOverPlay();
       op_pause();
       my_pause();
       console.log("Game Over");
@@ -171,6 +176,7 @@ function ChessGame() {
 
   useEffect(() => {
     if (location.state) {
+      gameOverPlay();
       setIsCreator(location.state.isCreator);
       setGameId(location.state.gameId);
       setAmount(location.state.amount);
@@ -192,6 +198,7 @@ function ChessGame() {
           gameCopy.move(data.move);
           setGame(gameCopy);
           setTurn(true);
+          playMove();
           checkIfGameOver(gameCopy);
         }
       });
@@ -290,6 +297,7 @@ function ChessGame() {
         from: yourAddress,
       });
       setTurn(false);
+      playMove();
       my_pause();
       op_resume();
       checkIfGameOver(gameCopy);
