@@ -137,8 +137,12 @@ p {
 .home-bg {
   background-color: rgb(25, 28, 32);
   width: 100%;
-  height: 753px;
+  height: 100vh;
   overflow: hidden;
+  background-image: url("../img/Circles.png");
+  background-size: 50rem 50rem;
+  background-repeat: no-repeat;
+  background-position: right
 }
 
 .blur-container {
@@ -215,7 +219,7 @@ p {
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 .enter-btn:hover {
   cursor: pointer;
@@ -231,8 +235,9 @@ p {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 13rem;
+  top: 20rem;
   left: 15rem;
+ 
 }
 
 .top-left {
@@ -245,13 +250,11 @@ p {
   border-right: 100px solid transparent;
 }
 
-.rocket {
-  position: relative;
-}
+
 .rimg {
   position: absolute;
   left: -2.1rem;
-  top: 18rem;
+  top: 22rem;
   width: 14rem;
   height: 21rem;
   object-fit: contain;
@@ -284,10 +287,10 @@ p {
   position: absolute;
   width: 15rem;
   height: 3rem;
-  z-index: 10;
+  
   bottom: 0.5rem;
   right: 4rem;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .polygon:hover{
@@ -297,9 +300,7 @@ p {
 }
 
 .knight-blur {
-  position: absolute;
-  top: 20rem;
-  left: 62rem;
+
   width: 20rem;
   height: 9rem;
   background: linear-gradient(

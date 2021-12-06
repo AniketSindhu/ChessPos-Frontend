@@ -1,6 +1,7 @@
 import React from "react";
 
 import Rocket from "../img/rocket.jpg";
+import KnightBg from "../img/knightBg.png";
 import Knight from "../img/knight.png";
 import Circles from "../img/Circles.png";
 import Polygon from "../img/polygon.png";
@@ -45,6 +46,10 @@ const useStyles = makeStyles({
     textAlign: "center",
     borderRadius: "1rem",
     zIndex: 2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "start",
 
     // padding: "0 1rem 0 2rem",
   },
@@ -53,6 +58,7 @@ const useStyles = makeStyles({
     height: "9rem",
     width: "12rem",
     marginTop: "1.5rem",
+    marginBottom: "1.5rem",
     zIndex: 2,
     // padding: "0.5rem",
     boxShadow: "inset 0px -8px 15px 3px rgba(0, 0, 0, 0.25)",
@@ -79,11 +85,79 @@ const Home = () => {
   return (
     <>
       <div className="home-bg">
-        <div className="top-left"></div>
+      <div className="top-left"></div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "50vh",
+          position: "relative",
+          bottom: "10rem"
+          }}
+        >
+          <section
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            
+            <img src={Rocket} alt="rocket" className="rimg" />
+          </section>
+          <section className="text">
+            <div className="blur-container">
+              <div className="blur-bg"></div>
+              <div className="tagline">
+                Play <span className="tagline-bold">smart.</span> <br />
+                Make <span className="tagline-bold">money</span> smartly.
+              </div>
+            </div>
+
+            <ul className="tag-points">
+              <li>• Stake crypto, Winners takes it all.</li>
+              <li> • Mint chess positions as NFTs from your games. </li>
+              <li>• Purley Decentralised. #Web3.0</li>
+            </ul>
+            <Link to="/app">
+              <button className="enter-btn">
+                Enter Dapp
+                <span className="triangle"></span>
+              </button>
+            </Link>
+          </section>
+        </div>
+        <div 
+        
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            alignContent: "center",
+            position: "relative",
+            float: "right",
+            marginRight: "20rem",
+            bottom: "10rem",
+            left: "10rem"
+          }}
+        >
+        <img src={KnightBg} style={{width: "20", height: "38rem", position: "relative", bottom: "10rem"}}/>
+        
+
+          
+          
+        </div>
+
+        {/* <div className="top-left"></div>
 
         <div className="rocket">
           <img src={Rocket} alt="rocket" className="rimg" />
         </div>
+        <div 
+        style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", marginRight: "20rem"}}
+        >
 
         <section className="text">
           <div className="blur-container">
@@ -106,13 +180,16 @@ const Home = () => {
             </button>
           </Link>
         </section>
-        <div className="knight-blur"></div>
+        
         <section className="knight-bg">
-          <img src={Circles} alt="cirlces" className="circles" />
-          <img src={Knight} alt="knight" className="knight" />
+        
+          <img src={Circles} alt="circles" className="circles" style={{zIndex: "0"}} />
+          <div className="knight-blur" style={{zIndex: "1"}}></div>
+          <img src={Knight} alt="knight" className="knight" style={{zIndex: "2"}} />
+          <img alt="polygon" src={Polygon} className="polygon" />
         </section>
+        </div> */}
       </div>
-      <img alt="polygon" src={Polygon} className="polygon" />
     </>
   );
 };
