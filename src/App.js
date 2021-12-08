@@ -8,6 +8,8 @@ import "./index.css";
 import StakeTokens from "./components/StakeTokens";
 import ChessGame from "./components/ChessGame";
 import Waiting from "./components/Waiting";
+import WonMatch from "./components/WonMatch";
+import LostMatch from "./components/LostMatch";
 
 function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -20,7 +22,6 @@ function App({ isServerInfo }) {
 
   return (
     <>
-
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
@@ -28,7 +29,8 @@ function App({ isServerInfo }) {
         <Route path="/joinGame" element={<StakeTokens />} />
         <Route path="/waiting" element={<Waiting />} />
         <Route path="/game" element={<ChessGame />} />
-
+        <Route path="/claimTokens" element={<WonMatch />} />
+        <Route path="/lost" element={<LostMatch />} />
         {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}

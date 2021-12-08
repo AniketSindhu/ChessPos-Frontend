@@ -10,18 +10,47 @@ const socket = require("../connections/socket").socket;
 
 function HomePage() {
   const [gameIdInput, setGameIdInput] = useState("");
-
+  const [found, setFound] = useState(false);
   const { isAuthenticated } = useMoralis();
   let navigate = useNavigate();
 
   useEffect(() => {
+    console.log(gameIdInput);
+    window.history.replaceState({}, "", "/app");
     socket.on("status", (status) => {
       alert(status);
     });
+    socket.once("match found", () => {
+      setFound(true);
+      //gameFound();
+    });
+    return () => {
+      socket.off("status", () => {});
+      socket.off("match found", () => {});
+    };
   }, []);
+
+  useEffect(() => {
+    if (found === true) {
+      gameFound();
+    }
+  }, [found]);
+
+  function gameFound() {
+    console.log("Game found joining now", gameIdInput);
+    window.history.replaceState(null, "", "/joinGame");
+
+    window.history.replaceState({}, document.title);
+    navigate("/joinGame", {
+      state: {
+        gameId: gameIdInput,
+      },
+    });
+  }
 
   const handleGameIdInput = (event) => {
     setGameIdInput(event.target.value);
+    console.log(event.target.value);
   };
 
   const joinGame = (event) => {
@@ -31,14 +60,7 @@ function HomePage() {
       return;
     }
     socket.emit("wantsToJoin", gameIdInput);
-    socket.on("match found", () => {
-      console.log("Game found joining now");
-      navigate("/joinGame", {
-        state: {
-          gameId: gameIdInput,
-        },
-      });
-    });
+    console.log("join game");
   };
 
   const mainPage = () => {
@@ -131,7 +153,7 @@ function HomePage() {
               <br />
               <br />
 
-              <form onSubmit={joinGame}>
+              <form onSubmit={(e) => joinGame(e, gameIdInput)}>
                 <div
                   style={{
                     display: "flex",
