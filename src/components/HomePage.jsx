@@ -65,23 +65,12 @@ function HomePage() {
 
   const mainPage = () => {
     return (
-      <div className="wonDiv" style={{ height: "100vh" }}>
-        <img
-          src={Circles}
-          alt="Circles"
-          className=""
-          style={{
-            position: "absolute",
-            right: "30rem",
-            top: "0",
-            height: "55rem",
-            width: "55rem",
-          }}
-        />
+      <div className="home-bg2" style={{ height: "100vh" }}>
+       
         <Navbar head="ChessPOS" />
 
         <div className="joinLobbyMaindiv">
-          <div className="matchDetails">
+          {/* <div className="matchDetails">
             <span
               style={{
                 color: "white",
@@ -114,16 +103,74 @@ function HomePage() {
             >
               Username2
             </span>
+          </div> */}
+          <div
+            style={{
+              height: "80vh",
+              width: "50%",
+              
+              marginTop: "2rem",
+              marginLeft: "4rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "start",
+              alignItems: "center",
+              padding: "2rem"
+            }}
+          >
+            <div className="matchDetails">
+            <span
+              style={{
+                color: "white",
+                fontSize: "1.5rem",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 400,
+              }}
+            >
+              Username1
+            </span>
+            
+            <img
+              alt="Versus"
+              src={Vs}
+              style={{
+                height: "2rem",
+                width: "2rem",
+                marginLeft: "2rem",
+                marginRight: "2rem",
+                position: "relative",
+                
+              }}
+            />
+
+            
+            
+            <span
+              style={{
+                color: "white",
+                fontSize: "1.5rem",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 400,
+              }}
+            >
+              Username2
+            </span>
+
+            </div>
+            <div className="matchDetails"></div>
+            <div className="matchDetails"></div>
+
           </div>
+          
 
           <div
             style={{
               width: "30rem",
               height: "auto",
               float: "right",
-              position: "relative",
+              position: "absolute",
               right: "4rem",
-              top: "5rem",
+              top: "15rem",
             }}
           >
             <section

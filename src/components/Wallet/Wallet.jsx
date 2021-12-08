@@ -95,6 +95,7 @@ function Wallet() {
           bodyStyle={{ padding: "15px" }}
         >
           <Address
+          
             avatar="left"
             size={6}
             copyable

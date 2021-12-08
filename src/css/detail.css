@@ -105,6 +105,13 @@
   margin-top: 10rem;
   text-align: center;
 }
+.mainText{
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+
+}
 
 #clip:focus {
   outline: none;
@@ -314,8 +321,8 @@
   font-weight: 700;
   font-size: 1.25rem;
   position: relative;
-  left: 8rem;
-  top: -1rem;
+  /* left: 8rem; */
+  /* top: -1rem; */
   transition: all 0.25s ease-in-out;
 }
 .redButton:hover {
@@ -341,9 +348,9 @@
   text-align: center;
   color: white;
   font-size: 3rem;
-  margin-bottom: 2rem;
+  
   position: relative;
-  left: 4rem;
+  
 }
 
 .status {
@@ -402,14 +409,38 @@
 }
 
 .joinLobbyMainDiv {
+  
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  
   position: relative;
   margin-left: 8rem;
 }
 
 .matchDetails {
-  position: relative;
-  left: 15rem;
-  top: 3rem;
+  width: 70%;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  background: rgba(26, 28, 32, 0.75);
+  /* background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%); */
+  box-shadow: inset -7.84314px -7.84314px 39.2157px 4.90196px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  outline: 1.5px solid white;
+  margin-top: 2rem;
+  transition: all 0.5s ease-in-out;
+
+}
+
+.matchDetails:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+
 }

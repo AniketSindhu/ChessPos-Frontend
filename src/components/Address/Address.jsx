@@ -14,6 +14,7 @@ const styles = {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: "9px",
     alignItems: "center",
+    color: "white"
   },
 };
 
@@ -59,7 +60,7 @@ function Address(props) {
   return (
     <div style={{ ...styles.address, ...props.style }}>
       {props.avatar === "left" && <Blockie address={address} size={7} />}
-      <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
+      <p style={{...props.textStyle}}>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
       {props.avatar === "right" && <Blockie address={address} size={7} />}
       {props.copyable && (isClicked ? <Check /> : <Copy />)}
     </div>
