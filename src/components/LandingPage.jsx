@@ -2,8 +2,11 @@ import React from "react";
 
 import Rocket from "../img/rocket.jpg";
 import KnightBg from "../img/knightBg.png";
-import Knight from "../img/knight.png";
-import Circles from "../img/Circles.png";
+import pinkNft from "../img/pinkNft.png";
+import blueNft from "../img/blueNft.png";
+import greenNft from "../img/greenNft.png";
+import redNft from "../img/redNft.png";
+
 import Polygon from "../img/polygon.png";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
@@ -18,6 +21,7 @@ import Gaming from "../img/undraw_Gaming_re_cma2 2.png";
 import Circles2 from "../img/Circles2.png";
 import Joint from "../img/Joint1.png";
 import { Link } from "react-router-dom";
+import zIndex from "@mui/material/styles/zIndex";
 
 const theme = createTheme({
   typography: {
@@ -85,7 +89,7 @@ const Home = () => {
   return (
     <>
       <div className="home-bg">
-      <div className="top-left"></div>
+        <div className="top-left"></div>
         <div
           style={{
             display: "flex",
@@ -93,8 +97,8 @@ const Home = () => {
             justifyContent: "space-between",
             alignItems: "center",
             width: "50vh",
-          position: "relative",
-          bottom: "10rem"
+            position: "relative",
+            bottom: "10rem",
           }}
         >
           <section
@@ -104,7 +108,6 @@ const Home = () => {
               alignItems: "center",
             }}
           >
-            
             <img src={Rocket} alt="rocket" className="rimg" />
           </section>
           <section className="text">
@@ -118,7 +121,7 @@ const Home = () => {
 
             <ul className="tag-points">
               <li>• Stake crypto, Winners takes it all.</li>
-              <li> • Mint chess positions as NFTs from your games. </li>
+              <li>• Mint chess positions as NFTs from your games. </li>
               <li>• Purley Decentralised. #Web3.0</li>
             </ul>
             <Link to="/app">
@@ -129,8 +132,7 @@ const Home = () => {
             </Link>
           </section>
         </div>
-        <div 
-        
+        <div
           style={{
             display: "flex",
             flexDirection: "column",
@@ -140,55 +142,23 @@ const Home = () => {
             float: "right",
             marginRight: "20rem",
             bottom: "10rem",
-            left: "10rem"
+            left: "10rem",
           }}
         >
-        <img src={KnightBg} style={{width: "20", height: "38rem", position: "relative", bottom: "10rem"}}/>
-        
-
-          
-          
-        </div>
-
-        {/* <div className="top-left"></div>
-
-        <div className="rocket">
-          <img src={Rocket} alt="rocket" className="rimg" />
-        </div>
-        <div 
-        style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", marginRight: "20rem"}}
-        >
-
-        <section className="text">
-          <div className="blur-container">
-            <div className="blur-bg"></div>
-            <div className="tagline">
-              Play <span className="tagline-bold">smart.</span> <br />
-              Make <span className="tagline-bold">money</span> smartly.
-            </div>
+          <div>
+            <img
+              alt="chess knight"
+              src={KnightBg}
+              style={{
+                width: "20",
+                height: "38rem",
+                position: "relative",
+                bottom: "10rem",
+              }}
+            />
+            <img alt="Powered by polygon" src={Polygon} className="polygon" />
           </div>
-
-          <ul className="tag-points">
-            <li>• Stake crypto, Winners takes it all.</li>
-            <li> • Mint chess positions as NFTs from your games. </li>
-            <li>• Purley Decentralised. #Web3.0</li>
-          </ul>
-          <Link to="/app">
-            <button className="enter-btn">
-              Enter Dapp
-              <span className="triangle"></span>
-            </button>
-          </Link>
-        </section>
-        
-        <section className="knight-bg">
-        
-          <img src={Circles} alt="circles" className="circles" style={{zIndex: "0"}} />
-          <div className="knight-blur" style={{zIndex: "1"}}></div>
-          <img src={Knight} alt="knight" className="knight" style={{zIndex: "2"}} />
-          <img alt="polygon" src={Polygon} className="polygon" />
-        </section>
-        </div> */}
+        </div>
       </div>
     </>
   );
@@ -237,7 +207,9 @@ const Work = () => {
             <div className="work-div">
               <Container className={classes.card}>
                 <img src={Business} className={classes.image} />
-                <div>Stake your crypto coins</div>
+                <div style={{ fontSize: "1.25rem" }}>
+                  Stake your crypto coins
+                </div>
                 <Typography className={classes.para}>
                   Before matchmaking, user has to stake crypto coins and wait
                   for the rival to accept the challenge.
@@ -246,15 +218,17 @@ const Work = () => {
             </div>
           </Grid>
           <Grid item xs={1} className={classes.join}>
-            <img src={Joint} className={classes.join}></img>
+            <img alt="Joint" src={Joint} className={classes.join}></img>
           </Grid>
 
           <Grid item xs={2} className={classes.card}>
             <div className="work-div">
               <Container className={classes.card} style={{}}>
-                <img src={Gaming} className={classes.image} />
+                <img alt="Gaming" src={Gaming} className={classes.image} />
 
-                <Container>Play chess with opponent</Container>
+                <Container style={{ fontSize: "1.25rem" }}>
+                  Play chess with opponent
+                </Container>
                 <Typography className={classes.para}>
                   After staking coins for the match, user will be directed to a
                   match with an opponent with same amount of challenge.
@@ -264,6 +238,7 @@ const Work = () => {
           </Grid>
           <Grid item xs={1}>
             <img
+              alt="Joint"
               src={Joint}
               className={classes.join}
               style={{ right: 16 }}
@@ -272,8 +247,10 @@ const Work = () => {
           <Grid item xs={2} className={classes.card}>
             <div className="work-div">
               <Container className={classes.card}>
-                <img src={Winner} className={classes.image} />
-                <Container>Winner takes it all</Container>
+                <img alt="Winner" src={Winner} className={classes.image} />
+                <Container style={{ fontSize: "1.25rem" }}>
+                  Winner takes it all
+                </Container>
                 <Typography className={classes.para}>
                   After the match is over, the winner will win the opponent’s
                   stake coins and will leave with double the amount of his/her
@@ -288,11 +265,233 @@ const Work = () => {
   );
 };
 
+const Functioning = () => {
+  return (
+    <>
+      <div className="home-bg">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              height: "100vh",
+              width: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              paddingBottom: "25rem",
+            }}
+          >
+            <img
+              alt="pink NFT"
+              src={pinkNft}
+              className="imgAnim"
+              style={{
+                transform: "rotate(20deg)",
+                height: "220px",
+                position: "relative",
+                left: "15rem",
+                bottom: "1rem",
+              }}
+            />
+            <img
+              alt="blue NFT"
+              src={blueNft}
+              className="imgAnim"
+              style={{
+                transform: "rotate(10deg)",
+                height: "180px",
+                position: "relative",
+                right: "10rem",
+                top: "15rem",
+              }}
+            />
+            <img
+              alt="green NFT"
+              src={greenNft}
+              className="imgAnim"
+              style={{
+                transform: "rotate(-25deg)",
+                height: "320px",
+                position: "relative",
+                right: "5rem",
+
+                top: "22rem",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              height: "80vh",
+              width: "50%",
+
+              float: "right",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              justifyContent: "center",
+              paddingLeft: "5rem",
+            }}
+          >
+            <span className="explainMain">Your Position</span>
+            <span className="explainMain" style={{ fontSize: "3rem" }}>
+              Your Ownership
+            </span>
+            <br />
+            {/* <span className="explainDet">
+              So all you have to do is, play a chess game and when the game is
+              finished, you can choose any position from the whole game, select
+              the most unique and spectacular one which you think deserves to be
+              minted as your personal NFT.
+            </span> */}
+            {/* <br /> */}
+            <br />
+            <span className="explainDet" style={{ fontWeight: "500" }}>
+              Your NFT will include:-
+            </span>
+            <ul>
+              <li className="explainDet">
+                • The details of the your opponent.
+              </li>
+              <li className="explainDet">• The position that you chose.</li>
+              <li className="explainDet">• No. of staked tokens.</li>
+              <li className="explainDet">
+                • A description box to describe the significance of your NFT.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="home-bg2">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              height: "80vh",
+              width: "50%",
+
+              float: "right",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              justifyContent: "center",
+              paddingLeft: "5rem",
+            }}
+          >
+            <span className="explainMain">Your Position</span>
+            <span className="explainMain" style={{ fontSize: "3rem" }}>
+              Your Ownership
+            </span>
+            <br />
+
+            <br />
+            <span className="explainDet" style={{ fontWeight: "500" }}>
+              Your NFT will include:-
+            </span>
+            <ul>
+              <li className="explainDet">
+                • The details of the your opponent.
+              </li>
+              <li className="explainDet">• The position that you chose.</li>
+              <li className="explainDet">• No. of staked tokens.</li>
+              <li className="explainDet">
+                • A description box to describe the significance of your NFT.
+              </li>
+            </ul>
+          </div>
+          <div
+            style={{
+              height: "100vh",
+              width: "50%",
+
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              alt="red NFT"
+              src={redNft}
+              className="imgAnimR"
+              style={{
+                height: "400px",
+                position: "relative",
+                left: "8rem",
+                top: "2rem",
+                zIndex: "4",
+                opacity: "1",
+                
+                
+              }}
+            />
+            <img
+              alt="green NFT"
+              src={greenNft}
+              className="imgAnimG"
+              style={{
+                height: "320px",
+                position: "relative",
+
+                top: "1.5rem",
+                left: "-4rem",
+                zIndex: "3",
+                opacity: "0.75"
+              }}
+            />
+            <img
+              alt="pink NFT"
+              src={pinkNft}
+              className="imgAnimP"
+              style={{
+                height: "220px",
+                position: "relative",
+
+                top: "1rem",
+                left: "-12.5rem",
+                zIndex: "2",
+                opacity: "0.5"
+              }}
+            />
+            <img
+              alt="blue NFT"
+              src={blueNft}
+              className="imgAnimB"
+              style={{
+                height: "180px",
+                position: "relative",
+
+                top: "0.75rem",
+                left: "-19.25rem",
+                zIndex: "1",
+                opacity: "0.25",
+                
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 function LandingPage() {
   return (
     <div>
       <Home />
       <Work />
+      <Functioning />
     </div>
   );
 }

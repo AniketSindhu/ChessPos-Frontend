@@ -142,7 +142,125 @@ p {
   background-image: url("../img/Circles.png");
   background-size: 50rem 50rem;
   background-repeat: no-repeat;
-  background-position: right
+  background-position: right;
+}
+
+.home-bg2 {
+  background-color: rgb(25, 28, 32);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("../img/Circles2.png");
+  background-size: 50rem 50rem;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.explainMain {
+  font-family: "Poppins" sans-serif;
+  font-size: 5rem;
+  color: white;
+  font-weight: 700;
+  line-height: 5rem;
+}
+.explainDet {
+  font-family: "Poppins" sans-serif;
+  color: white;
+  font-weight: lighter;
+  font-size: 1.5rem;
+}
+
+.imgBg {
+  box-shadow: 1px 1px 50px white, -1px -1px 50px white;
+  transform: scale(0.6);
+}
+
+.imgAnim {
+  transform: translateY(0px);
+  animation: float 6s ease-in-out infinite;
+  background: transparent;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.imgAnimR {
+  transform: translateY(0px);
+  animation: floatR 6s ease-in-out infinite;
+  background: transparent;
+} 
+
+@keyframes floatR {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.imgAnimG {
+  transform: translateY(0px);
+  animation: floatG 6s ease-in-out infinite;
+  background: transparent;
+} 
+
+@keyframes floatG {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.imgAnimP {
+  transform: translateY(0px);
+  animation: floatP 6s ease-in-out infinite;
+  background: transparent;
+} 
+
+@keyframes floatP {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.imgAnimB {
+  transform: translateY(0px);
+  animation: floatB 6s ease-in-out infinite;
+  background: transparent;
+} 
+
+@keyframes floatB {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .blur-container {
@@ -223,7 +341,7 @@ p {
 }
 .enter-btn:hover {
   cursor: pointer;
-  border: 3px solid white
+  border: 3px solid white;
 }
 
 .enter-btn .triangle {
@@ -237,7 +355,6 @@ p {
   position: relative;
   top: 20rem;
   left: 15rem;
- 
 }
 
 .top-left {
@@ -249,7 +366,6 @@ p {
   border-top: 100px solid rgb(60, 33, 46);
   border-right: 100px solid transparent;
 }
-
 
 .rimg {
   position: absolute;
@@ -269,7 +385,7 @@ p {
   transition: all 2s ease-in-out;
 }
 
-.knight:hover{
+.knight:hover {
   cursor: pointer;
 }
 
@@ -287,20 +403,18 @@ p {
   position: absolute;
   width: 15rem;
   height: 3rem;
-  
-  bottom: 0.5rem;
-  right: 4rem;
+
+  bottom: 8rem;
+  right: -4rem;
   transition: all 0.25s ease-in-out;
 }
 
-.polygon:hover{
+.polygon:hover {
   cursor: pointer;
   transform: scale(1.05);
-  
 }
 
 .knight-blur {
-
   width: 20rem;
   height: 9rem;
   background: linear-gradient(
@@ -310,9 +424,7 @@ p {
   );
   filter: blur(100px);
   transform: matrix(-0.08, -0.99, 1, 0.05, 0, 0);
-  
 }
-
 
 .circles {
   height: 50rem;

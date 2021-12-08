@@ -7,6 +7,7 @@ import Navbar from "../navbar";
 import Matic from "../img/maticToken.png";
 
 import { useNavigate, useLocation } from "react-router-dom";
+import SomethingWentWrong from "./SomethingWentWrong";
 
 const socket = require("../connections/socket").socket;
 
@@ -181,7 +182,7 @@ function StakeTokens() {
       </div>
     </div>
   ) : (
-    <h1>Something went wrong!</h1>
+    <SomethingWentWrong/>
   );
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ChessGame from "./ChessGame";
+
 import Knight from "../img/newKnight.png";
 
 import Navbar from "../navbar";
 import KnightRed from "../img/KnightRed.png";
 import { useLocation, useNavigate } from "react-router";
+import SomethingWentWrong from "./SomethingWentWrong";
 
 const socket = require("../connections/socket").socket;
 
@@ -89,11 +90,7 @@ function Waiting() {
     socket.on("start game", (opponentUserName) => {
       console.log("START!");
       setOpponentAddress(opponentUserName);
-      /*       socket.emit("send data", {
-        address: address,
-        gameId: gameId,
-        amount: amount,
-      }); */
+      
 
       navigate("/game", {
         state: {
@@ -105,138 +102,133 @@ function Waiting() {
         },
       });
 
-      //socket.emit("request username", gameId);
     });
   }, []);
 
   return gameId && amount && address ? (
-    <div
-      className="matchBg"
-      style={{
-        position: "relative",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      <Navbar
-        head="Matchmaking"
-        style={{ position: "relative", top: "5rem" }}
-      />
+    <div className="home-bg">
       <div
         style={{
           display: "flex",
-          position: "relative",
-          top: "3rem",
+          flexDirection: "column",
+          justifyContent: "start",
         }}
       >
-        <div className="whiteKnight">
-          <img alt="knight" src={Knight} className="wonKnight" />
-          <div className="name">Username1</div>
-        </div>
+        <Navbar
+          head="Matchmaking"
+          style={{ position: "relative", top: "5rem" }}
+        />
         <div
-          className="matchDet"
           style={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            margin: "0rem 2rem",
             alignItems: "center",
-            margin: "auto 10rem ",
-            zIndex: "0",
-            // alignContent: "space-around",
-            // justifyContent: "end",
+            height: "80vh",
           }}
         >
-          <div
-            style={{
-              color: "white",
-              fontFamily: `'Poppins', sans-serif`,
-              fontWeight: "400",
-              fontSize: "2.5rem",
-              textAlign: "center",
-            }}
-          >
-            Share this ID with your friend
+          <div className="whiteKnight">
+            <img alt="knight" src={Knight} className="wonKnight" />
+            <div className="name">Username1</div>
           </div>
           <div
-            className="matchBox"
+            className="matchDet"
             style={{
-              width: "25rem",
-              marginBottom: "1rem",
-              marginTop: "1rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+
+              zIndex: "0",
+              // alignContent: "space-around",
+              // justifyContent: "end",
             }}
           >
-            <input
-              type="text"
-              value={gameId}
-              id="clip"
+            <div
               style={{
-                background: "transparent",
-                border: "0px solid transparent",
-                appearance: "none",
-                width: "22rem",
+                color: "white",
+                fontFamily: `'Poppins', sans-serif`,
+                fontWeight: "400",
+                fontSize: "2.5rem",
+                textAlign: "center",
               }}
-            />
+            >
+              Share this ID with your friend
+            </div>
+            <div
+              className="matchBox"
+              style={{
+                width: "25rem",
+                marginBottom: "1rem",
+                marginTop: "1rem",
+              }}
+            >
+              <input
+                type="text"
+                value={gameId}
+                id="clip"
+                style={{
+                  background: "transparent",
+                  border: "0px solid transparent",
+                  appearance: "none",
+                  width: "22rem",
+                }}
+              />
+            </div>
+
+            <div
+              className="matchBox"
+              style={{
+                width: "8rem",
+              }}
+              onClick={() => {
+                myFunction();
+              }}
+            >
+              Copy
+            </div>
+            <div
+              style={{
+                fontFamily: `'Poppins', sans-serif`,
+                fontWeight: "300",
+                fontSize: "1.1rem",
+                fontStyle: "italic",
+                textAlign: "center",
+                color: "white",
+                width: "40rem",
+                marginTop: "6rem",
+              }}
+            >
+              "{quotes[index].quote}"
+            </div>
+            <div
+              style={{
+                fontFamily: `'Poppins', sans-serif`,
+                fontWeight: "700",
+                fontSize: "1.2rem",
+                // fontStyle: "italic",
+                color: "white",
+                position: "relative",
+                top: "1rem",
+                left: "15rem",
+              }}
+            >
+              ~{quotes[index].author}
+            </div>
           </div>
 
-          <div
-            className="matchBox"
-            style={{
-              width: "8rem",
-            }}
-            onClick={() => {
-              myFunction();
-            }}
-          >
-            Copy
+          <div className="whiteKnight">
+            <img alt="redKnight" src={KnightRed} className="wonKnight" />
+            <div className="name">Waiting for player</div>
           </div>
-          <div
-            style={{
-              fontFamily: `'Poppins', sans-serif`,
-              fontWeight: "300",
-              fontSize: "1.1rem",
-              fontStyle: "italic",
-              color: "white",
-              width: "40rem",
-              marginTop: "6rem",
-            }}
-          >
-            "{quotes[index].quote}"
-          </div>
-          <div
-            style={{
-              fontFamily: `'Poppins', sans-serif`,
-              fontWeight: "700",
-              fontSize: "1.2rem",
-              // fontStyle: "italic",
-              color: "white",
-              position: "relative",
-              left: "12rem",
-            }}
-          >
-            ~{quotes[index].author}
-          </div>
-        </div>
-        <div
-          className="whiteKnight"
-          style={{
-            position: "absolute",
-            right: "10rem",
-          }}
-        >
-          <img alt="redKnight" src={KnightRed} className="wonKnight" />
-          <div className="name">Waiting for player</div>
         </div>
       </div>
-      {/* <h1>Game Created</h1> */}
+      
     </div>
   ) : (
-    <h1> Something Went wrong</h1>
-    /*     <ChessGame
-      isCreator={true}
-      opponentAddress={opponentAddress}
-      yourAddress={address}
-      amount={amount}
-      gameId={gameId}
-    /> */
+    <SomethingWentWrong/>
+    
+    
   );
 }
 
