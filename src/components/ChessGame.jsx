@@ -19,6 +19,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useSound from "use-sound";
 import moveSound from ".././move.mp3";
 import gameover from ".././gameover.mp3";
+import SomethingWentWrong from "./SomethingWentWrong";
+import WhiteKnight from "../img/whiteKnightFlipped.png";
+import RedKnight from "../img/redKnightFlipped.png";
+import Matic from "../img/maticToken.png";
+
+import { fontSize } from "@mui/system";
 
 const socket = require("../connections/socket").socket;
 
@@ -307,35 +313,104 @@ function ChessGame() {
   }
 
   return gotData ? (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          margin: "10px",
-        }}
-      >
-        {opponentAddress}
-        <h4>
-          {op_minutes}:{op_seconds}
-        </h4>
-      </div>
+    // <div>
+    //   <div
+    //     style={{
+    //       display: "flex",
+    //       flexDirection: "row",
+    //       justifyContent: "space-between",
+    //       margin: "10px",
+    //     }}
+    //   >
+    //     {opponentAddress}
+    //     <h4>
+    //       {op_minutes}:{op_seconds}
+    //     </h4>
+    //   </div>
 
+    //   <div
+    //     style={{
+    //       display: "flex",
+    //       flexDirection: "column",
+    //       alignItems: "center",
+    //       maxWidth: "800px",
+    //       margin: "auto",
+    //       padding: "30px",
+    //     }}
+    //   >
+    //     <Chessboard
+    //       id="StyledBoard"
+    //       animationDuration={200}
+    //       boardWidth={700}
+    //       position={game.fen()}
+    //       boardOrientation={isCreator ? "white" : "black"}
+    //       onPieceDrop={onDrop}
+    //       areArrowsAllowed={true}
+    //       arePiecesDraggable={turn}
+    //       customDarkSquareStyle={{ backgroundColor: "#A13245" }}
+    //       customLightSquareStyle={{ backgroundColor: "#EEB9B9" }}
+    //       customPieces={customPieces()}
+    //       customBoardStyle={{
+    //         borderRadius: "4px",
+    //         boxShadow: "0 5px 15px rgba(0, 0, 0, 0.5)",
+    //       }}
+    //       ref={chessboardRef}
+    //     />
+    //   </div>
+    //   <div
+    //     style={{
+    //       display: "flex",
+    //       flexDirection: "row",
+    //       justifyContent: "space-between",
+    //       margin: "10px",
+    //     }}
+    //   >
+    //     {yourAddress}
+    //     <h4>
+    //       {my_minutes}:{my_seconds}
+    //     </h4>
+    //   </div>
+
+    //   <button
+    //     className="rc-button"
+    //     onClick={() => {
+    //       safeGameMutate((game) => {
+    //         game.reset();
+    //       });
+    //       chessboardRef.current.clearPremoves();
+    //     }}
+    //   >
+    //     reset
+    //   </button>
+    // </div>
+
+    <div
+      className="homeBgMixed"
+      style={{
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           maxWidth: "800px",
-          margin: "auto",
-          padding: "30px",
+          marginTop: "-300px",
+          marginLeft: "-300px",
+          position: "fixed",
+          top: "50%",
+          left: "50%",
         }}
       >
         <Chessboard
           id="StyledBoard"
           animationDuration={200}
-          boardWidth={700}
+          boardWidth={600}
           position={game.fen()}
           boardOrientation={isCreator ? "white" : "black"}
           onPieceDrop={onDrop}
@@ -351,34 +426,208 @@ function ChessGame() {
           ref={chessboardRef}
         />
       </div>
+
       <div
         style={{
+          height: "10vh",
+          width: "100%",
+          
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <span className="mainText" style={{ fontSize: "1rem" }}>
+        {opponentAddress}
+        </span>
+      </div>
+      <div
+        style={{
+          height: "20vh",
+          width: "70%",
+         
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          margin: "10px",
+          alignItems: "center",
+          paddingLeft: "2rem",
+          paddingRight: "2rem",
         }}
       >
-        {yourAddress}
-        <h4>
-          {my_minutes}:{my_seconds}
-        </h4>
+        <div
+          className="redButtonStatic"
+          style={{
+            height: "5rem",
+            width: "10rem",
+            borderRadius: "20px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "0.5rem",
+            paddingBottom: "0.5rem",
+          }}
+        >
+          <span className="mainText" style={{ fontSize: "1.5rem" }}>
+            Time
+          </span>
+          <div
+            style={{
+              height: "3rem",
+              width: "6rem",
+              background: "rgba(25, 28, 32)",
+              borderRadius: "10px",
+            }}
+          >
+            <span className="mainText" style={{ fontSize: "1rem" }}>
+              {op_minutes}:{op_seconds}
+            </span>
+          </div>
+        </div>
+        <img
+          alt="white knight"
+          src={WhiteKnight}
+          style={{ height: "12rem", width: "8rem" }}
+        />
+      </div>
+      <div
+        style={{
+          height: "40vh",
+          width: "90%",
+          
+          display: "flex",
+          flexDirection: "row",
+          padding: "0rem 5rem",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            height: "20vh",
+            width: "13rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <div
+            className="redButton"
+            style={{ height: "3rem", width: "13rem", paddingTop: "0.5rem" }}
+          >
+            Resign
+          </div>
+          <div
+            className="redButton"
+            style={{ height: "3rem", width: "13rem", paddingTop: "0.5rem" }}
+          >
+            Reset
+          </div>
+        </div>
+        <div
+          className="redButtonStatic"
+          style={{
+            height: "20vh",
+            width: "13rem",
+            borderRadius: "30px",
+            padding: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <article style={{ fontSize: "1.5rem" }}>Staked Tokens</article>
+          <div
+            style={{
+              height: "2.5rem",
+              width: "10rem",
+              background: "rgba(25, 28, 32)",
+              borderRadius: "15px",
+              padding: "0.2rem 0.1rem"
+            }}
+          >
+            <span style={{fontSize: "1.1rem"}}>{amount*2}</span>
+            <span>
+              <img
+                alt="Matic"
+                src={Matic}
+                style={{ width: "1.5rem", height: "1.5rem", marginLeft: "1rem"}}
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          height: "20vh",
+          width: "70%",
+         
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingLeft: "2rem",
+          paddingRight: "2rem",
+        }}
+      >
+        <img
+          alt="red knight"
+          src={RedKnight}
+          style={{ height: "12rem", width: "8.5rem" }}
+        />
+        <div
+          className="redButtonStatic"
+          style={{
+            height: "5rem",
+            width: "10rem",
+            borderRadius: "20px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "0.5rem",
+            paddingBottom: "0.5rem",
+          }}
+        >
+          <span className="mainText" style={{ fontSize: "1.5rem" }}>
+            Time
+          </span>
+          <div
+            style={{
+              height: "3rem",
+              width: "6rem",
+              background: "rgba(25, 28, 32)",
+              borderRadius: "10px",
+            }}
+          >
+            <span className="mainText" style={{ fontSize: "1rem" }}>
+              {my_minutes}:{my_seconds}
+            </span>
+          </div>
+        </div>
       </div>
 
-      <button
-        className="rc-button"
-        onClick={() => {
-          safeGameMutate((game) => {
-            game.reset();
-          });
-          chessboardRef.current.clearPremoves();
+      <div
+        style={{
+          height: "10vh",
+          width: "100%",
+          
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        reset
-      </button>
+        <span className="mainText" style={{ fontSize: "1rem" }}>
+        {yourAddress}
+        </span>
+      </div>
     </div>
   ) : (
-    <h1>Something went wrong</h1>
+    <SomethingWentWrong />
   );
 }
 

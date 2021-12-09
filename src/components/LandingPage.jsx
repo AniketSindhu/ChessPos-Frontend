@@ -1,4 +1,14 @@
 import React from "react";
+// import {Swiper, SwiperSlide} from "swiper/react";
+// import "swiper/swiper.min.css";
+// import "swiper/components/effect-coverflow/effect-coverflow.min.css";
+// import "swiper/components/pagination/pagination.min.css";
+// import "swiper/components/navigation/navigation.min.css";
+// import SwiperCore, {
+//   EffectCoverflow,
+//   Pagination,
+//   Navigation
+// } from "swiper/core";
 
 import Rocket from "../img/rocket.jpg";
 import KnightBg from "../img/knightBg.png";
@@ -20,8 +30,9 @@ import Winner from "../img/undraw_winners_ao2o 1.png";
 import Gaming from "../img/undraw_Gaming_re_cma2 2.png";
 import Circles2 from "../img/Circles2.png";
 import Joint from "../img/Joint1.png";
+import Emoji from "../img/emoji.png";
+import Gif from "../img/gif.gif";
 import { Link } from "react-router-dom";
-import zIndex from "@mui/material/styles/zIndex";
 
 const theme = createTheme({
   typography: {
@@ -147,6 +158,7 @@ const Home = () => {
         >
           <div>
             <img
+              className="mainKnight"
               alt="chess knight"
               src={KnightBg}
               style={{
@@ -154,6 +166,7 @@ const Home = () => {
                 height: "38rem",
                 position: "relative",
                 bottom: "10rem",
+                
               }}
             />
             <img alt="Powered by polygon" src={Polygon} className="polygon" />
@@ -206,7 +219,7 @@ const Work = () => {
           <Grid item xs={2} className={classes.card}>
             <div className="work-div">
               <Container className={classes.card}>
-                <img src={Business} className={classes.image} />
+                <img alt="business" src={Business} className={classes.image} />
                 <div style={{ fontSize: "1.25rem" }}>
                   Stake your crypto coins
                 </div>
@@ -262,6 +275,49 @@ const Work = () => {
         </Grid>
       </Box>
     </ThemeProvider>
+  );
+};
+
+const DoYouKnow = () => {
+  return (
+    <div
+      style={{ width: "100%", height: "60vh", background: "rgba(25, 28, 32)" }}
+    >
+      <div
+        style={{
+          height: "20vh",
+          width: "100%",
+
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <span className="mainText" style={{ fontSize: "5rem" }}>
+          Do You Know?
+        </span>
+        <img
+          alt="Mindblowing"
+          src={Emoji}
+          style={{ height: "5rem", width: "5rem", margin: "0rem 1rem" }}
+        />
+      </div>
+      <div style={{ width: "100%", height: "30vh" }}>
+        <div
+          className="mainText"
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "400",
+            padding: "2rem 10rem",
+            textAlign: "center",
+          }}
+        >
+          There are more no. of chess positions than there are atoms in the
+          observable universe.
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -336,6 +392,7 @@ const Functioning = () => {
               alignItems: "start",
               justifyContent: "center",
               paddingLeft: "5rem",
+              paddingRight: "5rem",
             }}
           >
             <span className="explainMain">Your Position</span>
@@ -343,27 +400,12 @@ const Functioning = () => {
               Your Ownership
             </span>
             <br />
-            {/* <span className="explainDet">
+            <span className="explainDet">
               So all you have to do is, play a chess game and when the game is
               finished, you can choose any position from the whole game, select
               the most unique and spectacular one which you think deserves to be
               minted as your personal NFT.
-            </span> */}
-            {/* <br /> */}
-            <br />
-            <span className="explainDet" style={{ fontWeight: "500" }}>
-              Your NFT will include:-
             </span>
-            <ul>
-              <li className="explainDet">
-                • The details of the your opponent.
-              </li>
-              <li className="explainDet">• The position that you chose.</li>
-              <li className="explainDet">• No. of staked tokens.</li>
-              <li className="explainDet">
-                • A description box to describe the significance of your NFT.
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -389,9 +431,9 @@ const Functioning = () => {
               paddingLeft: "5rem",
             }}
           >
-            <span className="explainMain">Your Position</span>
+            <span className="explainMain">Being Unique</span>
             <span className="explainMain" style={{ fontSize: "3rem" }}>
-              Your Ownership
+              is the KEY
             </span>
             <br />
 
@@ -419,6 +461,7 @@ const Functioning = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
+              paddingLeft: "8rem",
             }}
           >
             <img
@@ -432,8 +475,6 @@ const Functioning = () => {
                 top: "2rem",
                 zIndex: "4",
                 opacity: "1",
-                
-                
               }}
             />
             <img
@@ -447,7 +488,7 @@ const Functioning = () => {
                 top: "1.5rem",
                 left: "-4rem",
                 zIndex: "3",
-                opacity: "0.75"
+                opacity: "0.75",
               }}
             />
             <img
@@ -461,7 +502,7 @@ const Functioning = () => {
                 top: "1rem",
                 left: "-12.5rem",
                 zIndex: "2",
-                opacity: "0.5"
+                opacity: "0.5",
               }}
             />
             <img
@@ -476,7 +517,6 @@ const Functioning = () => {
                 left: "-19.25rem",
                 zIndex: "1",
                 opacity: "0.25",
-                
               }}
             />
           </div>
@@ -486,12 +526,104 @@ const Functioning = () => {
   );
 };
 
+const AnimatedGif = () => {
+  return (
+    <div className="home-bg">
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "50%",
+            height: "80vh",
+
+            paddingLeft: "3rem",
+            paddingRight: "3rem",
+            alignItems: "center",
+          }}
+        >
+          <div
+            className="redBlur"
+            style={{
+              height: "70vh",
+              width: "70%",
+
+              position: "relative",
+              left: "5rem",
+              top: "2rem",
+            }}
+          ></div>
+          <img
+            alt="Animated GIF"
+            src={Gif}
+            style={{
+              height: "100%",
+              width: "80%",
+              position: "relative",
+              outline: "3px solid white",
+              bottom: "32rem",
+              left: "3rem",
+            }}
+          />
+        </div>
+        <div
+          style={{
+            width: "50%",
+            height: "80vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "start",
+            textAlign: "left",
+            paddingRight: "5rem",
+          }}
+        >
+          <span className="explainMain">Animated GIF</span>
+          <span className="explainMain" style={{ fontSize: "3rem" }}>
+            Let's make it Crisp
+          </span>
+          <br />
+          <span className="explainDet">
+            This animated GIF will give you a brief explaination and an quick go
+            through of CHESSPOS to make it easy for you to understand. From the
+            very beginning to the very end, we have covered every use case so
+            that you are left with no query. The complete procedure of Signing
+            Up, Matchmaking, Staking Tokens, NFT minting and many more are
+            covered in this single GIF.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
+export const NftSwiper = () => {
+  return (
+    <div style={{height: "80vh", width: "100%", background: "rgba(25, 28, 32)"}}>
+      
+    </div>
+  )
+}
+
+
 function LandingPage() {
   return (
     <div>
       <Home />
       <Work />
+      <DoYouKnow />
       <Functioning />
+      <AnimatedGif />
+      <NftSwiper/>
     </div>
   );
 }

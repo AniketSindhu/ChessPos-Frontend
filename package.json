@@ -20,6 +20,7 @@
     "react-moralis": "^0.3.0",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "swiper": "*",
     "react-timer-hook": "^3.0.5",
     "socket.io-client": "^4.4.0",
     "use-sound": "^4.0.1",

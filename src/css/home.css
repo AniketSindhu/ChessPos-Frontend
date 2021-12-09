@@ -155,6 +155,18 @@ p {
   background-repeat: no-repeat;
   background-position: left;
 }
+
+.homeBgMixed{
+  background-color: rgb(25, 28, 32);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("../img/Circles.png"), url("../img/Circles2.png");
+  background-position: left, right;
+  background-size: 50rem 50rem, 50rem 50rem;
+  background-repeat: no-repeat, no-repeat;
+
+}
 .explainMain {
   font-family: "Poppins" sans-serif;
   font-size: 5rem;
@@ -180,6 +192,16 @@ p {
   background: transparent;
 }
 
+.redBlur {
+  background: linear-gradient(
+    91.26deg,
+    rgba(203, 53, 107, 0.8) 12.36%,
+    rgba(218, 35, 16, 0.8) 94.13%
+  );
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -195,7 +217,7 @@ p {
   transform: translateY(0px);
   animation: floatR 6s ease-in-out infinite;
   background: transparent;
-} 
+}
 
 @keyframes floatR {
   0% {
@@ -213,7 +235,7 @@ p {
   transform: translateY(0px);
   animation: floatG 6s ease-in-out infinite;
   background: transparent;
-} 
+}
 
 @keyframes floatG {
   0% {
@@ -231,7 +253,7 @@ p {
   transform: translateY(0px);
   animation: floatP 6s ease-in-out infinite;
   background: transparent;
-} 
+}
 
 @keyframes floatP {
   0% {
@@ -249,7 +271,7 @@ p {
   transform: translateY(0px);
   animation: floatB 6s ease-in-out infinite;
   background: transparent;
-} 
+}
 
 @keyframes floatB {
   0% {
@@ -268,6 +290,28 @@ p {
   width: 66rem;
   height: 13rem;
 }
+
+.mainKnight{
+  
+  transform: rotateZ(0deg);
+  animation: moving 6s ease-in-out infinite;
+
+}
+
+@keyframes moving {
+  0%{
+    transform: rotateZ(-3deg);
+  }
+  50%{
+    transform: rotateZ(3deg);
+  }
+  100%{
+    transform: rotateZ(-3deg);
+  }
+  
+  
+}
+
 .tagline {
   position: absolute;
   width: 100%;

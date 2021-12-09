@@ -68,7 +68,8 @@ function Wallet() {
         }}
       >
         <p
-          style={{ marginRight: "5px", ...styles.text, pointerEvents: "none" }}
+          style={{ marginRight: "5px", ...styles.text, pointerEvents: "none", color: "white", fontWeight: "500" }}
+
         >
           {getEllipsisTxt(account, 6)}
         </p>
@@ -99,6 +100,7 @@ function Wallet() {
             avatar="left"
             size={6}
             copyable
+            
             style={{ fontSize: "20px" }}
           />
           <div style={{ marginTop: "10px", padding: "0 10px" }}>

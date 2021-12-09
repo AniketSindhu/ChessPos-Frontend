@@ -89,61 +89,12 @@ function StakingTokens() {
 
   const mainPage = () => {
     return (
-      <div className="wonDiv" style={{ height: "100vh" }}>
-        {/* <img
-                  src={Circles}
-                  alt="Circles"
-                  className=""
-                  style={{
-                    position: "absolute",
-                    right: "30rem",
-                    top: "0",
-                    height: "55rem",
-                    width: "55rem",
-                    
-                  }}
-                /> */}
+      <div className="home-bg">
+        
         <Navbar head="ChessPOS" />
         <section className="wallContent">
           Stake Tokens
-          {/* <div
-            classname="stakBtn"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              background: "rgba(26, 28, 32, 0.75)",
-              padding: "0.8rem 2rem",
-              height: "4rem",
-              marginTop: "3rem",
-              borderRadius: "1.5rem",
-            }}
-          >
-            
-            <input className="inputBox" type="number" placeholder="Amount"/>
-            
-          </div>
-          <img src={Matic} className="stakBtnImg" />
-          <div
-            classname="stakBtn"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              background: "rgba(26, 28, 32, 0.75)",
-              padding: "0.8rem 2rem",
-              height: "4rem",
-              width: "15rem",
-              position: "relative",
-              bottom: "4rem",
-              marginTop: "1.5rem",
-              textAlign: "center",
-              borderRadius: "1.5rem",
-              marginLeft: "7rem",
-            }}
-          >
-            <button className="stakBtnBtn">Submit</button>
-          </div> */}
+          
           <form onSubmit={createGame}>
             <div
               style={{

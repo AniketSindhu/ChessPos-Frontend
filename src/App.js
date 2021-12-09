@@ -23,9 +23,9 @@ function App({ isServerInfo }) {
 
   return (
     <>
-    <NftMintButt/>
     
-      {/* <Routes>
+    
+      <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/createGame" element={<StakingTokens />} />
@@ -35,7 +35,7 @@ function App({ isServerInfo }) {
         <Route path="/claimTokens" element={<WonMatch />} />
         <Route path="/lost" element={<LostMatch />} />
         
-      </Routes> */}
+      </Routes>
       {/*       <HomePage />
       <StakingTokens /> */}
     </>

@@ -74,7 +74,7 @@ function WonMatch() {
     }
   };
 
-  return !location.state ? (
+  return location.state ? (
     <div>
       {isLoading && <Loader />}
       {/* <h1>You won the match</h1>

@@ -261,9 +261,10 @@ function HomePage() {
               </span>
               <Link to="/createGame">
                 <section
-                  className="wallContent"
+                  className="wallContent2"
                   style={{
                     position: "relative",
+                    top: "0.2rem",
 
                     width: "30rem",
                     height: "6rem",
