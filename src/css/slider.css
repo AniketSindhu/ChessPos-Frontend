@@ -3,23 +3,36 @@ article {
   top: 0;
   left: 0;
   width: 100%;
-  /* height: 100%; */
   display: flex;
   justify-content: center;
   opacity: 0;
-  transition: var(--transition);
+  transition: all 0.5s linear;
 }
-article.activeSlide {
+.activeSlide {
   opacity: 1;
   transform: translateX(0);
 }
-article.lastSlide {
+.lastSlide {
   transform: translateX(-100%);
+  opacity: 0;
 }
-article.nextSlide {
+.nextSlide {
   transform: translateX(100%);
+  opacity: 0;
 }
-
-article.leftMost{
-  transform: translateX(());
+.leftMost {
+  transform: translateX(-43%) scale(0.5);
+  opacity: 1;
+}
+.left {
+  transform: translateX(-25%) scale(0.7);
+  opacity: 1;
+}
+.right {
+  transform: translateX(25%) scale(0.7);
+  opacity: 1;
+}
+.rightMost {
+  transform: translateX(43%) scale(0.5);
+  opacity: 1;
 }

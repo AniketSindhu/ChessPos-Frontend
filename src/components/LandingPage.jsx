@@ -681,7 +681,7 @@ const NftSwiper = () => {
         }
         return index;
       });
-    }, 5500);
+    }, 3000);
     return () => {
       clearInterval(slider);
     };
@@ -690,7 +690,7 @@ const NftSwiper = () => {
   return (
     <div
       style={{
-        height: "100vh",
+        height: "103vh",
         width: "100%",
         background: "rgba(25, 28, 32)",
         padding: "15rem 2rem",
@@ -710,21 +710,54 @@ const NftSwiper = () => {
           const { id, nft } = img;
 
           let position = "nextSlide";
+          if (
+            imgIndex === index - 2 ||
+            (index === 0 && imgIndex === NftImages.length - 2) ||
+            (index === 1 && imgIndex === NftImages.length - 1)
+          ) {
+            position = "leftMost";
+          }
+          if (
+            imgIndex === index - 1 ||
+            (index === 0 && imgIndex === NftImages.length - 1) ||
+            (index === 1 && imgIndex === 0)
+          ) {
+            position = "left";
+          }
           if (imgIndex === index) {
             position = "activeSlide";
           }
           if (
-            imgIndex === index - 1 ||
-            (index === 0 && imgIndex === NftImages.length - 1)
+            imgIndex === index + 1 ||
+            (index === NftImages.length - 1 && imgIndex === 0)
+          ) {
+            position = "right";
+          }
+          if (
+            imgIndex === index + 2 ||
+            (index === NftImages.length - 1 && imgIndex === 1) ||
+            (index === NftImages.length - 2 && imgIndex === 0)
+          ) {
+            position = "rightMost";
+          }
+          if (
+            imgIndex === index - 3 ||
+            (index === 0 && imgIndex === NftImages.length - 3) ||
+            (index === 1 && imgIndex === NftImages.length - 2) ||
+            (index === 2 && imgIndex === NftImages.length - 1)
           ) {
             position = "lastSlide";
           }
 
           return (
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center"}}>
-              <article className={position} key={id} >
-                <img alt="nft" src={nft} style={{ width: "25rem" }} />
-              </article>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <article className={position} key={id}>
                 <img alt="nft" src={nft} style={{ width: "25rem" }} />
               </article>
@@ -737,11 +770,9 @@ const NftSwiper = () => {
               <article className={position} key={id}>
                 <img alt="nft" src={nft} style={{ width: "25rem" }} />
               </article>
-              
-
-              
-
-              
+              <article className={position} key={id}>
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
             </div>
           );
         })}
