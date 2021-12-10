@@ -608,7 +608,7 @@ const AnimatedGif = () => {
   );
 };
 
-export const NftSwiper = () => {
+const NftSwiper = () => {
   const NftImages = [
     {
       id: 0,
@@ -693,7 +693,7 @@ export const NftSwiper = () => {
         height: "100vh",
         width: "100%",
         background: "rgba(25, 28, 32)",
-        padding: "15rem 5rem",
+        padding: "15rem 2rem",
       }}
     >
       <div
@@ -721,9 +721,28 @@ export const NftSwiper = () => {
           }
 
           return (
-            <article className={position} key={id}>
-              <img alt="nft" src={nft} style={{ width: "25rem" }} />
-            </article>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center"}}>
+              <article className={position} key={id} >
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
+              <article className={position} key={id}>
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
+              <article className={position} key={id}>
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
+              <article className={position} key={id}>
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
+              <article className={position} key={id}>
+                <img alt="nft" src={nft} style={{ width: "25rem" }} />
+              </article>
+              
+
+              
+
+              
+            </div>
           );
         })}
       </div>
