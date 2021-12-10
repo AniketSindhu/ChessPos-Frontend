@@ -1,14 +1,4 @@
-import React from "react";
-// import {Swiper, SwiperSlide} from "swiper/react";
-// import "swiper/swiper.min.css";
-// import "swiper/components/effect-coverflow/effect-coverflow.min.css";
-// import "swiper/components/pagination/pagination.min.css";
-// import "swiper/components/navigation/navigation.min.css";
-// import SwiperCore, {
-//   EffectCoverflow,
-//   Pagination,
-//   Navigation
-// } from "swiper/core";
+import React, { useEffect, useState } from "react";
 
 import Rocket from "../img/rocket.jpg";
 import KnightBg from "../img/knightBg.png";
@@ -166,7 +156,6 @@ const Home = () => {
                 height: "38rem",
                 position: "relative",
                 bottom: "10rem",
-                
               }}
             />
             <img alt="Powered by polygon" src={Polygon} className="polygon" />
@@ -190,7 +179,7 @@ const Work = () => {
         }}
         className="zindex"
       >
-        <Typography
+        {/* <Typography
           sx={{
             color: "primary.main",
             fontSize: "5rem",
@@ -200,7 +189,23 @@ const Work = () => {
           }}
         >
           How it works?
-        </Typography>
+        </Typography> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            className="mainText"
+            style={{ fontSize: "5rem", margin: "6rem 0rem", zIndex: "1" }}
+          >
+            How It Works?
+          </div>
+        </div>
+
         <img
           alt="circles"
           className="zindex-img"
@@ -211,7 +216,7 @@ const Work = () => {
             // left: "1rem",
             height: "55rem",
             width: "55rem",
-            // zIndex: 3,
+            zIndex: "0",
           }}
         />
 
@@ -346,9 +351,8 @@ const Functioning = () => {
             <img
               alt="pink NFT"
               src={pinkNft}
-              className="imgAnim"
+              className="imgAnimPink"
               style={{
-                transform: "rotate(20deg)",
                 height: "220px",
                 position: "relative",
                 left: "15rem",
@@ -358,7 +362,7 @@ const Functioning = () => {
             <img
               alt="blue NFT"
               src={blueNft}
-              className="imgAnim"
+              className="imgAnimBlue"
               style={{
                 transform: "rotate(10deg)",
                 height: "180px",
@@ -370,7 +374,7 @@ const Functioning = () => {
             <img
               alt="green NFT"
               src={greenNft}
-              className="imgAnim"
+              className="imgAnimGreen"
               style={{
                 transform: "rotate(-25deg)",
                 height: "320px",
@@ -604,16 +608,128 @@ const AnimatedGif = () => {
   );
 };
 
-
-
 export const NftSwiper = () => {
-  return (
-    <div style={{height: "80vh", width: "100%", background: "rgba(25, 28, 32)"}}>
-      
-    </div>
-  )
-}
+  const NftImages = [
+    {
+      id: 0,
+      nft: redNft,
+    },
+    {
+      id: 1,
+      nft: greenNft,
+    },
+    {
+      id: 2,
+      nft: blueNft,
+    },
+    {
+      id: 3,
+      nft: pinkNft,
+    },
+    {
+      id: 4,
+      nft: greenNft,
+    },
+    {
+      id: 5,
+      nft: blueNft,
+    },
+    {
+      id: 6,
+      nft: redNft,
+    },
+    {
+      id: 7,
+      nft: pinkNft,
+    },
+    {
+      id: 8,
+      nft: greenNft,
+    },
+    {
+      id: 9,
+      nft: blueNft,
+    },
+  ];
 
+  const [index, setIndex] = useState(0);
+  const nextSlide = () => {
+    setIndex((oldIndex) => {
+      let index = oldIndex + 1;
+      if (index > NftImages.length - 1) {
+        index = 0;
+      }
+      return index;
+    });
+  };
+  const prevSlide = () => {
+    setIndex((oldIndex) => {
+      let index = oldIndex - 1;
+      if (index < 0) {
+        index = NftImages.length - 1;
+      }
+      return index;
+    });
+  };
+
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex((oldIndex) => {
+        let index = oldIndex + 1;
+        if (index > NftImages.length - 1) {
+          index = 0;
+        }
+        return index;
+      });
+    }, 5500);
+    return () => {
+      clearInterval(slider);
+    };
+  }, [index]);
+
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        background: "rgba(25, 28, 32)",
+        padding: "15rem 5rem",
+      }}
+    >
+      <div
+        style={{
+          height: "500px",
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
+        }}
+      >
+        {NftImages.map((img, imgIndex) => {
+          const { id, nft } = img;
+
+          let position = "nextSlide";
+          if (imgIndex === index) {
+            position = "activeSlide";
+          }
+          if (
+            imgIndex === index - 1 ||
+            (index === 0 && imgIndex === NftImages.length - 1)
+          ) {
+            position = "lastSlide";
+          }
+
+          return (
+            <article className={position} key={id}>
+              <img alt="nft" src={nft} style={{ width: "25rem" }} />
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 function LandingPage() {
   return (
@@ -623,7 +739,7 @@ function LandingPage() {
       <DoYouKnow />
       <Functioning />
       <AnimatedGif />
-      <NftSwiper/>
+      <NftSwiper />
     </div>
   );
 }

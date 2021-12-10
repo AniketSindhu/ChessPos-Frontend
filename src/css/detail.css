@@ -129,7 +129,7 @@
   margin-top: 3rem;
   border-radius: 1.5rem;
   
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 .inputBox::-webkit-outer-spin-button,
 .inputBox::-webkit-inner-spin-button {
@@ -160,6 +160,7 @@
   margin: auto;
   margin-top: 6rem;
   padding: 0.6rem 1.5rem;
+  cursor: pointer;
   
 }
 
@@ -256,15 +257,15 @@
   font-weight: 700;
   padding-left: 2rem;
   position: relative;
-  bottom: 1rem;
+  
 }
 
 .wallLogo {
   position: relative;
-  top: 0.4rem;
+  
   width: 5rem;
   height: 5rem;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   margin-left: 1.5rem;
 }
 
@@ -317,7 +318,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  
 }
+
+
+
 /* ----------------------------won---------------------- */
 .name {
   width: 14rem;

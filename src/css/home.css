@@ -186,10 +186,52 @@ p {
   transform: scale(0.6);
 }
 
-.imgAnim {
+.imgAnimPink {
   transform: translateY(0px);
-  animation: float 6s ease-in-out infinite;
+  animation: floatPink 8s ease-in-out infinite;
   background: transparent;
+}
+
+@keyframes floatPink {
+  0%, 100% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(10deg);
+  }
+  
+}
+
+.imgAnimBlue {
+  transform: translateY(0px);
+  animation: floatBlue 8s ease-in-out infinite;
+  background: transparent;
+}
+
+@keyframes floatBlue {
+  0%, 100% {
+    transform: translateY(0px) rotate(8deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(-6deg);
+  }
+  
+}
+
+.imgAnimGreen {
+  transform: translateY(0px);
+  animation: floatGreen 8s ease-in-out infinite;
+  background: transparent;
+}
+
+@keyframes floatGreen {
+  0%, 100% {
+    transform: translateY(0px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(5deg);
+  }
+  
 }
 
 .redBlur {
@@ -202,17 +244,7 @@ p {
   border-radius: 50%;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
+
 .imgAnimR {
   transform: translateY(0px);
   animation: floatR 6s ease-in-out infinite;

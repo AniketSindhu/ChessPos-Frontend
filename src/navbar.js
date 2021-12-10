@@ -6,16 +6,20 @@ import { useMoralis } from "react-moralis";
 import Chains from "./components/Chains";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ head }) => {
+const Navbar = ({ head, isSticky }) => {
   const { isAuthenticated } = useMoralis();
   return (
-    <div className="wallFlex">
+    <div className="wallFlex" style={isSticky?{position: "fixed",
+      top: "0",
+      width: "100%",
+      backgroundColor: "rgba(25, 28, 32)"} : {}
+      }>
       <Link to="/">
         <div>
           <img alt="Logo" src={Logo} className="wallLogo" />
           <div
             className="wallHead"
-            style={{ position: "relative", top: "2rem" }}
+            style={{top: "0.5rem"}}
           >
             {head}
           </div>

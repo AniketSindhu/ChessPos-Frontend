@@ -11,6 +11,7 @@ import Waiting from "./components/Waiting";
 import WonMatch from "./components/WonMatch";
 import LostMatch from "./components/LostMatch";
 import NftMintButt from "./components/NftMintButt";
+import YourNfts from "./components/YourNfts";
 
 function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -23,7 +24,7 @@ function App({ isServerInfo }) {
 
   return (
     <>
-    
+    {/* <YourNfts/> */}
     
       <Routes>
         <Route path="/" element={<LandingPage />} />

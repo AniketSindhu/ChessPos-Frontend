@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./css/detail.css";
 import "./css/nft.css";
 import "./css/home.css";
+import "./css/slider.css";
 import { BrowserRouter } from "react-router-dom";
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
