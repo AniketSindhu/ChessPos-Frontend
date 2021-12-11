@@ -28,10 +28,11 @@ function App({ isServerInfo }) {
 
   return (
     <>
-    <NftMinting/>
-    <SingleNft/>
+    {/* <NftMinting/>
+    <SingleNft/> */}
+    {/* <YourNfts/> */}
 
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/createGame" element={<StakingTokens />} />
@@ -43,7 +44,7 @@ function App({ isServerInfo }) {
         <Route path="/minting" element={<NftMintButt />} />
         <Route path="/nft_minting" element={<NftMinting />} />
         <Route path="/gif_minting" element={<GifMinting />} />
-      </Routes> */}
+      </Routes>
       {/*       <HomePage />
       <StakingTokens /> */}
     </>

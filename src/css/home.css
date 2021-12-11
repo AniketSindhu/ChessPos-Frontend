@@ -402,6 +402,8 @@ p {
   color: rgba(255, 255, 255, 1);
   height: 4rem;
   width: 13rem;
+  position: relative;
+  top: 5rem;
 
   font-weight: 500;
   font-family: "Archivo", sans-serif;

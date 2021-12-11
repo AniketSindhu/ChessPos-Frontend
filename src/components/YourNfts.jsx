@@ -4,50 +4,10 @@ import redNft from "../img/redNft.png";
 import blueNft from "../img/blueNft.png";
 import greenNft from "../img/greenNft.png";
 import pinkNft from "../img/pinkNft.png";
+import NftMint from "../Nft_Mint_UI/NftMint";
 
 const YourNfts = () => {
-    const NftImages = [
-        {
-          id: 0,
-          nft: redNft,
-        },
-        {
-          id: 1,
-          nft: greenNft,
-        },
-        {
-          id: 2,
-          nft: blueNft,
-        },
-        {
-          id: 3,
-          nft: pinkNft,
-        },
-        {
-          id: 4,
-          nft: greenNft,
-        },
-        {
-          id: 5,
-          nft: blueNft,
-        },
-        {
-          id: 6,
-          nft: redNft,
-        },
-        {
-          id: 7,
-          nft: pinkNft,
-        },
-        {
-          id: 8,
-          nft: greenNft,
-        },
-        {
-          id: 9,
-          nft: blueNft,
-        },
-      ];
+    
     
   return (
     <div className="home-bg2" style={{ height: "200vh" }}>
@@ -61,13 +21,10 @@ const YourNfts = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
-          alignItems: "center",
+          alignItems: "start",
         }}
       >
-        <div style={{columnCount: "3", display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center"}}>
-        
-
-        </div>
+        <NftMint style={{transform: "scale(0.6)"}}/>
       </div>
     </div>
   );

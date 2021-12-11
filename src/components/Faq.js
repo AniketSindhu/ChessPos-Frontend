@@ -19,20 +19,7 @@ const Faq = ({ question, answer }) => {
         width: "100%",
       }}
     >
-      {/* <Accordion type="button" className="faq faq--active">
-        <span className="mainText" style={{ fontSize: "2rem", opacity: "1" }}>
-          {question}
-        </span>
-        <AddIcon style={{ color: "white", transform: "scale(1.5)" }} />
-        <AccordionDetails className="faqContent">
-        <span
-          className="mainText"
-          style={{ fontSize: "1.2rem", fontWeight: "lighter" }}
-        >
-          {answer}
-        </span>
-      </AccordionDetails>
-      </Accordion> */}
+      
       <Accordion style={{ background: "rgb(18, 18, 24)", width: "80%", border: "1px solid white"}}>
         <AccordionSummary
           expandIcon={<AddIcon style={{color: "white", transform: "scale(1.5)"}} />}

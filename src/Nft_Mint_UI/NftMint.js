@@ -79,8 +79,8 @@ const NftMint = () => {
               </span>
               <img
                 alt="versus"
-                srs={Vs}
-                style={{ width: "2rem", height: "2rem" }}
+                src={Vs}
+                style={{ width: "1.5rem", height: "1.5rem" }}
               />
               <span
                 className="mainText"

@@ -147,12 +147,15 @@
   box-shadow: inset -8.26342px -8.26342px 41.3171px 5.16464px rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
   text-align: center;
-  width: 30rem;
-  height: 30rem;
+  width: 25.5rem;
+  height: 28rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  border-radius: 30px;
+  box-shadow: 0px 10px 30px black;
+  padding: 1rem 0rem;
  
   
   font-size: 1.5rem;
@@ -160,6 +163,15 @@
   font-weight: 700;
   line-height: 2;
  
+}
+
+.linkScan{
+  width: 20rem; 
+  height: 3rem; 
+  background: rgb(25, 28, 32);
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  
 }
 /* -----------------------nftMintSm--------------- */
 .NftMintDivSm {
