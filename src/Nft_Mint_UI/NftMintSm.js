@@ -1,8 +1,8 @@
 import React from "react";
-import Board from "./img/Board.png";
-import Logo from "./img/Logo.png";
-import Trophy from "./img/trophy.png";
-import Matic from "./img/maticToken.png";
+import Board from "../img/Board.png";
+import Logo from "../img/Logo.png";
+import Trophy from "../img/trophy.png";
+import Matic from "../img/maticToken.png";
 
 const NftMintSm = ({ bg }) => {
   return (

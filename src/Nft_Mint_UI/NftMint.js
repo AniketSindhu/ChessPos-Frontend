@@ -1,16 +1,18 @@
 import React from "react";
-import Board from "./img/Board.png";
-import Logo from "./img/Logo.png";
-import Trophy from "./img/trophy.png";
-import Matic from "./img/maticToken.png";
+import Logo from "../img/Logo.png";
+import Trophy from "../img/trophy.png";
+import Matic from "../img/maticToken.png";
+import { Chessboard } from "react-chessboard";
 
 const NftMint = () => {
   return (
-    <div className="NftMintDiv" style={{zIndex: 1, 
-    background: 
-    "linear-gradient(90deg, #932c50 0%, #bd3f32 99.42%)"
-    
-    }}>
+    <div
+      className="NftMintDiv"
+      style={{
+        zIndex: 1,
+        background: "linear-gradient(90deg, #932c50 0%, #bd3f32 99.42%)",
+      }}
+    >
       <div className="nftDet2">
         <div
           className="nftDet"
@@ -18,7 +20,7 @@ const NftMint = () => {
             display: "flex",
           }}
         >
-          <img src={Board} className="boardImg" />
+          <Chessboard />
           <div
             className="nftDet1"
             style={{

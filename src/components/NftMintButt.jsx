@@ -168,6 +168,9 @@ const NftMintButt = () => {
                     width: "18rem",
                     height: "6rem",
                   }}
+                  onClick={() =>
+                    navigate("/gif_minting", { state: { game: game } })
+                  }
                 >
                   Mint whole match as an
                   <br />
@@ -175,7 +178,9 @@ const NftMintButt = () => {
                 </div>
                 <div
                   className="redButton"
-                  onClick={() => navigate("/nftMint", { state: { game: game } })}
+                  onClick={() =>
+                    navigate("/nft_minting", { state: { game: game } })
+                  }
                   style={{
                     display: "inline-block",
                     width: "18rem",

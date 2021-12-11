@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "./navbar";
 import NftMint from "./NftMint";
-import Circles from "./img/Circles2.png";
+import Circles from "../img/Circles2.png";
 import zIndex from "@mui/material/styles/zIndex";
 
 const SingleNft = () => {
   return (
-    <div className="wonDiv" 
-    // style={{ zIndex: "-4" }}
+    <div
+      className="wonDiv"
+      // style={{ zIndex: "-4" }}
     >
       <img
         src={Circles}

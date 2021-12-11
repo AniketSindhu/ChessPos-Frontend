@@ -12,6 +12,8 @@ import WonMatch from "./components/WonMatch";
 import LostMatch from "./components/LostMatch";
 import NftMintButt from "./components/NftMintButt";
 import YourNfts from "./components/YourNfts";
+import NftMinting from "./Nft_Mint_UI/NftMinting";
+import GifMinting from "./GifMinting";
 
 function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -34,6 +36,8 @@ function App({ isServerInfo }) {
         <Route path="/claimTokens" element={<WonMatch />} />
         <Route path="/lost" element={<LostMatch />} />
         <Route path="/minting" element={<NftMintButt />} />
+        <Route path="/nft_minting" element={<NftMinting />} />
+        <Route path="/gif_minting" element={<GifMinting />} />
       </Routes>
       {/*       <HomePage />
       <StakingTokens /> */}

@@ -1,29 +1,20 @@
 import React from "react";
-import Navbar from "./navbar";
+import Navbar from "../navbar";
 import NftMint from "./NftMint";
 
-import Circles from "./img/Circles2.png";
+import Circles from "../img/Circles2.png";
 import { useState } from "react";
 
 import { bgcolor, fontSize, lighten } from "@mui/system";
 
 const NftMinting = () => {
-  const bgColors = [
-    "#18A627",
-    "#17A9C9",
-    "#A41F86",
-    "#BE1A1A"
-  ]
+  const bgColors = ["#18A627", "#17A9C9", "#A41F86", "#BE1A1A"];
 
   const [color, setColor] = useState(null);
 
   const colorChange = (color) => {
-
-    setColor(color)
-
-  }
-
-
+    setColor(color);
+  };
 
   // const [currColor,setcurrColor] = useState(false)
   // const [prevColor,setprevcolor] = useState(false)
@@ -36,7 +27,7 @@ const NftMinting = () => {
   // }
 
   return (
-    <div className="wonDiv" style={{ zIndex: "0", height: "850px"}}>
+    <div className="wonDiv" style={{ zIndex: "0", height: "850px" }}>
       <img
         src={Circles}
         className=""
@@ -124,28 +115,18 @@ const NftMinting = () => {
           </div>
           <div className="nftChooseColor">
             {bgColors.map((bgColors) => {
-              
               return (
-                
                 <div
-              className= "nftColor"
-              style={{
-                backgroundColor: bgColors,
-                
-                outline: bgColors===color&&"5px solid white",
-                
+                  className="nftColor"
+                  style={{
+                    backgroundColor: bgColors,
 
-                
-               
-              }}
-              onClick= {()=>colorChange(bgColors)}
-              
-            />)})
-            }
-              
-              
-              
-            
+                    outline: bgColors === color && "5px solid white",
+                  }}
+                  onClick={() => colorChange(bgColors)}
+                />
+              );
+            })}
           </div>
           <div
             className="name"
