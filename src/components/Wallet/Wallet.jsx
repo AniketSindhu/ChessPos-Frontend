@@ -6,10 +6,8 @@ import { useState } from "react";
 import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../../helpers/networks";
-import Logo from "../../img/Logo.png";
 import Walle from "../../img/Wallet.png";
-import Nft from "../../img/NFT SYMBOL.png";
-import { display } from "@mui/system";
+
 
 const styles = {
   account: {

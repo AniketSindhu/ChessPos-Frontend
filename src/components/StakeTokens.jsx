@@ -5,7 +5,8 @@ import Loader from "./Loader/Loader";
 import { useMoralis } from "react-moralis";
 import Navbar from "../navbar";
 import Matic from "../img/maticToken.png";
-
+import gameover from ".././gameover.mp3";
+import useSound from "use-sound";
 import { useNavigate, useLocation } from "react-router-dom";
 import SomethingWentWrong from "./SomethingWentWrong";
 
@@ -16,6 +17,7 @@ function StakeTokens() {
   const [loading, setLoading] = useState(false);
   const [gameAmount, setGameAmount] = useState(0);
   const [opponentAddress, setOpponentAddress] = useState("");
+  const [gameOverPlay] = useSound(gameover);
   let navigate = useNavigate();
   const [gameId, setGameId] = useState(null);
 
@@ -40,6 +42,7 @@ function StakeTokens() {
           setGameAmount(game.stakedToken);
           setOpponentAddress(game.creator);
           socket.once("start game", () => {
+            gameOverPlay();
             console.log("Game found joining now");
             window.history.replaceState(null, "", location.pathname);
             navigate("/game", {
@@ -187,7 +190,7 @@ function StakeTokens() {
       </div>
     </div>
   ) : (
-    <SomethingWentWrong/>
+    <SomethingWentWrong />
   );
 }
 

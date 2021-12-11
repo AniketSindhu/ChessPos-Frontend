@@ -105,12 +105,11 @@
   margin-top: 10rem;
   text-align: center;
 }
-.mainText{
+.mainText {
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
   font-weight: 700;
   color: white;
-
 }
 
 #clip:focus {
@@ -128,8 +127,8 @@
   font-size: 1.5rem;
   margin-top: 3rem;
   border-radius: 1.5rem;
-  
-  transition: all 0.25s ease-in-out;
+
+  transition: all 0.5s ease-in-out;
 }
 .inputBox::-webkit-outer-spin-button,
 .inputBox::-webkit-inner-spin-button {
@@ -145,7 +144,7 @@
   background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
   box-shadow: inset -7.84314px -7.84314px 39.2157px 4.90196px rgba(0, 0, 0, 0.4);
   border-image: linear-gradient(rgba(255, 255, 255, 1), rgba(194, 7, 7, 1));
-  
+
   border-width: 2px;
   border-radius: 30.3922px;
   /* transform: rotate(-90deg); */
@@ -160,16 +159,13 @@
   margin: auto;
   margin-top: 6rem;
   padding: 0.6rem 1.5rem;
-  cursor: pointer;
-  
 }
 
-
-.wallContent2{
+.wallContent2 {
   background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
   box-shadow: inset -7.84314px -7.84314px 39.2157px 4.90196px rgba(0, 0, 0, 0.4);
   border-image: linear-gradient(rgba(255, 255, 255, 1), rgba(194, 7, 7, 1));
-  
+
   border-width: 2px;
   border-radius: 30.3922px;
   text-align: center;
@@ -178,15 +174,12 @@
   font-weight: 700;
   padding: 1rem 1.5rem;
   transition: all 0.25s ease-in-out;
-
 }
 
-
-.wallContent2:hover{
+.wallContent2:hover {
   cursor: pointer;
   outline: 3px solid white;
   transform: scale(1.05);
-
 }
 
 /* -----------------------------navbar---------------- */
@@ -311,7 +304,7 @@
 }
 .imgFlexNft:hover {
   cursor: pointer;
-  
+
   transform: scale(1.05);
 }
 .wallFlex {
@@ -338,7 +331,7 @@
   font-weight: 700;
   font-size: 1.25rem;
   position: relative;
-  
+
   top: -1rem;
 }
 .redButton {
@@ -362,10 +355,9 @@
   cursor: pointer;
   transform: scale(1.05);
   border: 3px solid white;
-  
 }
 
-.redButtonStatic{
+.redButtonStatic {
   color: white;
   background: linear-gradient(180deg, #932c50 0%, #bd3f32 99.42%);
   box-shadow: inset -8.26342px -8.26342px 41.3171px 5.16464px rgba(0, 0, 0, 0.4);
@@ -374,14 +366,12 @@
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
-
 }
 
 .wonKnight {
   width: 18rem;
   height: 25rem;
   position: relative;
-  
 }
 .whiteKnight {
   display: flex;
@@ -394,9 +384,8 @@
   text-align: center;
   color: white;
   font-size: 3rem;
-  
+
   position: relative;
-  
 }
 
 .status {
@@ -455,12 +444,11 @@
 }
 
 .joinLobbyMainDiv {
-  
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  
+
   position: relative;
   margin-left: 8rem;
 }
@@ -469,6 +457,7 @@
   width: 70%;
   height: 6vh;
   display: flex;
+  position: relative;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -482,11 +471,10 @@
   outline: 1.5px solid white;
   margin-top: 2rem;
   transition: all 0.5s ease-in-out;
-
+  padding: 10px;
 }
 
-.matchDetails:hover{
+.matchDetails:hover {
   cursor: pointer;
   transform: scale(1.1);
-
 }

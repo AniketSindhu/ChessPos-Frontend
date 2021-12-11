@@ -3,8 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Address from "./Address/Address";
 import Navbar from "../navbar";
 import Knight from "../img/newKnight.png";
-import Matic from "../img/maticToken.png";
-import { padding } from "@mui/system";
 
 function LostMatch() {
   let navigate = useNavigate();
@@ -17,17 +15,6 @@ function LostMatch() {
     }
   }, []);
   return (
-    // <div>
-    //   <h1>You lost the macth and money loser!!</h1>
-    //   <button
-    //     onClick={() => {
-    //       window.history.replaceState(null, "", location.pathname);
-    //       navigate("/app");
-    //     }}
-    //   >
-    //     Back to home
-    //   </button>
-    // </div>
     <div className="home-bg">
       <div
         style={{
@@ -41,7 +28,6 @@ function LostMatch() {
           style={{
             height: "80vh",
             width: "100%",
-
             margin: "2rem 0rem",
             display: "flex",
             flexDirection: "row",

@@ -1,15 +1,30 @@
-import React from "react";
-import Address from "./Address/Address";
+import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
 import Knight from "../img/newKnight.png";
 import Vs from "../img/vs.png";
 import RedKnight from "../img/KnightRed.png";
 import Matic from "../img/maticToken.png";
 import Trophy from "../img/trophy.png";
-import { display } from "@mui/system";
+import { getEllipsisTxt } from "../helpers/formatters";
+import { useLocation, useNavigate } from "react-router";
+import SomethingWentWrong from "./SomethingWentWrong";
+import Loader from "./Loader/Loader";
 
 const NftMintButt = () => {
-  return (
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [game, setGame] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if (location.state) {
+      setIsLoading(false);
+      setGame(location.state.game);
+    }
+  }, []);
+
+  return isLoading ? (
+    <Loader />
+  ) : game ? (
     <div>
       <div className="home-bg">
         <div
@@ -53,31 +68,31 @@ const NftMintButt = () => {
                 <div
                   className="name"
                   style={{
-                    paddingTop: "1.5rem",
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     alignItems: "center",
                   }}
                 >
-                  
-                  <Address
-                    textStyle={{ color: "white" }}
-                    size={6}
-                    style={{
-                      fontSize: "18px",
-                      fontColor: "white",
-                      background: "transparent",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  />
+                  {getEllipsisTxt(game.white, 6)}
+                  {game.white === game.winnerAddress && (
+                    <img
+                      alt="winner"
+                      src={Trophy}
+                      style={{
+                        width: "1.2rem",
+                        height: "2rem",
+                        position: "relative",
+                        bottom: "0.6rem",
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <img
                 alt="Versus"
                 src={Vs}
-                style={{ width: "4.5rem", height: "4rem" }}
+                style={{ width: "40px", height: "40px" }}
               />
               <div
                 style={{
@@ -101,27 +116,19 @@ const NftMintButt = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Address
-                    textStyle={{ color: "white" }}
-                    size={6}
-                    style={{
-                      fontSize: "18px",
-                      fontColor: "white",
-                      background: "transparent",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  />
-                  <img
-                    alt="winner"
-                    src={Trophy}
-                    style={{
-                      width: "1.2rem",
-                      height: "2rem",
-                      position: "relative",
-                      bottom: "0.6rem",
-                    }}
-                  />
+                  {getEllipsisTxt(game.black, 6)}
+                  {game.black === game.winnerAddress && (
+                    <img
+                      alt="winner"
+                      src={Trophy}
+                      style={{
+                        width: "1.2rem",
+                        height: "2rem",
+                        position: "relative",
+                        bottom: "0.6rem",
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -138,7 +145,7 @@ const NftMintButt = () => {
               }}
             >
               <section className="mainText" style={{ padding: "0rem 8rem" }}>
-                <span style={{ padding: "0rem 1rem" }}>Amount</span>
+                <span style={{ padding: "0rem 1rem" }}>{game.amount}</span>
                 <img
                   alt="Matic"
                   src={Matic}
@@ -168,6 +175,7 @@ const NftMintButt = () => {
                 </div>
                 <div
                   className="redButton"
+                  onClick={() => navigate("/nftMint", { state: { game: game } })}
                   style={{
                     display: "inline-block",
                     width: "18rem",
@@ -183,6 +191,8 @@ const NftMintButt = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <SomethingWentWrong />
   );
 };
 

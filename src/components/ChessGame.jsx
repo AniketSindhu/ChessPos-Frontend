@@ -23,7 +23,7 @@ import SomethingWentWrong from "./SomethingWentWrong";
 import WhiteKnight from "../img/whiteKnightFlipped.png";
 import RedKnight from "../img/redKnightFlipped.png";
 import Matic from "../img/maticToken.png";
-
+import Loader from "./Loader/Loader";
 import { fontSize } from "@mui/system";
 
 const socket = require("../connections/socket").socket;
@@ -44,7 +44,7 @@ function ChessGame() {
   const [opponentAddress, setOpponentAddress] = useState(null);
   const [pauseResume, setPauseResume] = useState(false);
   const [gotData, setGotData] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const chessboardRef = useRef();
   const [game, setGame] = useState(new Chess());
 
@@ -93,7 +93,11 @@ function ChessGame() {
     },
   });
 
-  const checkIfGameOver = (game) => {
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const checkIfGameOver = async (game) => {
     if (game.game_over()) {
       gameOverPlay();
       op_pause();
@@ -104,6 +108,7 @@ function ChessGame() {
         setGameOver(true);
         if (location.state.isCreator) {
           if (game.turn() === "w") {
+            await sleep(300);
             console.log("You Lost the match :(");
             alert("You Lost the match :(");
             window.history.replaceState(null, "", location.pathname);
@@ -114,6 +119,7 @@ function ChessGame() {
             });
           } else {
             console.log("You Won the match :)");
+            await sleep(500);
             alert("You Won the match :)");
             window.history.replaceState(null, "", location.pathname);
             navigate("/claimTokens", {
@@ -129,6 +135,7 @@ function ChessGame() {
           }
         } else {
           if (game.turn() === "w") {
+            await sleep(500);
             console.log("You Won the match :)");
             alert("You Won the match :)");
             window.history.replaceState(null, "", location.pathname);
@@ -143,6 +150,7 @@ function ChessGame() {
               },
             });
           } else {
+            await sleep(300);
             console.log("You Lost the match :(");
             alert("You Lost the match :(");
             window.history.replaceState(null, "", location.pathname);
@@ -159,6 +167,11 @@ function ChessGame() {
         safeGameMutate((game) => {
           game.reset();
         });
+        if (isCreator) {
+          setTurn(true);
+        } else {
+          setTurn(false);
+        }
         let time1 = new Date();
         time1.setSeconds(time1.getSeconds() + 600);
         op_restart(time1);
@@ -172,6 +185,7 @@ function ChessGame() {
   useEffect(() => {
     if (pauseResume) {
       if (turn) {
+        playMove();
         my_resume();
         op_pause();
       }
@@ -182,7 +196,6 @@ function ChessGame() {
 
   useEffect(() => {
     if (location.state) {
-      gameOverPlay();
       setIsCreator(location.state.isCreator);
       setGameId(location.state.gameId);
       setAmount(location.state.amount);
@@ -190,6 +203,7 @@ function ChessGame() {
       setOpponentAddress(location.state.opponentAddress);
       setTurn(location.state.isCreator);
       setGotData(true);
+      setLoading(false);
       console.log(location.state);
       if (location.state.isCreator) {
         op_pause();
@@ -204,10 +218,12 @@ function ChessGame() {
           gameCopy.move(data.move);
           setGame(gameCopy);
           setTurn(true);
-          playMove();
+
           checkIfGameOver(gameCopy);
         }
       });
+    } else {
+      setLoading(false);
     }
     return () => {
       socket.removeAllListeners();
@@ -312,82 +328,12 @@ function ChessGame() {
     return move;
   }
 
-  return gotData ? (
-    // <div>
-    //   <div
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "row",
-    //       justifyContent: "space-between",
-    //       margin: "10px",
-    //     }}
-    //   >
-    //     {opponentAddress}
-    //     <h4>
-    //       {op_minutes}:{op_seconds}
-    //     </h4>
-    //   </div>
-
-    //   <div
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "column",
-    //       alignItems: "center",
-    //       maxWidth: "800px",
-    //       margin: "auto",
-    //       padding: "30px",
-    //     }}
-    //   >
-    //     <Chessboard
-    //       id="StyledBoard"
-    //       animationDuration={200}
-    //       boardWidth={700}
-    //       position={game.fen()}
-    //       boardOrientation={isCreator ? "white" : "black"}
-    //       onPieceDrop={onDrop}
-    //       areArrowsAllowed={true}
-    //       arePiecesDraggable={turn}
-    //       customDarkSquareStyle={{ backgroundColor: "#A13245" }}
-    //       customLightSquareStyle={{ backgroundColor: "#EEB9B9" }}
-    //       customPieces={customPieces()}
-    //       customBoardStyle={{
-    //         borderRadius: "4px",
-    //         boxShadow: "0 5px 15px rgba(0, 0, 0, 0.5)",
-    //       }}
-    //       ref={chessboardRef}
-    //     />
-    //   </div>
-    //   <div
-    //     style={{
-    //       display: "flex",
-    //       flexDirection: "row",
-    //       justifyContent: "space-between",
-    //       margin: "10px",
-    //     }}
-    //   >
-    //     {yourAddress}
-    //     <h4>
-    //       {my_minutes}:{my_seconds}
-    //     </h4>
-    //   </div>
-
-    //   <button
-    //     className="rc-button"
-    //     onClick={() => {
-    //       safeGameMutate((game) => {
-    //         game.reset();
-    //       });
-    //       chessboardRef.current.clearPremoves();
-    //     }}
-    //   >
-    //     reset
-    //   </button>
-    // </div>
-
+  return loading ? (
+    <Loader />
+  ) : gotData ? (
     <div
       className="homeBgMixed"
       style={{
-
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -431,7 +377,7 @@ function ChessGame() {
         style={{
           height: "10vh",
           width: "100%",
-          
+
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -439,14 +385,14 @@ function ChessGame() {
         }}
       >
         <span className="mainText" style={{ fontSize: "1rem" }}>
-        {opponentAddress}
+          {opponentAddress}
         </span>
       </div>
       <div
         style={{
           height: "20vh",
           width: "70%",
-         
+
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
@@ -495,7 +441,7 @@ function ChessGame() {
         style={{
           height: "40vh",
           width: "90%",
-          
+
           display: "flex",
           flexDirection: "row",
           padding: "0rem 5rem",
@@ -546,15 +492,19 @@ function ChessGame() {
               width: "10rem",
               background: "rgba(25, 28, 32)",
               borderRadius: "15px",
-              padding: "0.2rem 0.1rem"
+              padding: "0.2rem 0.1rem",
             }}
           >
-            <span style={{fontSize: "1.1rem"}}>{amount*2}</span>
+            <span style={{ fontSize: "1.1rem" }}>{amount * 2}</span>
             <span>
               <img
                 alt="Matic"
                 src={Matic}
-                style={{ width: "1.5rem", height: "1.5rem", marginLeft: "1rem"}}
+                style={{
+                  width: "1.5rem",
+                  height: "1.5rem",
+                  marginLeft: "1rem",
+                }}
               />
             </span>
           </div>
@@ -564,7 +514,7 @@ function ChessGame() {
         style={{
           height: "20vh",
           width: "70%",
-         
+
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
@@ -614,7 +564,7 @@ function ChessGame() {
         style={{
           height: "10vh",
           width: "100%",
-          
+
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -622,7 +572,7 @@ function ChessGame() {
         }}
       >
         <span className="mainText" style={{ fontSize: "1rem" }}>
-        {yourAddress}
+          {yourAddress}
         </span>
       </div>
     </div>

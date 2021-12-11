@@ -35,7 +35,7 @@ function App({ isServerInfo }) {
         <Route path="/game" element={<ChessGame />} />
         <Route path="/claimTokens" element={<WonMatch />} />
         <Route path="/lost" element={<LostMatch />} />
-        
+        <Route path="/minting" element={<NftMintButt />} />
       </Routes>
       {/*       <HomePage />
       <StakingTokens /> */}

@@ -6,7 +6,8 @@ import Navbar from "../navbar";
 import KnightRed from "../img/KnightRed.png";
 import { useLocation, useNavigate } from "react-router";
 import SomethingWentWrong from "./SomethingWentWrong";
-
+import gameover from ".././gameover.mp3";
+import useSound from "use-sound";
 const socket = require("../connections/socket").socket;
 
 function Waiting() {
@@ -15,7 +16,7 @@ function Waiting() {
   const [address, setAddress] = useState(null);
   const [gameId, setGameId] = useState(null);
   const location = useLocation();
-
+  const [gameOverPlay] = useSound(gameover);
   const quotes = [
     {
       quote:
@@ -91,6 +92,7 @@ function Waiting() {
       setAmount(location.state.amount);
       setAddress(location.state.address);
       socket.once("start game", (opponentUserName) => {
+        gameOverPlay();
         console.log("START!");
         setOpponentAddress(opponentUserName);
         /*       socket.emit("send data", {
@@ -234,12 +236,9 @@ function Waiting() {
           </div>
         </div>
       </div>
-      
     </div>
   ) : (
-    <SomethingWentWrong/>
-    
-    
+    <SomethingWentWrong />
   );
 }
 

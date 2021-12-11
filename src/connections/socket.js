@@ -1,8 +1,8 @@
 import io from "socket.io-client";
 
-const URL = "http://localhost:4000";
+const URL = "https://chesspos.herokuapp.com/";
 
-const socket = io(URL);
+const socket = io(URL, { transports: ["websocket"] });
 
 // register preliminary event listeners here:
 

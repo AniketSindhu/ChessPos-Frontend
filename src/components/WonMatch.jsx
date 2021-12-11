@@ -12,7 +12,7 @@ import { flexbox } from "@mui/system";
 import { position } from "dom-helpers";
 import Address from "./Address/Address";
 import SomethingWentWrong from "./SomethingWentWrong";
-
+import db from "../firebase";
 function WonMatch() {
   let location = useLocation();
   const [gameId, setgameId] = useState(null);
@@ -56,7 +56,20 @@ function WonMatch() {
       createCall.on("receipt", (recipt) => {
         //transaction was successful and confirmed
         console.log(recipt);
-        //TODO add game info to firebase
+        db.collection("games")
+          .doc(gameId)
+          .set({
+            gameId: gameId,
+            winner: "w",
+            time: new Date(),
+            white: isWhite ? address : loserAddress,
+            black: isWhite ? loserAddress : address,
+            amount: amount * 2,
+            pgn: pgn,
+            loserAddress: loserAddress,
+            winnerAddress: address,
+            players: [address, loserAddress],
+          });
         setIsLoading(false);
         alert("Transaction Successful you recieved " + amount * 2 + " MATIC");
         navigate("/app");
@@ -168,11 +181,11 @@ function WonMatch() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-evenly",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
-                <article style={{ fontSize: "1.5rem"}}>Claim Tokens</article>
-                
+                <article style={{ fontSize: "1.5rem" }}>Claim Tokens</article>
+
                 <div
                   style={{
                     display: "flex",
@@ -183,12 +196,12 @@ function WonMatch() {
                     bottom: "1rem",
                   }}
                 >
-                  <span style={{padding:0}}>{amount * 2}</span>
+                  <span style={{ padding: 0 }}>{amount * 2}</span>
 
                   <img
                     alt="Matic"
                     src={Matic}
-                    style={{ width: "2rem", height: "2rem", margin: "1rem"}}
+                    style={{ width: "2rem", height: "2rem", margin: "1rem" }}
                   />
                 </div>
               </div>

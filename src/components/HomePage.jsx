@@ -3,20 +3,29 @@ import React, { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import Navbar from "../navbar";
 import Circles from "../../src/img/Circles2.png";
-import Vs from "../../src/img/vs.png";
 import { Link, useNavigate } from "react-router-dom";
+import db from "../firebase";
+import Games from "./Games";
 
 const socket = require("../connections/socket").socket;
 
 function HomePage() {
   const [gameIdInput, setGameIdInput] = useState("");
   const [found, setFound] = useState(false);
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated, account } = useMoralis();
+  const [games, setGames] = useState([]);
   let navigate = useNavigate();
-
+  const dummy = [
+    21, 21234, 123123, 123, 12, 31, 2312, 3, 23, 23, 23, 2, 32, 3, 234, 3, 425,
+    24, 234, 234, 23, 4234, 3, 123, 21, 32, 3, 23, 2, 32, 32, 3, 234, 234,
+  ];
+  const gameDummy = {
+    gameId: 12341,
+    winnerAddress: "0x123123asfasfasfasdhfioahoh12oh341o2h4",
+    black: "0x123123asfasfasfasdhfioahoh12oh341o2h4",
+    white: "0x123123asfasfasfasdhfioahoh12oh341o2h4",
+  };
   useEffect(() => {
-    console.log(gameIdInput);
-    window.history.replaceState({}, "", "/app");
     socket.on("status", (status) => {
       alert(status);
     });
@@ -29,6 +38,17 @@ function HomePage() {
       socket.off("match found", () => {});
     };
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      db.collection("games")
+        .orderBy("time", "desc")
+        .where("players", "array-contains", account)
+        .onSnapshot((snapshot) =>
+          setGames(snapshot.docs.map((doc) => doc.data()))
+        );
+    }
+  }, [isAuthenticated, account]);
 
   useEffect(() => {
     if (found === true) {
@@ -66,102 +86,27 @@ function HomePage() {
   const mainPage = () => {
     return (
       <div className="home-bg2" style={{ height: "100vh" }}>
-       
         <Navbar head="ChessPOS" />
 
         <div className="joinLobbyMaindiv">
-          {/* <div className="matchDetails">
-            <span
-              style={{
-                color: "white",
-                fontSize: "2rem",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 400,
-              }}
-            >
-              Username1
-            </span>
-            <img
-              alt="Versus"
-              src={Vs}
-              style={{
-                height: "2rem",
-                width: "2rem",
-                marginLeft: "2rem",
-                marginRight: "2rem",
-                position: "relative",
-                bottom: "0.5rem",
-              }}
-            ></img>
-            <span
-              style={{
-                color: "white",
-                fontSize: "2rem",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 400,
-              }}
-            >
-              Username2
-            </span>
-          </div> */}
           <div
             style={{
               height: "80vh",
               width: "50%",
-              
+              overflowY: "auto",
               marginTop: "2rem",
               marginLeft: "4rem",
               display: "flex",
               flexDirection: "column",
               justifyContent: "start",
               alignItems: "center",
-              padding: "2rem"
+              padding: "2rem",
             }}
           >
-            <div className="matchDetails">
-            <span
-              style={{
-                color: "white",
-                fontSize: "1.5rem",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 400,
-              }}
-            >
-              Username1
-            </span>
-            
-            <img
-              alt="Versus"
-              src={Vs}
-              style={{
-                height: "2rem",
-                width: "2rem",
-                marginLeft: "2rem",
-                marginRight: "2rem",
-                position: "relative",
-                
-              }}
-            />
-
-            
-            
-            <span
-              style={{
-                color: "white",
-                fontSize: "1.5rem",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 400,
-              }}
-            >
-              Username2
-            </span>
-
-            </div>
-            <div className="matchDetails"></div>
-            <div className="matchDetails"></div>
-
+            {games.map((game) => {
+              return <Games game={game} account={account} />;
+            })}
           </div>
-          
 
           <div
             style={{
