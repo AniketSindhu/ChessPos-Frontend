@@ -2,6 +2,8 @@
   background: linear-gradient(90deg, #932c50 0%, #bd3f32 99.42%);
   width: 35rem;
   height: 35rem;
+  transform: scale(0.8);
+  
   color: white;
 }
 .boardImg {
@@ -18,42 +20,51 @@
   width: 1.5rem;
   height: 1.5rem;
 }
-.nftDet1 span {
+.nftDet1{
   text-align: center;
   display: block;
   font-size: 1.4rem;
   font-weight: 300;
   font-family: "Poppins", sans-serif;
-  margin: 2.5rem auto;
+  /* margin: 2.5rem auto; */
 }
+
 .nftDet2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  
+
 }
 .nftDesc {
-  width: 32.5rem;
+  width: 30rem;
   height: 10rem;
   background: rgba(26, 28, 32, 0.75);
   border-radius: 17px;
-  margin-left: 1.2rem;
+  
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   padding: 0.5rem 0 0 0.5rem;
+  margin-top: 3rem;
 }
 .nftDespEditor {
   width: 35rem;
   height: 14rem;
   background: rgba(26, 28, 32, 0.75);
-  border-radius: 4rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  padding: 1rem 1.5rem;
 
-  position: relative;
-  left: 2.2rem;
-  top: 5rem;
+  
+  
 
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
-  padding: 0.5rem 0 0 0.5rem;
+  
 }
 .trophy {
   width: 1.5rem;
@@ -62,9 +73,12 @@
 .mintSucc {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   color: white;
-  margin-left: 8rem;
-  margin-top: 1rem;
+  margin-top: 4rem;
+  height: 60vh;
+  
 }
 .mintSpan {
   display: inline-block;
@@ -134,14 +148,18 @@
   border-radius: 0.5rem;
   text-align: center;
   width: 30rem;
-  height: 25rem;
-  position: relative;
-  left: 15rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+ 
+  
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   line-height: 2;
-  top: 4rem;
+ 
 }
 /* -----------------------nftMintSm--------------- */
 .NftMintDivSm {
@@ -211,17 +229,25 @@
 .despEditor {
   background: linear-gradient(90deg, #932c50 0%, #bd3f32 99.42%);
   box-shadow: inset -8.26342px -8.26342px 41.3171px 5.16464px rgba(0, 0, 0, 0.4);
-  border-radius: 5rem;
+  border-radius: 3rem;
   text-align: center;
   width: 40rem;
   height: 21rem;
+  padding: 0rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
+  align-items: start;
   position: relative;
-  left: 8rem;
+ 
+  
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   line-height: 2;
-  top: 2rem;
+  
 }
 
 

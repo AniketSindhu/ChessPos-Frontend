@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../navbar";
 import NftMint from "./NftMint";
+import TextField from "@mui/material/TextField";
 
 import Circles from "../img/Circles2.png";
 import { useState } from "react";
@@ -15,103 +16,112 @@ const NftMinting = () => {
   const colorChange = (color) => {
     setColor(color);
   };
+  
 
-  // const [currColor,setcurrColor] = useState(false)
-  // const [prevColor,setprevcolor] = useState(false)
-
-  // function colorChange(e){
-
-  //   setprevcolor(false);
-  //   setcurrColor(true);
-
-  // }
-
+  
   return (
-    <div className="wonDiv" style={{ zIndex: "0", height: "850px" }}>
-      <img
-        src={Circles}
-        className=""
-        style={{
-          position: "absolute",
-          right: "30rem",
-          top: "0",
-          height: "55rem",
-          width: "55rem",
-          zIndex: "0",
-        }}
-      />
+    <div className="home-bg2">
       <Navbar head="NFT Minting" />
       <div className="mintSucc">
         <NftMint />
-        <div className="despEditor">
-          <span
-            style={{
-              fontSize: "2.2rem",
-              position: "relative",
-              float: "left",
-              left: "4rem",
-              top: "0.5rem",
-            }}
-          >
-            Description
-          </span>
-          <span
-            style={{
-              fontSize: "1.2rem",
-              fontWeight: "lighter",
-              fontStyle: "italic",
-              position: "relative",
-              float: "left",
-              left: "5rem",
-              top: "1.7rem",
-            }}
-          >
-            (max 80 words)
-          </span>
-          <div className="nftDespEditor">
-            <span
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <div className="despEditor">
+            <div
               style={{
-                fontSize: "1.5rem",
-                fontWeight: "normal",
-                float: "left",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "start",
+                alignItems: "baseline",
                 position: "relative",
-                right: "19rem",
               }}
             >
-              Explain your NFT
-            </span>
-            <br />
+              <span
+                style={{
+                  fontSize: "2.2rem",
+                }}
+              >
+                Description
+              </span>
+              <span
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "lighter",
+                  fontStyle: "italic",
+                  marginLeft: "1rem",
+                  //
+                }}
+              >
+                (max 80 words)
+              </span>
+            </div>
 
-            <ul>
-              <li
+            <div className="nftDespEditor">
+              {/* <span
                 style={{
-                  fontSize: "1rem",
-                  fontWeight: "lighter",
-                  position: "relative",
-                  right: "11rem",
+                  fontSize: "1.5rem",
+                  fontWeight: "normal",
+                  
+                  
+                  
                 }}
               >
-                What is unique in this position
-              </li>
-              <li
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: "lighter",
-                  position: "relative",
-                  right: "3rem",
-                }}
-              >
-                Why do you want to mint this position
-              </li>
-              <li
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: "lighter",
-                }}
-              >
-                Why do you think this position needs to be an NFT
-              </li>
-            </ul>
+                Explain your NFT
+              </span>
+              <br />
+
+              <ul>
+                <li
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "lighter",
+                    position: "relative",
+                    right: "11rem",
+                  }}
+                >
+                  What is unique in this position
+                </li>
+                <li
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "lighter",
+                    position: "relative",
+                    right: "3rem",
+                  }}
+                >
+                  Why do you want to mint this position
+                </li>
+                <li
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "lighter",
+                  }}
+                >
+                  Why do you think this position needs to be an NFT
+                </li>
+              </ul> */}
+              <TextField
+                className="mainText"
+                style={{ width: "32rem", height: "12rem"}}
+                hiddenLabel="hello"
+                multiline
+                variant="standard"
+                placeholder="Explain you NFT"
+                
+                
+                InputProps={{ disableUnderline: true}}
+                
+                
+                
+                
+              ></TextField>
+            </div>
           </div>
           <div className="nftChooseColor">
             {bgColors.map((bgColors) => {
@@ -131,8 +141,9 @@ const NftMinting = () => {
           <div
             className="name"
             style={{
-              position: "relative",
-              top: "12rem",
+             position: "relative",
+             top: "4rem",
+              
               width: "23rem",
               borderRadius: "5rem",
             }}

@@ -11,9 +11,11 @@ import Waiting from "./components/Waiting";
 import WonMatch from "./components/WonMatch";
 import LostMatch from "./components/LostMatch";
 import NftMintButt from "./components/NftMintButt";
+import GifMinting from "./GifMinting";
 import YourNfts from "./components/YourNfts";
 import NftMinting from "./Nft_Mint_UI/NftMinting";
-import GifMinting from "./GifMinting";
+import NftMint from "./Nft_Mint_UI/NftMint";
+import SingleNft from "./Nft_Mint_UI/SingleNft";
 
 function App({ isServerInfo }) {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -26,7 +28,10 @@ function App({ isServerInfo }) {
 
   return (
     <>
-      <Routes>
+    <NftMinting/>
+    <SingleNft/>
+
+      {/* <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/createGame" element={<StakingTokens />} />
@@ -38,7 +43,7 @@ function App({ isServerInfo }) {
         <Route path="/minting" element={<NftMintButt />} />
         <Route path="/nft_minting" element={<NftMinting />} />
         <Route path="/gif_minting" element={<GifMinting />} />
-      </Routes>
+      </Routes> */}
       {/*       <HomePage />
       <StakingTokens /> */}
     </>

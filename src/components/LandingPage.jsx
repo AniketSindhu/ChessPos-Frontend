@@ -829,7 +829,7 @@ const Faqs = () => {
   
 
   return (
-    <div className="home-bg" style={{height: "auto"}}>
+    <div style={{height: "auto", width: "100%", background: "rgb(32, 28, 33)"}}>
       <div
         style={{
           display: "flex",

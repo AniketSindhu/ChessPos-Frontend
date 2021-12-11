@@ -13,11 +13,11 @@ article {
   transform: translateX(0);
 }
 .lastSlide {
-  transform: translateX(-100%);
+  transform: translateX(-100%) scale(0.1);
   opacity: 0;
 }
 .nextSlide {
-  transform: translateX(100%);
+  transform: translateX(100%) scale(0.1);
   opacity: 0;
 }
 .leftMost {

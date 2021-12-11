@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./navbar";
+import Navbar from "../navbar";
 import NftMint from "./NftMint";
 import Circles from "../img/Circles2.png";
 import zIndex from "@mui/material/styles/zIndex";
@@ -7,21 +7,9 @@ import zIndex from "@mui/material/styles/zIndex";
 const SingleNft = () => {
   return (
     <div
-      className="wonDiv"
-      // style={{ zIndex: "-4" }}
+      className="home-bg"
     >
-      <img
-        src={Circles}
-        className=""
-        style={{
-          position: "absolute",
-          right: "30rem",
-          top: "0",
-          height: "55rem",
-          width: "55rem",
-          zIndex: "0",
-        }}
-      />
+     
       <Navbar head="ChessPOS" />
       <div className="mintSucc">
         <NftMint />
