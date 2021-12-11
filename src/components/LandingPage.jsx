@@ -6,6 +6,8 @@ import pinkNft from "../img/pinkNft.png";
 import blueNft from "../img/blueNft.png";
 import greenNft from "../img/greenNft.png";
 import redNft from "../img/redNft.png";
+import Faq from "./Faq";
+
 
 import Polygon from "../img/polygon.png";
 import Box from "@mui/material/Box";
@@ -688,19 +690,30 @@ const NftSwiper = () => {
   }, [index]);
 
   return (
-    <div
-      style={{
-        height: "103vh",
-        width: "100%",
-        background: "rgba(25, 28, 32)",
-        padding: "15rem 2rem",
-      }}
-    >
+    <div className="home-bg2">
+      {/* <div style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "center"}}>
+    <span className="mainText" style={{fontSize: "4rem"}}>Trending NFT's</span>
+
+    </div> */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          paddingTop: "5rem",
+
+          justifyContent: "center",
+        }}
+      >
+        <span className="mainText" style={{ fontSize: "4rem" }}>
+          Trending NFT's
+        </span>
+      </div>
       <div
         style={{
           height: "500px",
           position: "relative",
           display: "flex",
+          margin: "5rem 0rem",
           justifyContent: "center",
           alignItems: "center",
           overflow: "hidden",
@@ -781,6 +794,63 @@ const NftSwiper = () => {
   );
 };
 
+const Faqs = () => {
+
+
+  const qNa=[
+    {
+        id: 0,
+        question: "Question 1",
+        answer: "Answer 1"
+    },
+    {
+        id: 1,
+        question: "Question 2",
+        answer: "Answer 2"
+    },
+    {
+        id: 2,
+        question: "Question 3",
+        answer: "Answer 3"
+    },
+    {
+        id: 3,
+        question: "Question 4",
+        answer: "Answer 4"
+    },
+    {
+      id: 4,
+      question: "Question 5",
+      answer: "Answer 5"
+  },
+]
+
+
+  
+
+  return (
+    <div className="home-bg" style={{height: "auto"}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          padding: "3rem 3rem",
+        }}
+      >
+        <span
+          className="mainText"
+          style={{ fontSize: "4rem", marginBottom: "2rem" }}
+        >
+          FAQs
+        </span>
+        {qNa.map(x => <Faq question={x.question} answer={x.answer}/>)}
+      </div>
+    </div>
+  );
+};
+
 function LandingPage() {
   return (
     <div>
@@ -790,6 +860,7 @@ function LandingPage() {
       <Functioning />
       <AnimatedGif />
       <NftSwiper />
+      <Faqs />
     </div>
   );
 }

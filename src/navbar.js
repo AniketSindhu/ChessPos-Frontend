@@ -12,7 +12,13 @@ const Navbar = ({ head, isSticky }) => {
     <div className="wallFlex" style={isSticky?{position: "fixed",
       top: "0",
       width: "100%",
-      backgroundColor: "rgba(25, 28, 32)"} : {}
+      height: "15vh",
+      paddingBottom: "1rem",
+      
+      backgroundColor: "rgba(25, 28, 32)",
+      boxShadow: "0px 8px 15px black"
+      
+      } : {}
       }>
       <Link to="/">
         <div>

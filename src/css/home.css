@@ -521,3 +521,44 @@ p {
 .zindex-img {
   z-index: 0;
 }
+
+.faq {
+  width: 80%;
+          height: 10vh;
+          background: rgb(173, 57, 47, 0.6);
+
+          box-shadow: 5px 8px 15px black;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0rem 2rem;
+          cursor: pointer;
+}
+
+.faq--active{
+  background: rgb(173, 57, 47, 0.6);
+}
+.faq--active::after{
+  background-color: green;
+}
+
+.faqContent{
+  width: 80%;
+          height: 40vh;
+          background: rgb(173, 57, 47, 0.3);
+
+          box-shadow: 5px 8px 15px black;
+          padding: 2rem;
+          animation: open 0.5s ease-in-out;
+
+}
+
+@keyframes open {
+  0%{
+    height: 10vh;
+  }
+  100%{
+    height: 40vh;
+  }
+}
