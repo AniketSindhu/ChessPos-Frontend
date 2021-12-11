@@ -72,6 +72,7 @@ const NftMintButt = () => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     alignItems: "center",
+                    paddingBottom: "1rem"
                   }}
                 >
                   {getEllipsisTxt(game.white, 6)}
@@ -114,6 +115,7 @@ const NftMintButt = () => {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                     alignItems: "center",
+                    paddingBottom: "1.5rem"
                   }}
                 >
                   {getEllipsisTxt(game.black, 6)}
@@ -145,13 +147,17 @@ const NftMintButt = () => {
               }}
             >
               <section className="mainText" style={{ padding: "0rem 8rem" }}>
-                <span style={{ padding: "0rem 1rem" }}>{game.amount}</span>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+              <span style={{ padding: "0rem 1rem" }}>{game.amount}</span>
                 <img
                   alt="Matic"
                   src={Matic}
-                  style={{ width: "3rem", height: "3rem", margin: "0rem 1rem" }}
+                  style={{ width: "3rem", height: "3rem", margin: "0rem 0.5rem" }}
                 />
                 <span style={{ padding: "0rem 1rem" }}>at Stake</span>
+
+              </div>
+                
               </section>
 
               <div

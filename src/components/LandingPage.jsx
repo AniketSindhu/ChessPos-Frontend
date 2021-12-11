@@ -125,7 +125,8 @@ const Home = () => {
             <ul className="tag-points">
               <li>• Stake crypto, Winners takes it all.</li>
               <li>• Mint chess positions as NFTs from your games. </li>
-              <li>• Purley Decentralised. #Web3.0</li>
+              <li>• Mint your match as an Animated GIF NFT. </li>
+              <li>• Purely Decentralised. #Web3.0</li>
             </ul>
             <Link to="/app">
               <button className="enter-btn">
@@ -160,7 +161,10 @@ const Home = () => {
                 bottom: "10rem",
               }}
             />
+            <a href="https://polygon.technology/" target="_blank">
             <img alt="Powered by polygon" src={Polygon} className="polygon" />
+            </a>
+            
           </div>
         </div>
       </div>
@@ -705,7 +709,7 @@ const NftSwiper = () => {
         }}
       >
         <span className="mainText" style={{ fontSize: "4rem" }}>
-          Trending NFT's
+          Some of the NFTs
         </span>
       </div>
       <div
@@ -829,7 +833,7 @@ const Faqs = () => {
   
 
   return (
-    <div className="home-bg" style={{height: "auto"}}>
+    <div style={{height: "auto", width: "100%", background: "rgb(25, 28, 32)"}}>
       <div
         style={{
           display: "flex",
@@ -855,10 +859,11 @@ function LandingPage() {
   return (
     <div>
       <Home />
-      <Work />
+      
       <DoYouKnow />
       <Functioning />
       <AnimatedGif />
+      <Work />
       <NftSwiper />
       <Faqs />
     </div>
