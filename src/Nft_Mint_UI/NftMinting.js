@@ -26,12 +26,26 @@ import bQ from "../pieces/bQ.png";
 import bR from "../pieces/bR.png";
 import { useMoralis } from "react-moralis";
 import { Chess } from "../chess-pgn";
+import html2canvas from 'html2canvas';
 import { getEllipsisTxt } from "../helpers/formatters";
+import { NFTStorage, File } from "nft.storage";
+import db from "../firebase";
+import firebase from "firebase";
+import nftABI from "../contract/nftContract.json";
+import config from "../config/config";
+
+const client = new NFTStorage({
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY1MjJhNzc0MjlmOTA1NDlmZjFCN0Q5RDkyQzE3M2RFNUI3ODAyMGQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTI1MTg0MzEzMSwibmFtZSI6ImNoZXNzUG9zIn0.G2_vfE0XwjKFJiK93dEiJXx0RyauthWInvQfH_jF6Mo",
+});
+
 const NftMinting = () => {
+  const printRef = React.useRef();
   const [chessGame, setChessGame] = useState(new Chess());
   const [chessGame1, setChessGame1] = useState(new Chess());
   const [description, setDescription] = useState("");
-  const { account } = useMoralis();
+  const [loading1,setLoading1] = useState(false);
+  const { account,web3 } = useMoralis();
   let [index, setIndex] = useState(-1);
   const [moves, setMoves] = useState([]);
   function safeGameMutate(modify) {
@@ -44,6 +58,97 @@ const NftMinting = () => {
   const handleDescription = (e) => {
     if (e.target.value.length > 200) return;
     setDescription(e.target.value);
+  };
+  const handleDownloadImage = async () => {
+    setLoading1(true);
+    const exist = await db
+      .collection("nfts")
+      .where("uri", "==", chessGame1.fen())
+      .limit(1)
+      .get();
+    if (exist.docs.length !== 0) {
+      alert("exact same position is already minted before.");
+      setLoading1(false);
+      return;
+    }
+    const element = printRef.current;
+    const canvas = await html2canvas(element);
+    const contract = new web3.eth.Contract(nftABI, config.nftContractAddress);
+    const data = canvas.toBlob(async (blob)=>{
+      let file = new File([blob], "ChessPosNft.png", { type: "image/png" })
+      const metadata = await client.store({
+        name: "chessPos position NFT",
+        description:
+          description,
+        white: game.white,
+        black: game.black,
+        image: file,
+        amountAtStake: game.amount,
+        winner: game.winner,
+        fen: chessGame1.fen(),
+      });
+      console.log("metadata:", metadata.ipnft);
+      try {
+        const createCall = contract.methods
+          .createToken(metadata.url, chessGame1.fen())
+          .send({
+            from: account,
+          });
+
+        createCall.on("transactionHash", (hash) => {
+          console.log(hash);
+        });
+
+        createCall.on("receipt", (recipt) => {
+          console.log("reciept:", recipt);
+          let tokenId = parseInt(recipt.events.Transfer.returnValues.tokenId);
+          console.log("tokenId:", tokenId);
+          firebase
+            .storage()
+            .ref(`nfts/${metadata.ipnft}`)
+            .put(blob)
+            .then((image) => {
+              image.ref.getDownloadURL().then((url) => {
+                console.log(url);
+                db.collection("nfts")
+                  .doc(metadata.ipnft)
+                  .set({
+                    tokenId: tokenId,
+                    file: url,
+                    uri: chessGame1.fen(),
+                    metadataUri: metadata.ipnft,
+                    white: game.white,
+                    black: game.black,
+                    amountAtStake: game.amount,
+                    createdAt: new Date(),
+                    winner: game.winner,
+                    txnHash: recipt.transactionHash,
+                    creator: account,
+                    owner: account,
+                    type: "position",
+                  })
+                  .then(() => {
+                    alert("Your position's NFT is minted successfully.");
+                    setLoading1(false);
+                  });
+              });
+            });
+        });
+
+        createCall.on("error", (error, recipt) => {
+          console.log(error);
+          alert(error);
+          setLoading1(false);
+        });
+
+        //calls the socket to create a new game
+      } catch (error) {
+        alert(error.message);
+        setLoading1(false);
+      }
+    
+    },'image/png', 1);
+    
   };
 
   const customPieces = () => {
@@ -136,12 +241,15 @@ const NftMinting = () => {
   return loading ? (
     <Loader />
   ) : game ? (
+    
     <div className="home-bg2">
       <Navbar head="NFT Minting" />
+      {loading1 && <Loader/>}
       <div className="mintSucc">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ height: "3rem" }} />
           <div
+          ref={printRef}
             style={{
               width: "30rem",
               height: "30rem",
@@ -406,6 +514,7 @@ const NftMinting = () => {
             })}
           </div>
           <div
+          onClick={handleDownloadImage}
             className="name"
             style={{
               position: "relative",

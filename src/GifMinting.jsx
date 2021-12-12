@@ -61,7 +61,7 @@ function GifMinting() {
       console.log("metadata:", metadata.ipnft);
       try {
         const createCall = contract.methods
-          .createToken(metadata.ipnft, game.pgn)
+          .createToken(metadata.url, game.pgn)
           .send({
             from: account,
           });

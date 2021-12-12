@@ -32,7 +32,7 @@ function Games({ game, account }) {
         <div style={{ marginRight: "10px" }}>
           <Blockie currentWallet scale={3} />
         </div>
-        {getEllipsisTxt(account, 6)}
+        {getEllipsisTxt(account, 4)}
         {account.toLowerCase() === game.winnerAddress.toLowerCase() && (
           <img
             src={Trophy}
@@ -79,7 +79,7 @@ function Games({ game, account }) {
           game.white.toLowerCase() === account.toLowerCase()
             ? game.black.toLowerCase()
             : game.white.toLowerCase(),
-          6
+          4
         )}
         {account.toLowerCase() !== game.winnerAddress.toLowerCase() && (
           <img
