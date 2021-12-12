@@ -166,14 +166,14 @@ function WonMatch() {
                 alignItems: "center",
               }}
             >
-              <article className="articleTxt">
+              <p className="articleTxt">
                 YOU <span className="status">WON</span> THE <br /> MATCH
-              </article>
+              </p>
               <div
                 onClick={handleClick}
                 className="redButton"
                 style={{
-                  width: "18rem",
+                  width: "16rem",
                   height: "8rem",
                   position: "relative",
                   top: "4rem",
@@ -182,9 +182,10 @@ function WonMatch() {
                   flexDirection: "column",
                   justifyContent: "space-evenly",
                   alignItems: "center",
+                  
                 }}
               >
-                <article style={{ fontSize: "1.5rem" }}>Claim Tokens</article>
+                <p style={{ fontSize: "1.8rem", color: "white" }}>Claim Tokens</p>
 
                 <div
                   style={{
@@ -194,14 +195,15 @@ function WonMatch() {
                     justifyContent: "center",
                     position: "relative",
                     bottom: "1rem",
+                    marginTop: "0.5rem"
                   }}
                 >
-                  <span style={{ padding: 0 }}>{amount * 2}</span>
+                  <span style={{ padding: 0, fontSize: "1.5rem"}}>{amount * 2}</span>
 
                   <img
                     alt="Matic"
                     src={Matic}
-                    style={{ width: "2rem", height: "2rem", margin: "1rem" }}
+                    style={{ width: "2rem", height: "2rem", margin: "0rem 1rem" }}
                   />
                 </div>
               </div>

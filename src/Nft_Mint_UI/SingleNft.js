@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import Navbar from "../navbar";
-import NftMint from "./NftMint";
+
 import Matic from "../img/maticToken.png";
 import { useLocation } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
@@ -26,7 +26,7 @@ const SingleNft = () => {
         <div
           style={{
             width: "25rem",
-            height: "30rem",
+            height: "32rem",
             background: "white",
             borderRadius: "30px",
             display: "flex",
@@ -37,7 +37,7 @@ const SingleNft = () => {
           <div className="singleNftDiv">
             <span
               className="mainText"
-              style={{ fontSize: "2.5rem", letterSpacing: "6px" }}
+              style={{ fontSize: "2.5rem", letterSpacing: "6px", padding: "0rem" }}
             >
               METADATA
             </span>
@@ -102,6 +102,7 @@ const SingleNft = () => {
             >
               Type: {nft.type}
             </span>
+            <div className="blackButton">
             <button style={{cursor:"pointer"}} type="button mainText" className="linkScan" onClick={()=>{
                 Object.assign(document.createElement('a'), {
                   target: '_blank',
@@ -110,6 +111,9 @@ const SingleNft = () => {
             }}>
               View on IPFS
             </button>
+
+            </div>
+            <div className="blackButton">
             <button style={{cursor:"pointer"}} type="button mainText" className="linkScan" onClick={()=>{
                               Object.assign(document.createElement('a'), {
                                 target: '_blank',
@@ -118,6 +122,10 @@ const SingleNft = () => {
             }}>
               View on PolygonScan
             </button>
+
+            </div>
+            
+            
           </div>
         </div>
       </div>

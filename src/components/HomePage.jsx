@@ -181,6 +181,7 @@ function HomePage() {
                       height: "3rem",
                       width: "10rem",
                       left: "3.3rem",
+                      cursor: "pointer",
                       borderRadius: "2rem",
                       fontSize: "1.4rem",
                       paddingTop: "8px",

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../navbar";
-import NftMint from "../Nft_Mint_UI/NftMint";
+
 import db from "../firebase";
 import { useMoralis } from "react-moralis";
 import Grid from "@mui/material/Grid";

@@ -14,7 +14,7 @@ import NftMintButt from "./components/NftMintButt";
 import GifMinting from "./GifMinting";
 import YourNfts from "./components/YourNfts";
 import NftMinting from "./Nft_Mint_UI/NftMinting";
-import NftMint from "./Nft_Mint_UI/NftMint";
+
 import SingleNft from "./Nft_Mint_UI/SingleNft";
 
 function App({ isServerInfo }) {
@@ -28,9 +28,8 @@ function App({ isServerInfo }) {
 
   return (
     <>
-    {/* <NftMinting/>
-    <SingleNft/> */}
-    {/* <YourNfts/> */}
+    
+    
 
       <Routes>
         <Route path="/" element={<LandingPage />} />

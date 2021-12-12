@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router";
 import SomethingWentWrong from "./SomethingWentWrong";
 import gameover from ".././gameover.mp3";
 import useSound from "use-sound";
+import { getEllipsisTxt } from "../helpers/formatters";
 const socket = require("../connections/socket").socket;
 
 function Waiting() {
@@ -143,7 +144,8 @@ function Waiting() {
         >
           <div className="whiteKnight">
             <img alt="knight" src={Knight} className="wonKnight" />
-            <div className="name">Username1</div>
+            
+            <div className="name">{getEllipsisTxt(location.state.address, 6)}</div>
           </div>
           <div
             className="matchDet"

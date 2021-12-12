@@ -8,7 +8,6 @@ import greenNft from "../img/greenNft.png";
 import redNft from "../img/redNft.png";
 import Faq from "./Faq";
 
-
 import Polygon from "../img/polygon.png";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
@@ -23,7 +22,7 @@ import Gaming from "../img/undraw_Gaming_re_cma2 2.png";
 import Circles2 from "../img/Circles2.png";
 import Joint from "../img/Joint1.png";
 import Emoji from "../img/emoji.png";
-import Gif from "../img/gif.gif";
+import Gif from "../img/checkmateGif.gif";
 import { Link } from "react-router-dom";
 
 const theme = createTheme({
@@ -117,8 +116,8 @@ const Home = () => {
             <div className="blur-container">
               <div className="blur-bg"></div>
               <div className="tagline">
-                Play <span className="tagline-bold">smart.</span> <br />
-                Make <span className="tagline-bold">money</span> smartly.
+                Your <span className="tagline-bold">Position</span> <br />
+                Your <span className="tagline-bold">Ownership</span>
               </div>
             </div>
 
@@ -162,9 +161,8 @@ const Home = () => {
               }}
             />
             <a href="https://polygon.technology/" target="_blank">
-            <img alt="Powered by polygon" src={Polygon} className="polygon" />
+              <img alt="Powered by polygon" src={Polygon} className="polygon" />
             </a>
-            
           </div>
         </div>
       </div>
@@ -277,8 +275,7 @@ const Work = () => {
                 </Container>
                 <Typography className={classes.para}>
                   After the match is over, the winner will win the opponent’s
-                  stake coins and will leave with double the amount of his/her
-                  stake coins.
+                  stake coins and both can mint any position/whole game as an NFT.
                 </Typography>
               </Container>
             </div>
@@ -405,16 +402,20 @@ const Functioning = () => {
               paddingRight: "5rem",
             }}
           >
-            <span className="explainMain">Your Position</span>
+            <span className="explainMain" style={{ fontSize: "5rem" }}>
+              Play Smart
+            </span>
             <span className="explainMain" style={{ fontSize: "3rem" }}>
-              Your Ownership
+              Make money smartly
             </span>
             <br />
             <span className="explainDet">
               So all you have to do is, play a chess game and when the game is
-              finished, you can choose any position from the whole game, select
-              the most unique and spectacular one which you think deserves to be
-              minted as your personal NFT.
+              finished, you can choose any position from any of your game to be
+              minted as an NFT and{" "}
+              <b style={{ fontWeight: "700" }}>will be forever cherished</b>{" "}
+              even after your life by the{" "}
+              <b style={{ fontWeight: "700" }}>nature of the Blockchain.</b>
             </span>
           </div>
         </div>
@@ -459,6 +460,9 @@ const Functioning = () => {
               <li className="explainDet">• No. of staked tokens.</li>
               <li className="explainDet">
                 • A description box to describe the significance of your NFT.
+              </li>
+              <li className="explainDet">
+                • You can even choose the color for your NFT.
               </li>
             </ul>
           </div>
@@ -601,12 +605,12 @@ const AnimatedGif = () => {
           </span>
           <br />
           <span className="explainDet">
-            This animated GIF will give you a brief explaination and an quick go
-            through of CHESSPOS to make it easy for you to understand. From the
-            very beginning to the very end, we have covered every use case so
-            that you are left with no query. The complete procedure of Signing
-            Up, Matchmaking, Staking Tokens, NFT minting and many more are
-            covered in this single GIF.
+            You can also mint your whole match as an <b style={{fontWeight: "700"}}>Animated GIF NFT</b>.
+            <br/>
+            If you think you have played an outstanding match, you have this amazing opportunity to stamp this memory on the <b style={{fontWeight: "700"}}>eternal and inevitable blockchain.</b>
+            <br/>
+            <br/>
+            *Bonus: You also get the bragging rights from it.
           </span>
         </div>
       </div>
@@ -799,41 +803,38 @@ const NftSwiper = () => {
 };
 
 const Faqs = () => {
-
-
-  const qNa=[
+  const qNa = [
     {
-        id: 0,
-        question: "Question 1",
-        answer: "Answer 1"
+      id: 0,
+      question: "Question 1",
+      answer: "Answer 1",
     },
     {
-        id: 1,
-        question: "Question 2",
-        answer: "Answer 2"
+      id: 1,
+      question: "Question 2",
+      answer: "Answer 2",
     },
     {
-        id: 2,
-        question: "Question 3",
-        answer: "Answer 3"
+      id: 2,
+      question: "Question 3",
+      answer: "Answer 3",
     },
     {
-        id: 3,
-        question: "Question 4",
-        answer: "Answer 4"
+      id: 3,
+      question: "Question 4",
+      answer: "Answer 4",
     },
     {
       id: 4,
       question: "Question 5",
-      answer: "Answer 5"
-  },
-]
-
-
-  
+      answer: "Answer 5",
+    },
+  ];
 
   return (
-    <div style={{height: "auto", width: "100%", background: "rgb(25, 28, 32)"}}>
+    <div
+      style={{ height: "auto", width: "100%", background: "rgb(25, 28, 32)" }}
+    >
       <div
         style={{
           display: "flex",
@@ -849,7 +850,9 @@ const Faqs = () => {
         >
           FAQs
         </span>
-        {qNa.map(x => <Faq question={x.question} answer={x.answer}/>)}
+        {qNa.map((x) => (
+          <Faq question={x.question} answer={x.answer} />
+        ))}
       </div>
     </div>
   );
@@ -859,7 +862,7 @@ function LandingPage() {
   return (
     <div>
       <Home />
-      
+
       <DoYouKnow />
       <Functioning />
       <AnimatedGif />
