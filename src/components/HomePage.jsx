@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { useMoralis } from "react-moralis";
 import Navbar from "../navbar";
-import Circles from "../../src/img/Circles2.png";
 import { Link, useNavigate } from "react-router-dom";
 import db from "../firebase";
 import Games from "./Games";

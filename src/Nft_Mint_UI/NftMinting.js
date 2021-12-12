@@ -130,6 +130,21 @@ const NftMinting = () => {
                   .then(() => {
                     alert("Your position's NFT is minted successfully.");
                     setLoading1(false);
+                    navigate("/single-nft",{state:{nft:{
+                      tokenId: tokenId,
+                      file: url,
+                      uri: chessGame1.fen(),
+                      metadataUri: metadata.ipnft,
+                      white: game.white,
+                      black: game.black,
+                      amountAtStake: game.amount,
+                      createdAt: new Date(),
+                      winner: game.winner,
+                      txnHash: recipt.transactionHash,
+                      creator: account,
+                      owner: account,
+                      type: "position",
+                    }}});
                   });
               });
             });

@@ -45,6 +45,7 @@ function App({ isServerInfo }) {
         <Route path="/nft_minting" element={<NftMinting />} />
         <Route path="/gif_minting" element={<GifMinting />} />
         <Route path="/your_nft" element={<YourNfts />} />
+        <Route path="/single-nft" element={<SingleNft />} />
       </Routes>
       {/*       <HomePage />
       <StakingTokens /> */}
