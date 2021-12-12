@@ -55,7 +55,6 @@ function GifMinting() {
         black: game.black,
         image: file,
         amountAtStake: game.amount,
-        playedAt: game.time,
         winner: game.winner,
         pgn: game.pgn,
       });

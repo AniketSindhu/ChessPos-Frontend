@@ -60,7 +60,7 @@ function WonMatch() {
           .doc(gameId)
           .set({
             gameId: gameId,
-            winner: "w",
+            winner: isWhite ? "w" : "b",
             time: new Date(),
             white: isWhite ? address : loserAddress,
             black: isWhite ? loserAddress : address,
