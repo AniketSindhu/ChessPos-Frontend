@@ -122,14 +122,14 @@ const NftMinting = () => {
                     file: url,
                     uri: chessGame1.fen(),
                     metadataUri: metadata.ipnft,
-                    white: game.white,
-                    black: game.black,
+                    white: game.white.toLowerCase(),
+                    black: game.black.toLowerCase(),
                     amountAtStake: game.amount,
                     createdAt: new Date(),
                     winner: game.winner,
                     txnHash: recipt.transactionHash,
-                    creator: account,
-                    owner: account,
+                    creator: account.toLowerCase(),
+                    owner: account.toLowerCase(),
                     type: "position",
                   })
                   .then(() => {

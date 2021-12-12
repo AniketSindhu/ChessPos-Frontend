@@ -42,7 +42,7 @@ function HomePage() {
     if (isAuthenticated) {
       db.collection("games")
         .orderBy("time", "desc")
-        .where("players", "array-contains", account)
+        .where("players", "array-contains", account.toLowerCase())
         .onSnapshot((snapshot) =>
           setGames(snapshot.docs.map((doc) => doc.data()))
         );

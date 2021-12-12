@@ -54,7 +54,6 @@ function LostMatch() {
                 alignItems: "center",
               }}
             >
-              {" "}
               <Address
                 textStyle={{ color: "white" }}
                 size={6}
