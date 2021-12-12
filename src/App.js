@@ -28,9 +28,6 @@ function App({ isServerInfo }) {
 
   return (
     <>
-    
-    
-
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/app" element={<HomePage />} />

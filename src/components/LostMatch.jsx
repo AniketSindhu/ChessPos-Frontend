@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Address from "./Address/Address";
 import Navbar from "../navbar";
 import Knight from "../img/newKnight.png";
+import redKnight from "../img/KnightRed.png";
 
 function LostMatch() {
   let navigate = useNavigate();
@@ -43,7 +44,16 @@ function LostMatch() {
               alignItems: "center",
             }}
           >
-            <img alt="winner knight" src={Knight} className="wonKnight" />
+            {isWhite ? (
+              <img alt="winner knight" src={Knight} className="wonKnight" />
+            ) : (
+              <img
+                alt="winner knight"
+                src={redKnight}
+                className="wonKnight"
+                style={{ transform: "scaleX(-1)" }}
+              />
+            )}
             <div
               className="name"
               style={{

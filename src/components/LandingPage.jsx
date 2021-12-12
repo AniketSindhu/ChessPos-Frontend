@@ -275,7 +275,8 @@ const Work = () => {
                 </Container>
                 <Typography className={classes.para}>
                   After the match is over, the winner will win the opponent’s
-                  stake coins and both can mint any position/whole game as an NFT.
+                  stake coins and both can mint any position/whole game as an
+                  NFT.
                 </Typography>
               </Container>
             </div>
@@ -605,11 +606,16 @@ const AnimatedGif = () => {
           </span>
           <br />
           <span className="explainDet">
-            You can also mint your whole match as an <b style={{fontWeight: "700"}}>Animated GIF NFT</b>.
-            <br/>
-            If you think you have played an outstanding match, you have this amazing opportunity to stamp this memory on the <b style={{fontWeight: "700"}}>eternal and inevitable blockchain.</b>
-            <br/>
-            <br/>
+            You can also mint your whole match as an{" "}
+            <b style={{ fontWeight: "700" }}>Animated GIF NFT</b>.
+            <br />
+            If you think you have played an outstanding match, you have this
+            amazing opportunity to stamp this memory on the{" "}
+            <b style={{ fontWeight: "700" }}>
+              eternal and inevitable blockchain.
+            </b>
+            <br />
+            <br />
             *Bonus: You also get the bragging rights from it.
           </span>
         </div>
@@ -713,7 +719,7 @@ const NftSwiper = () => {
         }}
       >
         <span className="mainText" style={{ fontSize: "4rem" }}>
-          Some of the NFTs
+          Sample NFTs
         </span>
       </div>
       <div
@@ -806,28 +812,52 @@ const Faqs = () => {
   const qNa = [
     {
       id: 0,
-      question: "Question 1",
-      answer: "Answer 1",
+      question: "What is chessPos?",
+      answer:
+        "ChessPos is a decentralised web app where users can play chess with others by putting some matic coins at stake and getting rewards for winning. Chesspos also allows users to engrave their chess game memories on blockchain by minting position based/Animated gif NFTs.",
     },
     {
       id: 1,
-      question: "Question 2",
-      answer: "Answer 2",
+      question: "What is position based NFT?",
+      answer:
+        "In position based NFTs you can choose a position from one of your previous game and mint it as an NFT. We also allow customizations, You can change color of your nft, Your position and you can also add a short description explaing the position of your game which will be visible on your NFT.",
     },
     {
       id: 2,
-      question: "Question 3",
-      answer: "Answer 3",
+      question: "What is Animated gif NFT?",
+      answer:
+        "You can mint any of your previous game as an Animated gif NFT which will cycle through your the match. It also shows the address of the players on the NFT itself. ",
     },
     {
       id: 3,
-      question: "Question 4",
-      answer: "Answer 4",
+      question: "Where can I sell my NFTs?",
+      answer:
+        "All NFTs metadata are opensea compaitable, So you can easily sell your NFTs on testnet.opensea.io",
     },
     {
       id: 4,
-      question: "Question 5",
-      answer: "Answer 5",
+      question: "What else is on the metadata of the NFTs?",
+      answer:
+        "We store all the metadata on IPFS. We store white's address, black's address, tokens at stake, winner, time of creation, description, and fen/pgn string of the game based on the type of NFT.",
+    },
+    {
+      id: 5,
+      question: "What is the price of minting NFTs?",
+      answer:
+        "Currently the Dapp runs on polygon mumbai testnet so all of the nft minting price is free. We will soon add a price for the nft minting on the mainnet launch.",
+    },
+    {
+      id: 6,
+      question:
+        "How do you make sure every NFT chesspos mints is unqiue in itself?",
+      answer:
+        "Every NFT we mint is linked to a unqiue string which is pgn for animated gif and fen string for postion based NFTs. There are checks on smart contract which make sure that the unqiue string (pgn/fen) is unique for every NFT before starting the minting process.",
+    },
+    {
+      id: 7,
+      question: "Where can I find contract addresses for chesspos?",
+      answer:
+        "Contract addresses for polygon mumbai testnet are 0x9704e539D741e5C59E29FaFBe6b4Ab271bd68FC1 for chess game logic, and 0xCEE29418D1F6f8eC86C99FE754eB921923e5055B for nfts.",
     },
   ];
 
