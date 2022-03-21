@@ -154,7 +154,7 @@ const NftMintButt = () => {
                   src={Matic}
                   style={{ width: "3rem", height: "3rem", margin: "0rem 0.5rem" }}
                 />
-                <span style={{ padding: "0rem 1rem" }}>at Stake</span>
+                <span style={{ padding: "0rem 1rem", fontSize: "2rem" }}>at Stake</span>
 
               </div>
                 

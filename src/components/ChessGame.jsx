@@ -459,18 +459,7 @@ function ChessGame() {
             alignItems: "center",
           }}
         >
-          <div
-            className="redButton"
-            style={{ height: "3rem", width: "13rem", paddingTop: "0.5rem" }}
-          >
-            Resign
-          </div>
-          <div
-            className="redButton"
-            style={{ height: "3rem", width: "13rem", paddingTop: "0.5rem" }}
-          >
-            Reset
-          </div>
+          
         </div>
         <div
           className="redButtonStatic"
@@ -485,7 +474,7 @@ function ChessGame() {
             alignItems: "center",
           }}
         >
-          <article style={{ fontSize: "1.5rem" }}>Staked Tokens</article>
+          <p style={{ fontSize: "1.5rem", color: "white" }}>Staked Tokens</p>
           <div
             style={{
               height: "2.5rem",

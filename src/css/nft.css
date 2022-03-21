@@ -49,14 +49,15 @@
 }
 .nftDespEditor {
   width: 35rem;
-  height: 14rem;
-  background: rgba(26, 28, 32, 0.75);
+  height: 12rem;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: start;
   padding: 1rem 1.5rem;
+  color: white;
 
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
@@ -142,7 +143,7 @@
   border-radius: 0.5rem;
   text-align: center;
   width: 25.5rem;
-  height: 28rem;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -158,11 +159,26 @@
 }
 
 .linkScan {
-  width: 20rem;
+  /* width: 20rem; */
   height: 3rem;
-  background: rgb(25, 28, 32);
+  border: none;
+  /* background: rgb(25, 28, 32); */
+  background: transparent;
   font-size: 1.2rem;
   letter-spacing: 3px;
+}
+.blackButton{
+  width: 20rem;
+  background: rgb(25, 28, 32);
+  margin: 0.5rem 0rem;
+  border-radius: 20px;
+  transition: all 0.25s ease-in-out;
+}
+.blackButton:hover{
+  outline: 3px solid white;
+}
+.css-66dh3a-MuiInputBase-input-MuiInput-input {
+  color: white;
 }
 /* -----------------------nftMintSm--------------- */
 .NftMintDivSm {
@@ -228,6 +244,14 @@
   /* margin-left: 2rem; */
   margin: auto;
   text-align: center;
+}
+.arrow{
+  cursor: pointer;
+}
+.arrow:hover{
+  transform: scale(1.05);
+  border: 3px solid white;
+
 }
 .despEditor {
   background: linear-gradient(90deg, #932c50 0%, #bd3f32 99.42%);

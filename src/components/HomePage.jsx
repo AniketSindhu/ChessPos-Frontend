@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { useMoralis } from "react-moralis";
 import Navbar from "../navbar";
-import Circles from "../../src/img/Circles2.png";
 import { Link, useNavigate } from "react-router-dom";
 import db from "../firebase";
 import Games from "./Games";
@@ -43,7 +42,7 @@ function HomePage() {
     if (isAuthenticated) {
       db.collection("games")
         .orderBy("time", "desc")
-        .where("players", "array-contains", account)
+        .where("players", "array-contains", account.toLowerCase())
         .onSnapshot((snapshot) =>
           setGames(snapshot.docs.map((doc) => doc.data()))
         );
@@ -182,6 +181,7 @@ function HomePage() {
                       height: "3rem",
                       width: "10rem",
                       left: "3.3rem",
+                      cursor: "pointer",
                       borderRadius: "2rem",
                       fontSize: "1.4rem",
                       paddingTop: "8px",

@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+ChessPos is a decentralized web app where users can play chess with others by putting some matic coins at stake and getting rewards for winning. Chesspos also allows users to engrave their chess game memories on blockchain by minting position-based/Animated gif NFTs.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It solves the big problem of trusting a middleman in every betting scenario by creating a trustless betting system in which you don't need to trust any party. Here, our smart contract plays the role of middle man by collecting staked tokens and distributing them to the winner of the match (code is the law here). 
 
-## Available Scripts
+# Features offered by ChessPos:
+* ♟ Stake tokens, play the match and the winner takes it all. 
 
-In the project directory, you can run:
+* 🤯 There are more chess positions than the number of atoms present in the observable universe. Due to this type of exclusivity of positions we thought about making the chess positions into NFTs. 
 
-### `npm start`
+* 🖼 Users can mint the positions from their previously played games as NFTs. They have the option to change the background color of the NFT. They can also add a short description explaining the position which will be forever engraved on the NFT image. The image will show the wallet address of both the players with the winner, staked amount, and the description.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* ♞ Users can also mint their whole game as animated GIF NFTs which will cycle through the game. It will also the the players wallet address on it.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* 💡Our smart contract makes sure every NFT minted on ChessPos is unique in itself by using FEN/PGN strings as unique IDs to identify NFTs. 
 
-### `npm test`
+* 💰Our NFTs follow opensea's metadata requirements and are compatible with opensea. So users can easily sell their NFTs on the biggest NFT marketplace(opensea).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Example of the NFTs minted using chessPos
+* https://testnets.opensea.io/assets/mumbai/0xcee29418d1f6f8ec86c99fe754eb921923e5055b/4 (Position)
+* https://testnets.opensea.io/assets/mumbai/0xcee29418d1f6f8ec86c99fe754eb921923e5055b/14 (GIF)
 
-### `npm run build`
+## Go Checkout [ChessPos](https://chesspos.tech) 🚀 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

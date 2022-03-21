@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Address from "./Address/Address";
 import Navbar from "../navbar";
 import Knight from "../img/newKnight.png";
+import redKnight from "../img/KnightRed.png";
 
 function LostMatch() {
   let navigate = useNavigate();
@@ -43,7 +44,16 @@ function LostMatch() {
               alignItems: "center",
             }}
           >
-            <img alt="winner knight" src={Knight} className="wonKnight" />
+            {isWhite ? (
+              <img alt="winner knight" src={Knight} className="wonKnight" />
+            ) : (
+              <img
+                alt="winner knight"
+                src={redKnight}
+                className="wonKnight"
+                style={{ transform: "scaleX(-1)" }}
+              />
+            )}
             <div
               className="name"
               style={{
@@ -54,7 +64,6 @@ function LostMatch() {
                 alignItems: "center",
               }}
             >
-              {" "}
               <Address
                 textStyle={{ color: "white" }}
                 size={6}
@@ -79,9 +88,9 @@ function LostMatch() {
               alignItems: "center",
             }}
           >
-            <article className="articleTxt">
+            <p className="articleTxt">
               YOU <span className="status">LOST</span> THE <br /> MATCH
-            </article>
+            </p>
             <div
               onClick={() => {
                 window.history.replaceState(null, "", location.pathname);
@@ -94,7 +103,7 @@ function LostMatch() {
                 position: "relative",
                 top: "4rem",
                 fontSize: "2.2rem",
-                padding: "0.6rem 1.5rem",
+                padding: "0.6rem 2rem",
               }}
             >
               Back To Home

@@ -88,19 +88,38 @@ function GifMinting() {
                     file: url,
                     uri: game.pgn,
                     metadataUri: metadata.ipnft,
-                    white: game.white,
-                    black: game.black,
+                    white: game.white.toLowerCase(),
+                    black: game.black.toLowerCase(),
                     amountAtStake: game.amount,
                     createdAt: new Date(),
                     winner: game.winner,
                     txnHash: recipt.transactionHash,
-                    creator: account,
-                    owner: account,
+                    creator: account.toLowerCase(),
+                    owner: account.toLowerCase(),
                     type: "gif",
                   })
                   .then(() => {
                     alert("Animated GIF for this game is minted successfully.");
                     setLoading1(false);
+                    navigate("/single-nft", {
+                      state: {
+                        nft: {
+                          tokenId: tokenId,
+                          file: url,
+                          uri: game.pgn,
+                          metadataUri: metadata.ipnft,
+                          white: game.white,
+                          black: game.black,
+                          amountAtStake: game.amount,
+                          createdAt: new Date(),
+                          winner: game.winner,
+                          txnHash: recipt.transactionHash,
+                          creator: account,
+                          owner: account,
+                          type: "gif",
+                        },
+                      },
+                    });
                   });
               });
             });

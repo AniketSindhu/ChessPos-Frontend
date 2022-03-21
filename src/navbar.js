@@ -4,10 +4,10 @@ import Wallet from "../src/components/Wallet/Wallet";
 import Nft from "./img/NFT SYMBOL.png";
 import { useMoralis } from "react-moralis";
 import Chains from "./components/Chains";
-import { Link } from "react-router-dom";
-
+import { Link, Navigate, useNavigate } from "react-router-dom";
 const Navbar = ({ head, isSticky }) => {
   const { isAuthenticated } = useMoralis();
+  let navigate = useNavigate();
   return (
     <div className="wallFlex" style={isSticky?{position: "fixed",
       top: "0",
@@ -33,8 +33,12 @@ const Navbar = ({ head, isSticky }) => {
       </Link>
       <div className="flexNft">
         {isAuthenticated && <Chains />}
-        <div className="imgFlexNft">
-          <img alt="walletNFT" src={Nft} className="walletImgNft  " />
+        <div className="imgFlexNft" onClick={()=>{
+          console.log("clicked")
+          if(isAuthenticated)
+            navigate("/your_nft")
+          }}>
+          <img alt="walletNFT" src={Nft} className="walletImgNft" />
           <div className="wallImgTextNft">Your Nfts</div>
         </div>
         <div className="imgFlex">

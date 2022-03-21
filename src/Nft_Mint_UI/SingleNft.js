@@ -1,18 +1,32 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Navbar from "../navbar";
-import NftMint from "./NftMint";
-import Matic from "../img/maticToken.png";
 
+import Matic from "../img/maticToken.png";
+import { useLocation } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
+import trophy from "../img/trophy.png";
+import { getEllipsisTxt } from "../helpers/formatters";
+import SomethingWentWrong from "../components/SomethingWentWrong";
 const SingleNft = () => {
-  return (
+  const [nft, setNft] = useState(null);
+  const [loading, setLoading] = useState(true);
+  let location = useLocation();
+
+  useEffect(() => {
+    if(location.state){
+      setNft(location.state.nft);
+      setLoading(false);
+    }
+  },[])
+  return loading?<Loader/>:location.state?(
     <div className="home-bg">
       <Navbar head="ChessPOS" />
       <div className="mintSucc">
-        <NftMint />
+        <img src={nft.file} alt="nft" style={{width:"30rem"}}/>
         <div
           style={{
             width: "25rem",
-            height: "30rem",
+            height: "32rem",
             background: "white",
             borderRadius: "30px",
             display: "flex",
@@ -21,17 +35,9 @@ const SingleNft = () => {
           }}
         >
           <div className="singleNftDiv">
-            {/* <span style={{ color: "black", fontSize: "2rem" }}>METADATA</span>
-          <div>
-            Position fen string <br /> White: address <br /> black: address{" "}
-            <br />
-            token at stake: description <br />
-            NFT address
-            <br /> NFT polygonscan link
-          </div> */}
             <span
               className="mainText"
-              style={{ fontSize: "2.5rem", letterSpacing: "6px" }}
+              style={{ fontSize: "2.5rem", letterSpacing: "6px", padding: "0rem" }}
             >
               METADATA
             </span>
@@ -43,7 +49,20 @@ const SingleNft = () => {
                 letterSpacing: "3px",
               }}
             >
-              Position fen string
+              Owner: {getEllipsisTxt(nft.owner,4)}
+            </span>
+            <span
+              className="mainText"
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "normal",
+                letterSpacing: "3px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              White: {getEllipsisTxt(nft.white,4)} {nft.winner==="w"&&<img src={trophy} alt="trophy" style={{width:"1.5rem",height:"1.5rem",margin:"2px"}}/>}
             </span>
             <span
               className="mainText"
@@ -53,7 +72,7 @@ const SingleNft = () => {
                 letterSpacing: "3px",
               }}
             >
-              White: address
+              Black: {getEllipsisTxt(nft.black,4)}{nft.winner==="b"&&<img src={trophy} alt="trophy" style={{width:"1.5rem",height:"1.5rem",margin:"2px"}}/>}
             </span>
             <span
               className="mainText"
@@ -61,19 +80,12 @@ const SingleNft = () => {
                 fontSize: "1.5rem",
                 fontWeight: "normal",
                 letterSpacing: "3px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              Black: address
-            </span>
-            <span
-              className="mainText"
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "normal",
-                letterSpacing: "3px",
-              }}
-            >
-              Tokens at Stake: 100{" "}
+              Tokens at Stake: {nft.amountAtStake}
               <img
                 alt="Matic"
                 src={Matic}
@@ -88,16 +100,37 @@ const SingleNft = () => {
                 letterSpacing: "3px",
               }}
             >
-              NFT address
+              Type: {nft.type}
             </span>
-            <button type="button mainText" className="linkScan">
-              NFT polygonscan link
+            <div className="blackButton">
+            <button style={{cursor:"pointer"}} type="button mainText" className="linkScan" onClick={()=>{
+                Object.assign(document.createElement('a'), {
+                  target: '_blank',
+                  href: `https://${nft.metadataUri}.ipfs.dweb.link/metadata.json`,
+                }).click();
+            }}>
+              View on IPFS
             </button>
+
+            </div>
+            <div className="blackButton">
+            <button style={{cursor:"pointer"}} type="button mainText" className="linkScan" onClick={()=>{
+                              Object.assign(document.createElement('a'), {
+                                target: '_blank',
+                                href: `https://mumbai.polygonscan.com/token/0xcee29418d1f6f8ec86c99fe754eb921923e5055b?a=${nft.tokenId}`
+                              }).click();
+            }}>
+              View on PolygonScan
+            </button>
+
+            </div>
+            
+            
           </div>
         </div>
       </div>
     </div>
-  );
+  ):<SomethingWentWrong/>;
 };
 
 export default SingleNft;

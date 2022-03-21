@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../navbar";
 import TextField from "@mui/material/TextField";
+import InputBase from '@mui/material/InputBase';
 import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 import Loader from "../components/Loader/Loader";
@@ -38,6 +39,10 @@ const client = new NFTStorage({
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY1MjJhNzc0MjlmOTA1NDlmZjFCN0Q5RDkyQzE3M2RFNUI3ODAyMGQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTI1MTg0MzEzMSwibmFtZSI6ImNoZXNzUG9zIn0.G2_vfE0XwjKFJiK93dEiJXx0RyauthWInvQfH_jF6Mo",
 });
+
+
+
+
 
 const NftMinting = () => {
   const printRef = React.useRef();
@@ -117,19 +122,34 @@ const NftMinting = () => {
                     file: url,
                     uri: chessGame1.fen(),
                     metadataUri: metadata.ipnft,
-                    white: game.white,
-                    black: game.black,
+                    white: game.white.toLowerCase(),
+                    black: game.black.toLowerCase(),
                     amountAtStake: game.amount,
                     createdAt: new Date(),
                     winner: game.winner,
                     txnHash: recipt.transactionHash,
-                    creator: account,
-                    owner: account,
+                    creator: account.toLowerCase(),
+                    owner: account.toLowerCase(),
                     type: "position",
                   })
                   .then(() => {
                     alert("Your position's NFT is minted successfully.");
                     setLoading1(false);
+                    navigate("/single-nft",{state:{nft:{
+                      tokenId: tokenId,
+                      file: url,
+                      uri: chessGame1.fen(),
+                      metadataUri: metadata.ipnft,
+                      white: game.white,
+                      black: game.black,
+                      amountAtStake: game.amount,
+                      createdAt: new Date(),
+                      winner: game.winner,
+                      txnHash: recipt.transactionHash,
+                      creator: account,
+                      owner: account,
+                      type: "position",
+                    }}});
                   });
               });
             });
@@ -278,7 +298,7 @@ const NftMinting = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                boxShadow: "10px 10px 30px black",
+                // boxShadow: "10px 10px 30px black",
               }}
             >
               <div className="nftDet2">
@@ -395,6 +415,7 @@ const NftMinting = () => {
                       color: "white",
                       fontWeight: "bold",
                       fontSize: "20px",
+                      
                     }}
                   >
                     Description
@@ -424,6 +445,7 @@ const NftMinting = () => {
               }}
               src={Left}
               alt="left"
+              className="arrow"
               style={{ width: "80px", margin: "5px" }}
             />
             <img
@@ -438,6 +460,7 @@ const NftMinting = () => {
               }}
               src={Right}
               alt="right"
+              className="arrow"
               style={{ width: "85px", margin: "5px" }}
             />
           </div>
@@ -464,6 +487,7 @@ const NftMinting = () => {
               <span
                 style={{
                   fontSize: "2.2rem",
+                  
                 }}
               >
                 Description
@@ -485,17 +509,32 @@ const NftMinting = () => {
               <TextField
                 sx={{ input: { color: "white" } }}
                 className="mainText"
-                style={{ width: "32rem", height: "12rem" }}
+                style={{ width: "32rem"}}
                 hiddenLabel="hello"
                 multiline
                 variant="standard"
-                placeholder="Explain you NFT"
+                placeholder="Tap here"
+                
                 value={description}
                 onChange={handleDescription}
                 InputProps={{
                   disableUnderline: true,
                 }}
-              ></TextField>
+              >
+                
+              </TextField>
+              {description.length===0&&
+                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "start", opacity: "0.8"}}>
+              <span style={{color: "black", fontWeight: "lighter"}}>Explain your NFT</span>
+              <span style={{color: "black", fontWeight: "lighter", fontStyle: "italic", fontSize: "0.8rem"}}>What is unique in this position</span>
+              <span style={{color: "black", fontWeight: "lighter", fontStyle: "italic", fontSize: "0.8rem"}}>Why do you want to mint this position</span>
+              <span style={{color: "black", fontWeight: "lighter", fontStyle: "italic", fontSize: "0.8rem"}}>Why do you think this position needs to be an NFT</span>
+              
+
+              </div>
+              }
+              
+
             </div>
           </div>
           <div className="nftChooseColor">
@@ -519,6 +558,7 @@ const NftMinting = () => {
             style={{
               position: "relative",
               top: "4rem",
+              cursor:  "pointer",
 
               width: "23rem",
               borderRadius: "5rem",

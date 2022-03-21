@@ -8,11 +8,10 @@ import Navbar from "../navbar";
 import Knight from "../img/newKnight.png";
 import Matic from "../img/maticToken.png";
 import Trophy from "../img/trophy.png";
-import { flexbox } from "@mui/system";
-import { position } from "dom-helpers";
 import Address from "./Address/Address";
 import SomethingWentWrong from "./SomethingWentWrong";
 import db from "../firebase";
+import redKnight from "../img/KnightRed.png";
 function WonMatch() {
   let location = useLocation();
   const [gameId, setgameId] = useState(null);
@@ -62,13 +61,13 @@ function WonMatch() {
             gameId: gameId,
             winner: isWhite ? "w" : "b",
             time: new Date(),
-            white: isWhite ? address : loserAddress,
-            black: isWhite ? loserAddress : address,
+            white: isWhite ? address.toLowerCase() : loserAddress.toLowerCase(),
+            black: isWhite ? loserAddress.toLowerCase() : address.toLowerCase(),
             amount: amount * 2,
             pgn: pgn,
-            loserAddress: loserAddress,
-            winnerAddress: address,
-            players: [address, loserAddress],
+            loserAddress: loserAddress.toLowerCase(),
+            winnerAddress: address.toLowerCase(),
+            players: [address.toLowerCase(), loserAddress.toLowerCase()],
           });
         setIsLoading(false);
         alert("Transaction Successful you recieved " + amount * 2 + " MATIC");
@@ -121,7 +120,16 @@ function WonMatch() {
                 alignItems: "center",
               }}
             >
-              <img alt="winner knight" src={Knight} className="wonKnight" />
+              {isWhite ? (
+                <img alt="winner knight" src={Knight} className="wonKnight" />
+              ) : (
+                <img
+                  alt="winner knight"
+                  src={redKnight}
+                  className="wonKnight"
+                  style={{ transform: "scaleX(-1)" }}
+                />
+              )}
               <div
                 className="name"
                 style={{
@@ -166,14 +174,14 @@ function WonMatch() {
                 alignItems: "center",
               }}
             >
-              <article className="articleTxt">
+              <p className="articleTxt">
                 YOU <span className="status">WON</span> THE <br /> MATCH
-              </article>
+              </p>
               <div
                 onClick={handleClick}
                 className="redButton"
                 style={{
-                  width: "18rem",
+                  width: "16rem",
                   height: "8rem",
                   position: "relative",
                   top: "4rem",
@@ -182,9 +190,10 @@ function WonMatch() {
                   flexDirection: "column",
                   justifyContent: "space-evenly",
                   alignItems: "center",
+                  
                 }}
               >
-                <article style={{ fontSize: "1.5rem" }}>Claim Tokens</article>
+                <p style={{ fontSize: "1.8rem", color: "white" }}>Claim Tokens</p>
 
                 <div
                   style={{
@@ -194,14 +203,15 @@ function WonMatch() {
                     justifyContent: "center",
                     position: "relative",
                     bottom: "1rem",
+                    marginTop: "0.5rem"
                   }}
                 >
-                  <span style={{ padding: 0 }}>{amount * 2}</span>
+                  <span style={{ padding: 0, fontSize: "1.5rem"}}>{amount * 2}</span>
 
                   <img
                     alt="Matic"
                     src={Matic}
-                    style={{ width: "2rem", height: "2rem", margin: "1rem" }}
+                    style={{ width: "2rem", height: "2rem", margin: "0rem 1rem" }}
                   />
                 </div>
               </div>
